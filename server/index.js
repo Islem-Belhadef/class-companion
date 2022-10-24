@@ -29,43 +29,53 @@ mongoose
   });
 
 // API routes
-app.post("/signup/student", (req, res) => {
-  const student = new Student({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    student_card_num: req.body.studentCardNum,
-    speciality: "TI",
-    group: "1",
-  });
-  student
-    .save()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
+app.post("/signup", (req, res) => {
+
+  const type = req.body.type;
+
+  if (type === 'student') {
+    const student = new Student({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      student_card_num: req.body.studentCardNum,
+      speciality: req.body.speciality,
+      group: req.body.group,
     });
+    student
+      .save()
+      .then((result) => {
+        console.log(result);
+        res.send(result)
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send({message: 'Failed to create student account'});
+      });
+  }
+  else {
+    const teacher = new Teacher({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      class_name: req.body.class,
+    });
+    teacher
+      .save()
+      .then((result) => {
+        console.log(result);
+        res.send(result);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send({message: 'Failed to create teacher account'});
+      });
+  }
+
 });
 
-app.post("/signup/teacher", (req, res) => {
-  const teacher = new Teacher({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    class_name: req.body.class,
-  });
-  teacher
-    .save()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
 
 app.post("/login", (req, res) => {
   const user = req.body.user;

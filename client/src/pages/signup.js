@@ -16,27 +16,23 @@ function Signup() {
   // const [studentCardNum, setStudentCardNum] = useState("");
 
   const signup = () => {
-    if ((type === "student")) {
-      Axios.post("http://localhost:3001/signup/student", {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        studentCardNum: "202031026897",
-      }).then((res) => {
-        console.log(res);
-      });
-    } else {
-      Axios.post("http://localhost:3001/signup/teacher", {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        class: "DAW2",
-      }).then((res) => {
-        console.log(res);
-      });
-    }
+    Axios.post("http://localhost:3001/signup", {
+      type : type,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      studentCardNum: '202031026897',
+      speciality: 'TI',
+      group: '1',
+      class: 'DAW2',
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log('Error: ' + err);
+    });
   };
 
   return (

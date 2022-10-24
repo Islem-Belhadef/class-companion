@@ -12,8 +12,6 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const login = () => {
-    console.log(user);
-    console.log(password);
     Axios.post("http://localhost:3001/login", {
       user: user,
       password: password,
