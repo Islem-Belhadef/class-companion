@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 
 const Student = require("./models/student");
 const Teacher = require("./models/teacher");
+const Admin = require("./models/admin");
+const Class = require("./models/class");
+const Absence = require("./models/absence");
+const Justfication = require("./models/justfication");
 
 const app = express();
 app.use(cors());
