@@ -13,19 +13,31 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [studentCardNum, setStudentCardNum] = useState("");
+  // const [studentCardNum, setStudentCardNum] = useState("");
 
-  // const signup = () => {
-  //   Axios.post("http://localhost:3001/signup", {
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     email: email,
-  //     password: password,
-  //     studentCardNum: 202031026897,
-  //   }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
+  const signup = () => {
+    if ((type === "student")) {
+      Axios.post("http://localhost:3001/signup/student", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        studentCardNum: "202031026897",
+      }).then((res) => {
+        console.log(res);
+      });
+    } else {
+      Axios.post("http://localhost:3001/signup/teacher", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        class: "DAW2",
+      }).then((res) => {
+        console.log(res);
+      });
+    }
+  };
 
   return (
     <div className="signup-page">
@@ -53,7 +65,7 @@ function Signup() {
           <h1>Welcome</h1>
           <h2>To Class Companion of University of Constantine 2</h2>
         </div>
-        <form action="#" method="POST" autoComplete="off">
+        <form autoComplete="off" spellCheck="false">
           <div className="account-type">
             <label htmlFor="type">I am a</label>
             <div>
@@ -133,13 +145,13 @@ function Signup() {
             }}
           />
           <small>
-            Already have an account? <Link to="/signup">Click here</Link>
+            Already have an account? <Link to="/login">Click here</Link>
           </small>
           <div className="cat-btns">
             <button type="reset" className="secondary-btn">
               cancel
             </button>
-            <button type="button" className="main-btn" /*onClick={signup}*/>
+            <button type="button" className="main-btn" onClick={signup}>
               create
             </button>
           </div>

@@ -1,21 +1,32 @@
 import "../styles/login.css";
 
-import { Link } from "react-router-dom";
-import Axios from 'axios';
+import { Link, redirect } from "react-router-dom";
+import { useState } from "react";
+import Axios from "axios";
 import logo from "../assets/logo.png";
 import loginImg from "../assets/login.svg";
 import arrow from "../assets/arrow.svg";
 
 function Login() {
-
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
   const login = () => {
-    Axios.post('/login', (req,res) => {
-      // some code
+    console.log(user);
+    console.log(password);
+    Axios.post("http://localhost:3001/login/student", {
+      user: user,
+      password: password,
+    }).then((res) => {
+      console.log(res);
+      if (res.data.password === password) {
+        console.log('redirecting......');
+        redirect('/home');
+      }
+    }).catch((err) => {
+      console.log(err);
     });
-  }
+  };
 
   return (
     <div className="login-page">
@@ -43,7 +54,7 @@ function Login() {
           <h1>Welcome back</h1>
           <h2>To Class Companion of University of Constantine 2</h2>
         </div>
-        <form action="#" method="POST" autoComplete="off">
+        <form autoComplete="off" spellCheck="false">
           <label htmlFor="email">Email Address </label>
           <input
             type="text"
@@ -73,11 +84,7 @@ function Login() {
             <button type="reset" className="secondary-btn">
               cancel
             </button>
-            <button
-              type="button"
-              className="main-btn"
-              onClick={login}
-            >
+            <button type="button" className="main-btn" onClick={login}>
               login
             </button>
           </div>
