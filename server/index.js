@@ -7,7 +7,7 @@ const Teacher = require("./models/teacher");
 const Admin = require("./models/admin");
 const Class = require("./models/class");
 const Absence = require("./models/absence");
-const Justfication = require("./models/justfication");
+const Justification = require("./models/justification");
 
 const app = express();
 app.use(cors());
@@ -67,34 +67,44 @@ app.post("/signup/teacher", (req, res) => {
     });
 });
 
-app.post("/login/student", (req, res) => {
+app.post("/login", (req, res) => {
   const user = req.body.user;
   const password = req.body.password;
 
-  Student.findOne({email: user}, (err, result) => {
-    if (err || result === null) {
-      res.send({message: 'User not found'});
-    }
-    else {
-      if (password == result.password) {
-        res.send(result);
+  Student.findOne({ email: user }, (err, studentResult) => {
+    if (err || studentResult === null) {
+      Teacher.findOne({ email: user }, (err, teacherResult) => {
+        if (err || teacherResult === null) {
+          Admin.findOne({ email: user }, (err, adminResult) => {
+            if (err || adminResult === null) {
+              res.send({ message: "User not found" });
+            } else {
+              if (password == adminResult.password) {
+                res.send(adminResult);
+              } else {
+                res.send({ message: "Wrong email/password combination" });
+              }
+            }
+          });
+        } else {
+          if (password == teacherResult.password) {
+            res.send(teacherResult);
+          } else {
+            res.send({ message: "Wrong email/password combination" });
+          }
+        }
+      });
+    } else {
+      if (password == studentResult.password) {
+        res.send(studentResult);
+      } else {
+        res.send({ message: "Wrong email/password combination" });
       }
-      else {
-        res.send({message: 'Wrong email/password combination'});
-      }
     }
-  })
+  });
 });
 
 app.post("/login/teacher", (req, res) => {
   const user = req.body.user;
   const password = req.body.password;
-
-  Teacher.findOne({ email: user, password: password })
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 });

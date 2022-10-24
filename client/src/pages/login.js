@@ -14,7 +14,7 @@ function Login() {
   const login = () => {
     console.log(user);
     console.log(password);
-    Axios.post("http://localhost:3001/login/student", {
+    Axios.post("http://localhost:3001/login", {
       user: user,
       password: password,
     }).then((res) => {
