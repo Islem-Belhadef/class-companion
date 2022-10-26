@@ -80,9 +80,9 @@ function Login() {
           </small>
           <div className="cat-btns">
             <button type="reset" className="secondary-btn">
-              cancel
+              reset
             </button>
-            <button type="button" className="main-btn" onClick={login}>
+            <button className="main-btn" onClick={login}>
               login
             </button>
           </div>

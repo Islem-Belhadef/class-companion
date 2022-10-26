@@ -1,4 +1,5 @@
 import "../styles/signup.css";
+
 import { useState } from "react";
 import Axios from "axios";
 
@@ -145,7 +146,7 @@ function Signup() {
           </small>
           <div className="cat-btns">
             <button type="reset" className="secondary-btn">
-              cancel
+              reset
             </button>
             <button type="button" className="main-btn" onClick={signup}>
               create

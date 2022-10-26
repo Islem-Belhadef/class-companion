@@ -113,8 +113,3 @@ app.post("/login", (req, res) => {
     }
   });
 });
-
-app.post("/login/teacher", (req, res) => {
-  const user = req.body.user;
-  const password = req.body.password;
-});

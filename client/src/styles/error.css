@@ -1,0 +1,55 @@
+:root {
+    --primary: #5ab045;
+    --dark: #3d7b30;
+    --background: #dfffd8;
+    --textcolor: #222222;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Satoshi", sans-serif;
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  strong,
+  small,
+  label {
+    color: var(--textcolor);
+    font-weight: 500;
+
+  }
+
+  .error-page {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .error-illustration {
+    width: 45%;
+  }
+
+  .error-page h1 {
+    font-weight: 600;
+  }
+
+  .error-page p {
+    font-weight: 400;
+  }
+
+  .error-page .main-btn {
+    margin: 6vh 0;
+  }
