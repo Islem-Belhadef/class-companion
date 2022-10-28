@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const Student = require("./models/student");
 const Teacher = require("./models/teacher");
 const Admin = require("./models/admin");
-const Class = require("./models/class");
 const Absence = require("./models/absence");
 const Justification = require("./models/justification");
 
@@ -55,23 +54,29 @@ app.post("/signup", (req, res) => {
       });
   }
   else {
-    const teacher = new Teacher({
-      first_name: req.body.firstName,
-      last_name: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      class_name: req.body.class,
-    });
-    teacher
-      .save()
-      .then((result) => {
-        console.log(result);
-        res.send(result);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.send({message: 'Failed to create teacher account'});
+    if (req.body.teacherCode === '123456789') {
+      const teacher = new Teacher({
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        speciality: req.body.speciality,
+        class_name: req.body.classModule,
       });
+      teacher
+        .save()
+        .then((result) => {
+          console.log(result);
+          res.send(result);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.send({message : "Failed to create teacher's account"});
+        });
+    }
+    else {
+      res.send({message: "Wrong teacher code, can't create teacher's account"});
+    }
   }
 
 });

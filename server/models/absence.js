@@ -18,7 +18,7 @@ const absenceSchema = new Schema({
         type: String,
         required: true,
     },
-    class_id : {
+    class : {
         type: String,
         required: true,
     },

@@ -14,26 +14,63 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [studentCardNum, setStudentCardNum] = useState("");
+  const [studentCardNum, setStudentCardNum] = useState("");
+  const [teacherCode, setTeacherCode] = useState("");
+  const [speciality, setSpeciality] = useState("");
+  const [group, setGroup] = useState("");
+  const [classModule, setClassModule] = useState("");
+
+  const showAdditionalInfos = () => {
+    const blackBG = document.getElementById("black-bg");
+    const additionalStudentInfos = document.getElementById(
+      "additional-infos-student"
+    );
+    const additionalTeacherInfos = document.getElementById(
+      "additional-infos-teacher"
+    );
+
+    if (type === "student") {
+      additionalStudentInfos.style.display = "block";
+      blackBG.style.display = "block";
+    } else {
+      additionalTeacherInfos.style.display = "block";
+      blackBG.style.display = "block";
+    }
+  };
+
+  const goBack = () => {
+    const blackBG = document.getElementById("black-bg");
+    const additionalStudentInfos = document.getElementById(
+      "additional-infos-student"
+    );
+    const additionalTeacherInfos = document.getElementById(
+      "additional-infos-teacher"
+    );
+
+    additionalTeacherInfos.style.display = "none";
+    additionalStudentInfos.style.display = "none";
+    blackBG.style.display = "none";
+  };
 
   const signup = () => {
     Axios.post("http://localhost:3001/signup", {
-      type : type,
+      type: type,
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password,
-      studentCardNum: '202031026897',
-      speciality: 'TI',
-      group: '1',
-      class: 'DAW2',
+      studentCardNum: studentCardNum,
+      teacherCode: teacherCode,
+      speciality: speciality,
+      group: group,
+      classModule: classModule,
     })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log('Error: ' + err);
-    });
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+      });
   };
 
   return (
@@ -148,8 +185,107 @@ function Signup() {
             <button type="reset" className="secondary-btn">
               reset
             </button>
+            <button
+              type="button"
+              className="main-btn"
+              onClick={showAdditionalInfos}
+            >
+              continue
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="black-bg" id="black-bg"></div>
+      <div className="additional-infos" id="additional-infos-student">
+        <h1>Almost there..</h1>
+        <h3>
+          Please enter the rest of your student informations and you're good to
+          go
+        </h3>
+        <form>
+          <div className="additional-inputs">
+            <input
+              type="number"
+              required
+              placeholder="202012345678"
+              minLength="12"
+              maxLength="12"
+              onChange={(e) => {
+                setStudentCardNum(e.target.value);
+              }}
+            />
+            <select
+              name="speciality"
+              id="speciality"
+              onChange={(e) => {
+                setSpeciality(e.target.value);
+              }}
+            >
+              <option value="TI">TI</option>
+              <option value="GL">GL</option>
+              <option value="SCI">SCI</option>
+              <option value="SI">SI</option>
+            </select>
+            <select
+              name="group"
+              id="group"
+              onChange={(e) => {
+                setGroup(e.target.value);
+              }}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div className="cat-btns">
+            <button type="reset" className="secondary-btn" onClick={goBack}>
+              go back
+            </button>
             <button type="button" className="main-btn" onClick={signup}>
               create
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="additional-infos" id="additional-infos-teacher">
+        <h1>Almost there..</h1>
+        <h3>
+          Please enter the rest of your teacher informations and you're good to
+          go
+        </h3>
+        <form>
+          <div className="additional-inputs">
+            <input
+              type="number"
+              required
+              placeholder="123456789"
+              onChange={(e) => {
+                setTeacherCode(e.target.value);
+              }}
+            />
+            <select name="speciality" id="speciality" onChange={(e) => {setSpeciality(e.target.value)}}>
+              <option value="TI">TI</option>
+              <option value="GL">GL</option>
+              <option value="SCI">SCI</option>
+              <option value="SI">SI</option>
+            </select>
+            <select name="class" id="class" onChange={(e) => {setClassModule(e.target.value)}}>
+              <option value="DAW2">DAW2</option>
+              <option value="DAM">DAM</option>
+              <option value="BDM">BDM</option>
+              <option value="IASR">IASR</option>
+              <option value="OTAM">OTAM</option>
+              <option value="ACS">ACS</option>
+              <option value="TEC">TEC</option>
+            </select>
+          </div>
+          <div className="cat-btns">
+            <button type="reset" className="secondary-btn" onClick={goBack}>
+              go back
+            </button>
+            <button type="button" className="main-btn" onClick={signup}>
+              confirm
             </button>
           </div>
         </form>

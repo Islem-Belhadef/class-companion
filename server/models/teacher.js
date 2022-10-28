@@ -18,8 +18,13 @@ const teacherSchema = new Schema({
         type: String,
         required: true,
     },
+    speciality: {
+        type: String,
+        required: true,
+    },
     class_name: {
-        type: String
+        type: String,
+        required: true,
     }
 
 }, { timestamps: true });
