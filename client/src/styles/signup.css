@@ -1,280 +1,254 @@
-:root {
-    --primary: #5ab045;
-    --dark: #3d7b30;
-    --background: #dfffd8;
-    --textcolor: #222222;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Satoshi", sans-serif;
-    text-decoration: none;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  strong,
-  small,
-  label {
-    color: var(--textcolor);
-    font-weight: 500;
-  }
-  
-  .signup-page {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .signup-banner {
-    background-color: var(--background);
-    flex: 1;
-    display: flex;
-    /* display: none; */
-    z-index: 1;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .signup-illustration{
-    width: 32vw;
-    align-self: center;
-  }
-  
-  .continue {
-    display: flex;
-    align-self: center;
-    margin-bottom: 10vh;
-  }
-  
-  .continue img {
-    margin-top: 10vh;
-    width: 10vw;
-  }
-  
-  .signup-form {
-    flex: 1.5;
-    display: flex;
-    /* display: none; */
-    z-index: 1;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  .signup-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    margin: 2vw;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  .logo-img {
-    width: 3vw;
-  }
-  
-  .logo h3 {
-    font-family: "Chillax", "Satoshi", sans-serif;
-    font-weight: 500;
-    color: #000000;
-  }
-  
-  .signup-form .welcome {
-    text-align: center;
-  }
-  
-  .signup-form h1 {
-    font-weight: 700;
-    color: #000000;
-  }
-  
-  label {
-    font-weight: 500;
-    font-size: 1.1rem;
-    margin: 5px 0;
-  }
-  
-  .account-type {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin-bottom: 20px;
-  }
-  
-  input[type=radio] {
-    margin-right: 1vw;
-    /* accent-color: red; */
-    cursor: pointer;
-  } 
-  
-  input[type=text], input[type=email], input[type=password] {
-    width: 40vw;
-    height: 2.8rem;
-    border: 1px solid var(--primary);
-    border-radius: 8px;
-    padding: 0 1rem;
-    font-size: 1.1rem;
-    margin-bottom: 2vh;
-  }
-  
-  input:focus {
-    /* border: 1px solid var(--dark); */
-    outline: 1px solid var(--dark);
-  }
+.signup-page {
+  display: flex;
+  height: 100vh;
+}
 
-  .names-labels {
-    display: flex;
-  }
+.signup-banner {
+  background-color: var(--background);
+  flex: 1;
+  display: flex;
+  /* display: none; */
+  z-index: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  .names-labels label:first-child {
-    margin-right: 14.5vw;
-  }
+.signup-illustration {
+  width: 32vw;
+  align-self: center;
+}
 
-  .names {
-    display: flex;
-    justify-content: space-between;
-  }
+.continue {
+  display: flex;
+  align-self: center;
+  margin-bottom: 10vh;
+}
 
-  .names input {
-    width: 19vw;
-  }
-  
-  small {
-    font-weight: 500;
-    align-self: flex-end;
-    margin: 5px 0;
-  }
-  
-  a {
-    color: var(--dark);
-  }
-  
-  .cat-btns {
-    align-self: center;
-    display: flex;
-    justify-content: space-evenly;
-    width: 80%;
-    margin-top: 5vh;
-  }
-  
-  button {
-    text-transform: uppercase;
-    font-size: 1rem;
-    padding: 0.8rem 2.8rem;
-    border-radius: 6px;
-    border: none;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  .main-btn {
-    background-color: var(--primary);
-    color: #FFFFFF;
-  }
-  .main-btn:hover {
-    background-color: var(--dark);
-  }
-  
-  .secondary-btn {
-    background-color: transparent;
-    border: 1px solid var(--primary);
-    color: var(--textcolor);
-  }
-  .secondary-btn:hover {
-    border: 1px solid var(--dark);
-  }
+.continue img {
+  margin-top: 10vh;
+  width: 10vw;
+}
 
-  /* ----------------------------------------------------- */
+.signup-form {
+  flex: 1.5;
+  display: flex;
+  /* display: none; */
+  z-index: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
-  .black-bg {
-    background-color: #000000d7;
-    display: none;
-    position: fixed;
-    z-index: 2;
-    width: 100vw;
-    height: 100vh;
-  }
+.signup-form form {
+  display: flex;
+  flex-direction: column;
+}
 
-  .additional-infos{
-    display: none;
-    background-color: #FFFFFF;
-    width: fit-content;
-    padding: 3vw;
-    z-index: 3;
-    height: min-content;
-    border-radius: 12px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+.header {
+  display: flex;
+  align-items: center;
+}
 
-  }
+.logo {
+  margin: 2vw;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
-  .additional-infos h3 {
-    margin-bottom: 3vh;
-  }
+.logo-img {
+  width: 3vw;
+}
 
-  .additional-inputs {
-    display: flex;
-    gap: 2vw;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
+.logo h3 {
+  font-family: "Chillax", "Satoshi", sans-serif;
+  font-weight: 500;
+  color: #000000;
+}
 
-  .additional-infos input, select {
-    min-width: fit-content;
-    width: 20vw;
-    height: 2.8rem;
-    border: 1px solid var(--primary);
-    border-radius: 8px;
-    padding: 0 1rem;
-    font-size: 1.1rem;
-    margin-bottom: 2vh;
-  }
+.signup-form .welcome {
+  text-align: center;
+}
 
-  .additional-infos select {
-    width: fit-content;
-  }
-  
-  input:focus, .additional-infos select:focus{
-    outline: 1px solid var(--dark);
-  }
+.signup-form h1 {
+  font-weight: 700;
+  color: #000000;
+}
 
-  .additional-infos .cat-btns {
-    align-self: center;
-    display: flex;
-    gap: 5vw;
-    justify-content: center;
-    width: 100%;
-    margin-top: 3vh;
-  }
-  
-  button {
-    text-transform: uppercase;
-    font-size: 1rem;
-    padding: 0.8rem 2.8rem;
-    border-radius: 6px;
-    border: none;
-    font-weight: 500;
-    cursor: pointer;
-  }
+label {
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+.account-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+input[type="radio"] {
+  margin-right: 1vw;
+  /* accent-color: red; */
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 40vw;
+  height: 2.8rem;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 2vh;
+}
+
+input:focus {
+  /* border: 1px solid var(--dark); */
+  outline: 1px solid var(--dark);
+}
+
+.names-labels {
+  display: flex;
+}
+
+.names-labels label:first-child {
+  margin-right: 14.5vw;
+}
+
+.names {
+  display: flex;
+  justify-content: space-between;
+}
+
+.names input {
+  width: 19vw;
+}
+
+small {
+  font-weight: 500;
+  align-self: flex-end;
+  margin: 5px 0;
+}
+
+a {
+  color: var(--dark);
+}
+
+.cat-btns {
+  align-self: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  margin-top: 5vh;
+}
+
+button {
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 0.8rem 2.8rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.main-btn {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+.main-btn:hover {
+  background-color: var(--dark);
+}
+
+.secondary-btn {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--textcolor);
+}
+.secondary-btn:hover {
+  border: 1px solid var(--dark);
+}
+
+/* ----------------------------------------------------- */
+
+.black-bg {
+  background-color: #000000d7;
+  display: none;
+  position: fixed;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+}
+
+.additional-infos {
+  display: none;
+  background-color: #ffffff;
+  width: fit-content;
+  padding: 3vw;
+  z-index: 3;
+  height: min-content;
+  border-radius: 12px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.additional-infos h3 {
+  margin-bottom: 3vh;
+}
+
+.additional-inputs {
+  display: flex;
+  gap: 2vw;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.additional-infos input,
+select {
+  min-width: fit-content;
+  width: 20vw;
+  height: 2.8rem;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 2vh;
+}
+
+.additional-infos select {
+  width: fit-content;
+}
+
+input:focus,
+select:focus {
+  outline: 1px solid var(--dark);
+}
+
+.additional-infos .cat-btns {
+  align-self: center;
+  display: flex;
+  gap: 5vw;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3vh;
+}
+
+button {
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 0.8rem 2.8rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}

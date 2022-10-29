@@ -1,8 +1,12 @@
+// import style
 import "../styles/login.css";
 
-import { Link, redirect } from "react-router-dom";
+// import utilities
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Axios from "axios";
+
+// import assets
 import logo from "../assets/logo.png";
 import loginImg from "../assets/login.svg";
 import arrow from "../assets/arrow.svg";
@@ -11,17 +15,21 @@ function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const login = () => {
     Axios.post("http://localhost:3001/login", {
       user: user,
       password: password,
     }).then((res) => {
+      console.log('res');
       console.log(res);
       if (res.data.password === password) {
         console.log('redirecting......');
-        redirect('/home');
+        navigate('/');
       }
     }).catch((err) => {
+      console.log('err');
       console.log(err);
     });
   };

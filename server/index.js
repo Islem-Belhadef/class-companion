@@ -28,6 +28,8 @@ mongoose
   });
 
 // API routes
+
+// post signup
 app.post("/signup", (req, res) => {
 
   const type = req.body.type;
@@ -54,7 +56,7 @@ app.post("/signup", (req, res) => {
       });
   }
   else {
-    if (req.body.teacherCode === '123456789') {
+    if (req.body.teacherCode === ('12345679' || '12345689' || '12345678')) {
       const teacher = new Teacher({
         first_name: req.body.firstName,
         last_name: req.body.lastName,
@@ -81,7 +83,7 @@ app.post("/signup", (req, res) => {
 
 });
 
-
+// post login
 app.post("/login", (req, res) => {
   const user = req.body.user;
   const password = req.body.password;
@@ -117,4 +119,43 @@ app.post("/login", (req, res) => {
       }
     }
   });
+});
+
+// get students
+app.get("/students", (req, res) => {
+
+  Student.find({},(err, students) => {
+    if (err || students === null) {
+      res.send({message: "Error, could not get students"});
+    }
+    else {
+      res.send(students);
+    }
+  })
+});
+
+// get teachers
+app.get("/teachers", (req, res) => {
+
+  Teacher.find({},(err, teachers) => {
+    if (err || teachers === null) {
+      res.send({message: "Error, could not get teachers"});
+    }
+    else {
+      res.send(teachers);
+    }
+  })
+});
+
+// get absences
+app.get("/absences", (req, res) => {
+
+  Absence.find({},(err, absences) => {
+    if (err || absences === null) {
+      res.send({message: "Error, could not get absences"});
+    }
+    else {
+      res.send(absences);
+    }
+  })
 });

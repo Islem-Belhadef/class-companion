@@ -1,0 +1,136 @@
+:root {
+    --primary: #5ab045;
+    --dark: #3d7b30;
+    --background: #dfffd8;
+    --textcolor: #222222;
+  }
+
+.home {
+    display: flex;
+    height: 91vh;
+}
+
+.side-menu {
+    flex: 1;
+    background-color: var(--primary);
+}
+
+.main-page {
+    flex: 4;
+    background-color: #F0F0F0;
+    overflow: auto;
+}
+
+.section {
+    display: flex;
+    gap: 1vw;
+    width: 16vw;
+    align-items: center;
+    padding: 1vw;
+    margin: 1vw 2vw;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.section:hover {
+    background-color: #ffffff1f;
+}
+
+.selected-section {
+    background-color: #ffffff48;
+}
+
+.section-title {
+    display: flex;
+    align-items: baseline;
+    margin: 3vh 0 2vh 0.5rem;
+}
+
+.section-title h3 {
+    color: #FFFFFF;
+    margin-right: 10px;
+}
+
+.section-title .line {
+    height: 1px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.section p {
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.icon {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(322deg) brightness(108%) contrast(102%);
+}
+
+/* ----------------------------------------------------------- */
+.cards {
+    padding: 10px 50px 50px 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+}
+
+.settings {
+    display: flex;
+    padding: 2vw;
+    width: 100%;
+}
+
+.settings h1 {
+    margin-right: 3vw;
+}
+
+.filters {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filters select{
+    background-color: transparent;
+    width: fit-content;
+}
+
+.filters input[type = checkbox] {
+    margin-right: 1vw;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 16px;
+    padding: 2vw;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card div {
+    line-height: 2rem;
+}
+
+.card .labels p {
+    color: #999999;
+    font-weight: 400;
+}
+
+.ed-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ed-btns img {
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ed-btns img:hover {
+    box-shadow: 0 0 10px rgba(80, 175, 42, 0.2);
+}

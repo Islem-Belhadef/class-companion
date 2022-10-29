@@ -1,0 +1,37 @@
+:root {
+    --primary: #5ab045;
+    --dark: #3d7b30;
+    --background: #dfffd8;
+    --textcolor: #222222;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    height: 9vh;
+    background-color: #FFFFFF;
+  }
+
+  .header-logo {
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+  }
+  
+  .logo-img, .user-img {
+    width: 3vw;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+  }
+  
+  .header-logo h3 {
+    font-family: "Chillax", "Satoshi", sans-serif;
+    font-weight: 500;
+    color: #000000;
+  }

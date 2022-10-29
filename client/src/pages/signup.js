@@ -207,7 +207,7 @@ function Signup() {
             <input
               type="number"
               required
-              placeholder="202012345678"
+              placeholder="Student Card Number"
               minLength="12"
               maxLength="12"
               onChange={(e) => {
@@ -221,6 +221,7 @@ function Signup() {
                 setSpeciality(e.target.value);
               }}
             >
+              <option disabled selected value> Speciality </option>
               <option value="TI">TI</option>
               <option value="GL">GL</option>
               <option value="SCI">SCI</option>
@@ -233,6 +234,7 @@ function Signup() {
                 setGroup(e.target.value);
               }}
             >
+              <option disabled selected value> Group </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -264,13 +266,13 @@ function Signup() {
                 setTeacherCode(e.target.value);
               }}
             />
-            <select name="speciality" id="speciality" onChange={(e) => {setSpeciality(e.target.value)}}>
+            <select name="speciality" id="speciality" placeholder="Speciality" onChange={(e) => {setSpeciality(e.target.value)}}>
               <option value="TI">TI</option>
               <option value="GL">GL</option>
               <option value="SCI">SCI</option>
               <option value="SI">SI</option>
             </select>
-            <select name="class" id="class" onChange={(e) => {setClassModule(e.target.value)}}>
+            <select name="class" id="class" placeholder="Class" onChange={(e) => {setClassModule(e.target.value)}}>
               <option value="DAW2">DAW2</option>
               <option value="DAM">DAM</option>
               <option value="BDM">BDM</option>
