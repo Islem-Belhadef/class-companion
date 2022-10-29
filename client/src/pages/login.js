@@ -21,17 +21,19 @@ function Login() {
     Axios.post("http://localhost:3001/login", {
       user: user,
       password: password,
-    }).then((res) => {
-      console.log('res');
-      console.log(res);
-      if (res.data.password === password) {
-        console.log('redirecting......');
-        navigate('/');
-      }
-    }).catch((err) => {
-      console.log('err');
-      console.log(err);
-    });
+    })
+      .then((res) => {
+        // console.log('res');
+        console.log(res);
+        if (res.data.password === password) {
+          console.log("redirecting......");
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        // console.log('err');
+        console.log(err);
+      });
   };
 
   return (
@@ -60,7 +62,14 @@ function Login() {
           <h1>Welcome back</h1>
           <h2>To Class Companion of University of Constantine 2</h2>
         </div>
-        <form autoComplete="off" spellCheck="false">
+        <form
+          autoComplete="off"
+          spellCheck="false"
+          onSubmit={(e) => {
+            e.preventDefault();
+            login();
+          }}
+        >
           <label htmlFor="email">Email Address </label>
           <input
             type="text"
@@ -90,7 +99,7 @@ function Login() {
             <button type="reset" className="secondary-btn">
               reset
             </button>
-            <button className="main-btn" onClick={login}>
+            <button type="submit" className="main-btn">
               login
             </button>
           </div>

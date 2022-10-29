@@ -68,20 +68,6 @@ function Home() {
           <div
             className="section"
             id="profile"
-            // onClick={() => {
-            //   document
-            //     .getElementsById("students")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("teachers")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("absences")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("profile")
-            //     .classList.add("selected-section");
-            // }}
           >
             <img src={user} alt="User" height="18px" className="icon" />
             <p>Profile</p>
@@ -93,20 +79,6 @@ function Home() {
           <div
             className="section"
             id="students"
-            // onClick={() => {
-            //   document
-            //     .getElementsById("students")
-            //     .classList.add("selected-section");
-            //   document
-            //     .getElementsById("teachers")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("absences")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("profile")
-            //     .classList.remove("selected-section");
-            // }}
           >
             <img src={students} alt="Students" height="18px" className="icon" />
             <p>Students</p>
@@ -114,20 +86,6 @@ function Home() {
           <div
             className="section"
             id="teachers"
-            // onClick={() => {
-            //   document
-            //     .getElementsById("students")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("teachers")
-            //     .classList.add("selected-section");
-            //   document
-            //     .getElementsById("absences")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("profile")
-            //     .classList.remove("selected-section");
-            // }}
           >
             <img src={teachers} alt="Teachers" height="18px" className="icon" />
             <p>Teachers</p>
@@ -135,20 +93,6 @@ function Home() {
           <div
             className="section"
             id="absences"
-            // onClick={() => {
-            //   document
-            //     .getElementsById("students")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("teachers")
-            //     .classList.remove("selected-section");
-            //   document
-            //     .getElementsById("absences")
-            //     .classList.add("selected-section");
-            //   document
-            //     .getElementsById("profile")
-            //     .classList.remove("selected-section");
-            // }}
           >
             <img src={absences} alt="Absences" height="18px" className="icon" />
             <p>Absences</p>
