@@ -18,7 +18,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Home() {
+function Students() {
   const [studentsList, setStudentsList] = useState([]);
 
   const [error, setError] = useState("");
@@ -45,7 +45,7 @@ function Home() {
             <div className="line"></div>
           </div>
           <Link to="/home">
-            <div className="section selected-section" id="profile">
+            <div className="section" id="profile">
               <img src={home} alt="Home" height="18px" className="icon" />
               <p>Home</p>
             </div>
@@ -61,7 +61,7 @@ function Home() {
             <div className="line"></div>
           </div>
           <Link to="/students">
-            <div className="section" id="students">
+            <div className="section selected-section" id="students">
               <img
                 src={students}
                 alt="Students"
@@ -165,4 +165,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Students;

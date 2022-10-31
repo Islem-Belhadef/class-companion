@@ -16,9 +16,9 @@ import Header from "../partials/header";
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-function Home() {
+function Teachers() {
   const [studentsList, setStudentsList] = useState([]);
 
   const [error, setError] = useState("");
@@ -39,13 +39,13 @@ function Home() {
     <div className="home-page">
       <Header />
       <div className="home">
-        <div className="side-menu">
+      <div className="side-menu">
           <div className="section-title">
             <h3>Dashboard</h3>
             <div className="line"></div>
           </div>
           <Link to="/home">
-            <div className="section selected-section" id="profile">
+            <div className="section" id="profile">
               <img src={home} alt="Home" height="18px" className="icon" />
               <p>Home</p>
             </div>
@@ -72,7 +72,7 @@ function Home() {
             </div>
           </Link>
           <Link to="/teachers">
-            <div className="section" id="teachers">
+            <div className="section selected-section" id="teachers">
               <img
                 src={teachers}
                 alt="Teachers"
@@ -165,4 +165,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Teachers;
