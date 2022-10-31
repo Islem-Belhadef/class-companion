@@ -134,20 +134,6 @@ app.get("/students", (req, res) => {
   })
 });
 
-app.get("/student", (req, res) => {
-
-  const id = request.body.id;
-
-  Student.findById(id,(err, student) => {
-    if (err || student === null) {
-      res.send({message: "Error, could not get student"});
-    }
-    else {
-      res.send(student);
-    }
-  })
-});
-
 // get teachers
 app.get("/teachers", (req, res) => {
 
