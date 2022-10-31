@@ -2,13 +2,16 @@ import "../styles/signup.css";
 
 import { useState } from "react";
 import Axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import signupImg from "../assets/signup.svg";
 import arrow from "../assets/arrow.svg";
 
 function Signup() {
+
+  const navigate = useNavigate();
+  
   const [type, setType] = useState("student");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -17,6 +20,7 @@ function Signup() {
   const [studentCardNum, setStudentCardNum] = useState("");
   const [teacherCode, setTeacherCode] = useState("");
   const [speciality, setSpeciality] = useState("");
+  const [departement, setDepartement] = useState("");
   const [group, setGroup] = useState("");
   const [classModule, setClassModule] = useState("");
 
@@ -62,11 +66,16 @@ function Signup() {
       studentCardNum: studentCardNum,
       teacherCode: teacherCode,
       speciality: speciality,
+      departement: departement,
       group: group,
       classModule: classModule,
     })
       .then((res) => {
         console.log(res);
+        if (res.data.password === password) {
+          console.log("redirecting......");
+          navigate("/");
+        }
       })
       .catch((err) => {
         console.log("Error: " + err);
@@ -266,11 +275,10 @@ function Signup() {
                 setTeacherCode(e.target.value);
               }}
             />
-            <select name="speciality" id="speciality" placeholder="Speciality" onChange={(e) => {setSpeciality(e.target.value)}}>
-              <option value="TI">TI</option>
-              <option value="GL">GL</option>
-              <option value="SCI">SCI</option>
-              <option value="SI">SI</option>
+            <select name="Departement" id="Departement" placeholder="Departement" onChange={(e) => {setDepartement(e.target.value)}}>
+              <option value="TI">MI</option>
+              <option value="GL">IFA</option>
+              <option value="SCI">TLSI</option>
             </select>
             <select name="class" id="class" placeholder="Class" onChange={(e) => {setClassModule(e.target.value)}}>
               <option value="DAW2">DAW2</option>

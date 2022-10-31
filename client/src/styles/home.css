@@ -126,11 +126,22 @@
     justify-content: space-evenly;
 }
 
-.ed-btns img {
+.ed-btns div {
     border-radius: 50%;
     cursor: pointer;
+    width: 50px;
+    height: 50px;
 }
 
-.ed-btns img:hover {
-    box-shadow: 0 0 10px rgba(80, 175, 42, 0.2);
+#edit-btn {
+    background-image: url(../assets/pen.svg);
+}
+#edit-btn:hover {
+    background-image: url(../assets/pen-hover.svg);
+}
+#delete-btn {
+    background-image: url(../assets/trash.svg);
+}
+#delete-btn:hover {
+    background-image: url(../assets/trash-hover.svg);
 }

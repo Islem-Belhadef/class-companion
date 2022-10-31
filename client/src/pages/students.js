@@ -153,8 +153,8 @@ function Students() {
                   <p>{student.student_card_num}</p>
                 </div>
                 <div className="ed-btns">
-                  <img src={pen} alt="Edit" width="50px" onClick={() => {}} />
-                  <img src={trash} alt="Edit" width="50px" onClick={() => {}} />
+                  <div id="edit-btn" onClick={() => {}}></div>
+                  <div id="delete-btn" onClick={() => {}}></div>
                 </div>
               </div>
             ))}

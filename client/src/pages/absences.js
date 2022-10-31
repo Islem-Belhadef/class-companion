@@ -7,8 +7,6 @@ import user from "../assets/user.svg";
 import students from "../assets/students.svg";
 import teachers from "../assets/teachers.svg";
 import absences from "../assets/absences.svg";
-import pen from "../assets/pen.svg";
-import trash from "../assets/trash.svg";
 
 //import partials
 import Header from "../partials/header";
@@ -19,7 +17,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Absences() {
+  const [absencesList, setAbsencesList] = useState([]);
   const [studentsList, setStudentsList] = useState([]);
+  const [studentsObjectList, setStudentsObjectList] = useState([]);
+  const [teachersList, setTeachersList] = useState([]);
 
   const [error, setError] = useState("");
 
@@ -28,6 +29,26 @@ function Absences() {
       .then((res) => {
         console.log(res.data);
         setStudentsList(res.data);
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(err);
+      });
+
+    Axios.get("http://localhost:3001/teachers")
+      .then((res) => {
+        console.log(res.data);
+        setTeachersList(res.data);
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(err);
+      });
+
+    Axios.get("http://localhost:3001/absences")
+      .then((res) => {
+        console.log(res.data);
+        setAbsencesList(res.data);
       })
       .catch((err) => {
         setError(err);
@@ -136,25 +157,82 @@ function Absences() {
             </form>
           </div>
           <div className="cards">
-            {studentsList.map((student) => (
-              <div className="card" key={student._id}>
+            {absencesList.map((absence) => (
+              <div className="card" key={absence._id}>
                 <div className="labels">
                   <p>Last Name :</p>
                   <p>First Name :</p>
                   <p>Speciality :</p>
                   <p>Group :</p>
-                  <p>Student Num :</p>
+                  <p>Class :</p>
+                  <p>Teacher :</p>
+                  <p>Date :</p>
+                  <p>Nature :</p>
                 </div>
                 <div className="values">
-                  <p>{student.last_name}</p>
-                  <p>{student.first_name}</p>
-                  <p>{student.speciality}</p>
-                  <p>0{student.group}</p>
-                  <p>{student.student_card_num}</p>
+                  <p>
+                    {
+                      studentsList.find(
+                        (student) => student._id === absence.student_id
+                      ).last_name
+                    }
+                  </p>
+                  <p>
+                    {
+                      studentsList.find(
+                        (student) => student._id === absence.student_id
+                      ).first_name
+                    }
+                  </p>
+                  <p>
+                    {
+                      studentsList.find(
+                        (student) => student._id === absence.student_id
+                      ).speciality
+                    }
+                  </p>
+                  <p>
+                    0
+                    {
+                      studentsList.find(
+                        (student) => student._id === absence.student_id
+                      ).group
+                    }
+                  </p>
+                  <p>
+                    {
+                      teachersList.find(
+                        (teacher) => teacher._id === absence.teacher_id
+                      ).class_name
+                    }{" "}
+                    - {absence.class_type}
+                  </p>
+                  <p>
+                    {
+                      teachersList.find(
+                        (teacher) => teacher._id === absence.teacher_id
+                      ).last_name
+                    }{" "}
+                    {
+                      teachersList.find(
+                        (teacher) => teacher._id === absence.teacher_id
+                      ).first_name
+                    }
+                  </p>
+                  <p>
+                    {new Date(absence.date).getDate()}/
+                    {new Date(absence.date).getMonth()}/
+                    {new Date(absence.date).getFullYear()} -{" "}
+                    {new Date(absence.date).getHours()}:
+                    {new Date(absence.date).getMinutes()}
+                  </p>
+                  <p id="nature">
+                    {absence.justified ? "Justified" : "Unjustified"}
+                  </p>
                 </div>
                 <div className="ed-btns">
-                  <img src={pen} alt="Edit" width="50px" onClick={() => {}} />
-                  <img src={trash} alt="Edit" width="50px" onClick={() => {}} />
+                  <div id="edit-btn" onClick={() => {}}></div>
+                  <div id="delete-btn" onClick={() => {}}></div>
                 </div>
               </div>
             ))}

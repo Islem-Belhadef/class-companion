@@ -56,13 +56,13 @@ app.post("/signup", (req, res) => {
       });
   }
   else {
-    if (req.body.teacherCode === ('12345679' || '12345689' || '12345678')) {
+    if (req.body.teacherCode === '12345679') {
       const teacher = new Teacher({
         first_name: req.body.firstName,
         last_name: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        speciality: req.body.speciality,
+        departement: req.body.departement,
         class_name: req.body.classModule,
       });
       teacher
@@ -130,6 +130,20 @@ app.get("/students", (req, res) => {
     }
     else {
       res.send(students);
+    }
+  })
+});
+
+app.get("/student", (req, res) => {
+
+  const id = request.body.id;
+
+  Student.findById(id,(err, student) => {
+    if (err || student === null) {
+      res.send({message: "Error, could not get student"});
+    }
+    else {
+      res.send(student);
     }
   })
 });

@@ -16,18 +16,18 @@ import Header from "../partials/header";
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Teachers() {
-  const [studentsList, setStudentsList] = useState([]);
+  const [teachersList, setTeachersList] = useState([]);
 
   const [error, setError] = useState("");
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/students")
+    Axios.get("http://localhost:3001/teachers")
       .then((res) => {
         console.log(res.data);
-        setStudentsList(res.data);
+        setTeachersList(res.data);
       })
       .catch((err) => {
         setError(err);
@@ -39,7 +39,7 @@ function Teachers() {
     <div className="home-page">
       <Header />
       <div className="home">
-      <div className="side-menu">
+        <div className="side-menu">
           <div className="section-title">
             <h3>Dashboard</h3>
             <div className="line"></div>
@@ -96,32 +96,35 @@ function Teachers() {
         </div>
         <div className="main-page">
           <div className="settings">
-            <h1>Students List</h1>
+            <h1>Teachers List</h1>
             <form className="filters">
               <select
-                name="filter-by-speciality"
-                id="filter-by-speciality"
+                name="filter-by-departement"
+                id="filter-by-departement"
                 defaultValue=""
               >
                 <option disabled value="">
-                  Filter by speciality
+                  Filter by departement
                 </option>
-                <option value="TI">TI</option>
-                <option value="GL">GL</option>
-                <option value="SCI">SCI</option>
-                <option value="SI">SI</option>
+                <option value="MI">MI</option>
+                <option value="IFA">IFA</option>
+                <option value="TLSI">TLSI</option>
               </select>
               <select
-                name="filter-by-group"
-                id="filter-by-group"
+                name="filter-by-class"
+                id="filter-by-class"
                 defaultValue=""
               >
                 <option disabled value="">
-                  Filter by group
+                  Filter by class
                 </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="DAW2">DAW2</option>
+                <option value="DAM">DAM</option>
+                <option value="BDM">BDM</option>
+                <option value="IASR">IASR</option>
+                <option value="OTAM">OTAM</option>
+                <option value="ACS">ACS</option>
+                <option value="TEC">TEC</option>
               </select>
               <div>
                 <input
@@ -136,25 +139,23 @@ function Teachers() {
             </form>
           </div>
           <div className="cards">
-            {studentsList.map((student) => (
-              <div className="card" key={student._id}>
+            {teachersList.map((teacher) => (
+              <div className="card" key={teacher._id}>
                 <div className="labels">
                   <p>Last Name :</p>
                   <p>First Name :</p>
-                  <p>Speciality :</p>
-                  <p>Group :</p>
-                  <p>Student Num :</p>
+                  <p>Departement :</p>
+                  <p>Class :</p>
                 </div>
                 <div className="values">
-                  <p>{student.last_name}</p>
-                  <p>{student.first_name}</p>
-                  <p>{student.speciality}</p>
-                  <p>0{student.group}</p>
-                  <p>{student.student_card_num}</p>
+                  <p>{teacher.last_name}</p>
+                  <p>{teacher.first_name}</p>
+                  <p>{teacher.departement}</p>
+                  <p>{teacher.class_name}</p>
                 </div>
                 <div className="ed-btns">
-                  <img src={pen} alt="Edit" width="50px" onClick={() => {}} />
-                  <img src={trash} alt="Edit" width="50px" onClick={() => {}} />
+                  <div id="edit-btn" onClick={() => {}}></div>
+                  <div id="delete-btn" onClick={() => {}}></div>
                 </div>
               </div>
             ))}

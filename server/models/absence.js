@@ -18,16 +18,12 @@ const absenceSchema = new Schema({
         type: String,
         required: true,
     },
-    class : {
-        type: String,
-        required: true,
-    },
     class_type : {
         type: String,
         required: true,
     },
-    nature : {
-        type: String,
+    justified : {
+        type: Boolean,
         required: true,
     }
 

@@ -18,7 +18,7 @@ const teacherSchema = new Schema({
         type: String,
         required: true,
     },
-    speciality: {
+    departement: {
         type: String,
         required: true,
     },
