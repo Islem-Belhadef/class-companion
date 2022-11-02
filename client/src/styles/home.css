@@ -8,6 +8,7 @@
 .home {
     display: flex;
     height: 91vh;
+    z-index: 1;
 }
 
 .side-menu {
@@ -166,6 +167,16 @@
     width: 13vw;
   }
 
+  
+.black-background {
+    background-color: #000000d7;
+    display: none;
+    position: fixed;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+  }
+
 #edit {
     background-color: var(--primary);
     color: #FFFFFF;
@@ -173,3 +184,35 @@
 #edit:hover {
     background-color: var(--dark);
 }
+
+  #logout-dialog {
+    display: none;
+    background-color: #ffffff;
+    width: fit-content;
+    padding: 3vw;
+    z-index: 3;
+    height: min-content;
+    border-radius: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  #logout-dialog .cat-btns {
+    align-self: center;
+    display: flex;
+    gap: 5vw;
+    justify-content: center;
+    width: 100%;
+    margin-top: 3vh;
+  }
+
+  #confirm-logout {
+    background-color: #E74C3C;
+  }
+  #confirm-logout:hover {
+    background-color: #d43c2c;
+  }

@@ -3,15 +3,30 @@ import "../styles/signup.css";
 import { useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../assets/logo.png";
 import signupImg from "../assets/signup.svg";
 import arrow from "../assets/arrow.svg";
 
 function Signup() {
-
   const navigate = useNavigate();
-  
+
+  const [obscure, setObscure] = useState(true);
+
+  const togglePassword = () => {
+    const pwd = document.querySelector('#password');
+    if (obscure) {
+      setObscure(false)
+      pwd.setAttribute('type', 'text');
+    }
+    else {
+      setObscure(true)
+      pwd.setAttribute('type', 'password');
+    }
+  }
+
   const [type, setType] = useState("student");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -43,17 +58,9 @@ function Signup() {
   };
 
   const goBack = () => {
-    const blackBG = document.getElementById("black-bg");
-    const additionalStudentInfos = document.getElementById(
-      "additional-infos-student"
-    );
-    const additionalTeacherInfos = document.getElementById(
-      "additional-infos-teacher"
-    );
-
-    additionalTeacherInfos.style.display = "none";
-    additionalStudentInfos.style.display = "none";
-    blackBG.style.display = "none";
+    document.getElementById("black-bg").style.display = "none";
+    document.getElementById("additional-infos-student").style.display = "none";
+    document.getElementById("additional-infos-teacher").style.display = "none";
   };
 
   const signup = () => {
@@ -177,16 +184,45 @@ function Signup() {
             }}
           />
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            required
-            maxLength={40}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+          <div className="pass">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              maxLength={40}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            {obscure && <FontAwesomeIcon
+              icon={faEye}
+              style={{
+                marginLeft: "-2.4rem",
+                marginBottom: "-0.3rem",
+                width: "26px",
+                height: "26px",
+                cursor: "pointer",
+                color: "#3d7b30",
+              }}
+              id="toggle-password"
+              onClick={togglePassword}
+            />}
+            {!obscure && <FontAwesomeIcon
+              icon={faEyeSlash}
+              style={{
+                marginLeft: "-2.4rem",
+                marginBottom: "-0.3rem",
+                width: "26px",
+                height: "26px",
+                cursor: "pointer",
+                color: "#3d7b30",
+              }}
+              id="toggle-password"
+              onClick={togglePassword}
+            />}
+            
+          </div>
           <small>
             Already have an account? <Link to="/login">Click here</Link>
           </small>
@@ -230,7 +266,10 @@ function Signup() {
                 setSpeciality(e.target.value);
               }}
             >
-              <option disabled selected value> Speciality </option>
+              <option disabled selected value>
+                {" "}
+                Speciality{" "}
+              </option>
               <option value="TI">TI</option>
               <option value="GL">GL</option>
               <option value="SCI">SCI</option>
@@ -243,7 +282,10 @@ function Signup() {
                 setGroup(e.target.value);
               }}
             >
-              <option disabled selected value> Group </option>
+              <option disabled selected value>
+                {" "}
+                Group{" "}
+              </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -275,12 +317,26 @@ function Signup() {
                 setTeacherCode(e.target.value);
               }}
             />
-            <select name="Departement" id="Departement" placeholder="Departement" onChange={(e) => {setDepartement(e.target.value)}}>
+            <select
+              name="Departement"
+              id="Departement"
+              placeholder="Departement"
+              onChange={(e) => {
+                setDepartement(e.target.value);
+              }}
+            >
               <option value="TI">MI</option>
               <option value="GL">IFA</option>
               <option value="SCI">TLSI</option>
             </select>
-            <select name="class" id="class" placeholder="Class" onChange={(e) => {setClassModule(e.target.value)}}>
+            <select
+              name="class"
+              id="class"
+              placeholder="Class"
+              onChange={(e) => {
+                setClassModule(e.target.value);
+              }}
+            >
               <option value="DAW2">DAW2</option>
               <option value="DAM">DAM</option>
               <option value="BDM">BDM</option>

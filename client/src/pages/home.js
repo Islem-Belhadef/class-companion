@@ -13,16 +13,18 @@ import Header from "../partials/header";
 
 //import utilities
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home() {
-
   const navigate = useNavigate();
 
-  const loggedIn = window.localStorage.getItem('loggedIn');
-
-  if (!loggedIn) {
-    navigate('/login');
-  }
+  useEffect(() => {
+    const loggedIn = window.localStorage.getItem('loggedIn');
+  
+    if (!loggedIn) {
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <div className="home-page">

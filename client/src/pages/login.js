@@ -5,6 +5,8 @@ import "../styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 // import assets
 import logo from "../assets/logo.png";
@@ -12,6 +14,19 @@ import loginImg from "../assets/login.svg";
 import arrow from "../assets/arrow.svg";
 
 function Login() {
+  const [obscure, setObscure] = useState(true);
+
+  const togglePassword = () => {
+    const pwd = document.querySelector("#password");
+    if (obscure) {
+      setObscure(false);
+      pwd.setAttribute("type", "text");
+    } else {
+      setObscure(true);
+      pwd.setAttribute("type", "password");
+    }
+  };
+
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -26,27 +41,26 @@ function Login() {
       .then((res) => {
         // console.log('res');
         console.log(res);
-        document.getElementById('login-message').style.display = 'block';
-        setTimeout(()=>{
-          document.getElementById('login-message').style.display = 'none';
-        }, 5000)
+        document.getElementById("login-message").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("login-message").style.display = "none";
+        }, 5000);
 
         if (res.data.password === password) {
-          setMessage('Login successful ✅');
-          window.localStorage.setItem('token', res.data._id); 
-          window.localStorage.setItem('first_name', res.data.first_name); 
-          window.localStorage.setItem('last_name', res.data.last_name); 
-          window.localStorage.setItem('loggedIn', true);
-          setTimeout(()=>{
+          setMessage("Login successful ✅");
+          window.localStorage.setItem("token", res.data._id);
+          window.localStorage.setItem("first_name", res.data.first_name);
+          window.localStorage.setItem("last_name", res.data.last_name);
+          window.localStorage.setItem("loggedIn", true);
+          setTimeout(() => {
             navigate("/home");
-          }, 2500)
-        }
-        else {
-          setMessage('Login failed: wrong credentials ❌');
+          }, 2500);
+        } else {
+          setMessage("Login failed: wrong credentials ❌");
         }
       })
       .catch((err) => {
-        setMessage(err+' ❌');
+        setMessage(err + " ❌");
         console.log(err);
       });
   };
@@ -100,16 +114,48 @@ function Login() {
             }}
           />
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            required
-            maxLength={40}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+          <div className="pass">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              maxLength={40}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            {obscure && (
+              <FontAwesomeIcon
+                icon={faEye}
+                style={{
+                  marginLeft: "-2.4rem",
+                  marginBottom: "-0.3rem",
+                  width: "26px",
+                  height: "26px",
+                  cursor: "pointer",
+                  color: "#3d7b30",
+                }}
+                id="toggle-password"
+                onClick={togglePassword}
+              />
+            )}
+            {!obscure && (
+              <FontAwesomeIcon
+                icon={faEyeSlash}
+                style={{
+                  marginLeft: "-2.4rem",
+                  marginBottom: "-0.3rem",
+                  width: "26px",
+                  height: "26px",
+                  cursor: "pointer",
+                  color: "#3d7b30",
+                }}
+                id="toggle-password"
+                onClick={togglePassword}
+              />
+            )}
+          </div>
           <small>
             Don't have an account? <Link to="/signup">Click here</Link>
           </small>

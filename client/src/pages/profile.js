@@ -13,15 +13,29 @@ import Header from "../partials/header";
 
 //import utilities
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Profile() {
-
   const navigate = useNavigate();
 
-  const loggedIn = window.localStorage.getItem('loggedIn');
+  useEffect(() => {
+    const loggedIn = window.localStorage.getItem('loggedIn');
+  
+    if (!loggedIn) {
+      navigate('/login');
+    }
+  }, []);
 
   const handleEdit = () => {
     //
+  };
+
+  const showLogoutDialog = () => {
+    document.getElementById("logout-dialog").style.display = "block";
+  };
+
+  const goBack = () => {
+    document.getElementById("logout-dialog").style.display = "none";
   };
 
   const handleLogout = () => {
@@ -31,10 +45,6 @@ function Profile() {
     window.localStorage.removeItem("last_name");
     navigate("/login");
   };
-
-  if (!loggedIn) {
-    navigate('/login');
-  }
 
   return (
     <div className="profile-page">
@@ -96,11 +106,26 @@ function Profile() {
           </Link>
         </div>
         <div className="main-page">
-          
           <div className="profile-btns">
-            <button id="edit" onClick={handleEdit}>edit</button>
-            <button id="logout" onClick={handleLogout}>logout</button>
+            <button id="edit" onClick={handleEdit}>
+              edit
+            </button>
+            <button id="logout" onClick={showLogoutDialog}>
+              logout
+            </button>
           </div>
+        </div>
+      </div>
+      <div className="black-background" id="black-background"></div>
+      <div className="logout-dialog" id="logout-dialog">
+        <h3>Are you sure you want to log out?</h3>
+        <div className="cat-btns">
+          <button type="button" className="secondary-btn" id="go-back" onClick={goBack}>
+            go back
+          </button>
+          <button type="button" className="main-btn" id="confirm-logout" onClick={handleLogout}>
+            yes
+          </button>
         </div>
       </div>
     </div>
