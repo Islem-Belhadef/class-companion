@@ -177,3 +177,19 @@
   .secondary-btn:hover {
     border: 1px solid var(--dark);
   }
+
+  .login-message {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 4vh;
+    bottom:0;
+    left:0;
+    right:0;
+    margin: 0 auto;
+    background-color: var(--background);
+    padding: 2vh;
+    border-radius: 16px;
+    border: 1px solid var(--primary);
+    display: none;
+  }

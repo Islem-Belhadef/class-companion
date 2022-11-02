@@ -7,36 +7,37 @@ import user from "../assets/user.svg";
 import students from "../assets/students.svg";
 import teachers from "../assets/teachers.svg";
 import absences from "../assets/absences.svg";
-import pen from "../assets/pen.svg";
-import trash from "../assets/trash.svg";
 
 //import partials
 import Header from "../partials/header";
 
 //import utilities
-import Axios from "axios";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Profile() {
-  const [studentsList, setStudentsList] = useState([]);
 
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/students")
-      .then((res) => {
-        console.log(res.data);
-        setStudentsList(res.data);
-      })
-      .catch((err) => {
-        setError(err);
-        console.log(err);
-      });
-  }, []);
+  const loggedIn = window.localStorage.getItem('loggedIn');
+
+  const handleEdit = () => {
+    //
+  };
+
+  const handleLogout = () => {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("loggedIn");
+    window.localStorage.removeItem("first_name");
+    window.localStorage.removeItem("last_name");
+    navigate("/login");
+  };
+
+  if (!loggedIn) {
+    navigate('/login');
+  }
 
   return (
-    <div className="home-page">
+    <div className="profile-page">
       <Header />
       <div className="home">
         <div className="side-menu">
@@ -96,6 +97,10 @@ function Profile() {
         </div>
         <div className="main-page">
           
+          <div className="profile-btns">
+            <button id="edit" onClick={handleEdit}>edit</button>
+            <button id="logout" onClick={handleLogout}>logout</button>
+          </div>
         </div>
       </div>
     </div>

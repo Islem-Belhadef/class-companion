@@ -7,33 +7,22 @@ import user from "../assets/user.svg";
 import students from "../assets/students.svg";
 import teachers from "../assets/teachers.svg";
 import absences from "../assets/absences.svg";
-import pen from "../assets/pen.svg";
-import trash from "../assets/trash.svg";
 
 //import partials
 import Header from "../partials/header";
 
 //import utilities
-import Axios from "axios";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
-  const [studentsList, setStudentsList] = useState([]);
 
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/students")
-      .then((res) => {
-        console.log(res.data);
-        setStudentsList(res.data);
-      })
-      .catch((err) => {
-        setError(err);
-        console.log(err);
-      });
-  }, []);
+  const loggedIn = window.localStorage.getItem('loggedIn');
+
+  if (!loggedIn) {
+    navigate('/login');
+  }
 
   return (
     <div className="home-page">
@@ -95,7 +84,6 @@ function Home() {
           </Link>
         </div>
         <div className="main-page">
-          
         </div>
       </div>
     </div>

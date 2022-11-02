@@ -145,3 +145,31 @@
 #delete-btn:hover {
     background-image: url(../assets/trash-hover.svg);
 }
+#logout {
+    background-color: #E74C3C;
+    color: #FFFFFF;
+}
+#logout:hover {
+    background-color: #d43c2c;
+}
+
+.profile-btns {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    gap: 8vw;
+    width: 100%;
+    margin-top: 5vh;
+  }
+
+  .profile-btns button {
+    width: 13vw;
+  }
+
+#edit {
+    background-color: var(--primary);
+    color: #FFFFFF;
+}
+#edit:hover {
+    background-color: var(--dark);
+}

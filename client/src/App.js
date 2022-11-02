@@ -12,12 +12,15 @@ import Students from "./pages/students";
 import Teachers from "./pages/teachers";
 
 function App() {
+
+  const loggedIn = window.localStorage.getItem('loggedIn');
+
   return (
     <Router>
       <div className="App">
         <div className="content">
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/" element={(loggedIn) ? <Navigate to="/home" replace /> : <Navigate to="/login" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

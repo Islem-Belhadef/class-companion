@@ -7,32 +7,47 @@ import user from "../assets/user.svg";
 import students from "../assets/students.svg";
 import teachers from "../assets/teachers.svg";
 import absences from "../assets/absences.svg";
-import pen from "../assets/pen.svg";
-import trash from "../assets/trash.svg";
 
 //import partials
 import Header from "../partials/header";
+import Loading from "../partials/loading";
 
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Teachers() {
+
+  const navigate = useNavigate();
+
+  const loggedIn = window.localStorage.getItem('loggedIn');
+
+  if (!loggedIn) {
+    navigate('/login');
+  }
+
   const [teachersList, setTeachersList] = useState([]);
 
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/teachers")
-      .then((res) => {
-        console.log(res.data);
-        setTeachersList(res.data);
-      })
-      .catch((err) => {
-        setError(err);
-        console.log(err);
-      });
+    setIsLoading(true);
+
+    setTimeout(() => {
+      Axios.get("http://localhost:3001/teachers")
+        .then((res) => {
+          console.log(res.data);
+          setTeachersList(res.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err);
+          console.log(err);
+          setIsLoading(false);
+        });
+    }, 1000);
   }, []);
 
   return (
@@ -138,28 +153,32 @@ function Teachers() {
               </div>
             </form>
           </div>
-          <div className="cards">
-            {teachersList.map((teacher) => (
-              <div className="card" key={teacher._id}>
-                <div className="labels">
-                  <p>Last Name :</p>
-                  <p>First Name :</p>
-                  <p>Departement :</p>
-                  <p>Class :</p>
+          {isLoading && <Loading />}
+          {!error && <p>{error}</p>}
+          {!isLoading && !error && (
+            <div className="cards">
+              {teachersList.map((teacher) => (
+                <div className="card" key={teacher._id}>
+                  <div className="labels">
+                    <p>Last Name :</p>
+                    <p>First Name :</p>
+                    <p>Departement :</p>
+                    <p>Class :</p>
+                  </div>
+                  <div className="values">
+                    <p>{teacher.last_name}</p>
+                    <p>{teacher.first_name}</p>
+                    <p>{teacher.departement}</p>
+                    <p>{teacher.class_name}</p>
+                  </div>
+                  <div className="ed-btns">
+                    <div id="edit-btn" onClick={() => {}}></div>
+                    <div id="delete-btn" onClick={() => {}}></div>
+                  </div>
                 </div>
-                <div className="values">
-                  <p>{teacher.last_name}</p>
-                  <p>{teacher.first_name}</p>
-                  <p>{teacher.departement}</p>
-                  <p>{teacher.class_name}</p>
-                </div>
-                <div className="ed-btns">
-                  <div id="edit-btn" onClick={() => {}}></div>
-                  <div id="delete-btn" onClick={() => {}}></div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

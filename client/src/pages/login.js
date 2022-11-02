@@ -14,6 +14,7 @@ import arrow from "../assets/arrow.svg";
 function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,19 +26,36 @@ function Login() {
       .then((res) => {
         // console.log('res');
         console.log(res);
+        document.getElementById('login-message').style.display = 'block';
+        setTimeout(()=>{
+          document.getElementById('login-message').style.display = 'none';
+        }, 5000)
+
         if (res.data.password === password) {
-          console.log("redirecting......");
-          navigate("/");
+          setMessage('Login successful ✅');
+          window.localStorage.setItem('token', res.data._id); 
+          window.localStorage.setItem('first_name', res.data.first_name); 
+          window.localStorage.setItem('last_name', res.data.last_name); 
+          window.localStorage.setItem('loggedIn', true);
+          setTimeout(()=>{
+            navigate("/home");
+          }, 2500)
+        }
+        else {
+          setMessage('Login failed: wrong credentials ❌');
         }
       })
       .catch((err) => {
-        // console.log('err');
+        setMessage(err+' ❌');
         console.log(err);
       });
   };
 
   return (
     <div className="login-page">
+      <div className="login-message" id="login-message">
+        <h3>{message}</h3>
+      </div>
       <div className="login-banner">
         <div className="logo">
           <img src={logo} alt="Logo" className="logo-img" />
