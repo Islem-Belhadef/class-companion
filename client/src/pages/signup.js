@@ -57,6 +57,23 @@ function Signup() {
     }
   };
 
+  const check="@univ-constantine2.dz";
+
+  const checkEmail = (e) => {
+    let mail=document.getElementById("email");
+    let advice=document.getElementById("advice");
+    if(email.endsWith(check)){
+      mail.style.borderColor="var(--primary)"
+        showAdditionalInfos();
+        console.log("valid");  
+    }
+    else{ e.preventDefault();
+        mail.style.borderColor = "#E74C3C";
+        advice.style.color = "#E74C3C";
+        console.log("not valid");
+    }
+}
+
   const goBack = () => {
     document.getElementById("black-bg").style.display = "none";
     document.getElementById("additional-infos-student").style.display = "none";
@@ -171,7 +188,7 @@ function Signup() {
             />
           </div>
           <label htmlFor="email">
-            Email Address <small>(university professional email only)</small>
+            Email Address <small id="advice">(university professional email only)</small> 
           </label>
           <input
             type="email"
@@ -190,6 +207,7 @@ function Signup() {
               name="password"
               id="password"
               required
+              minLength={6}
               maxLength={40}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -233,7 +251,7 @@ function Signup() {
             <button
               type="button"
               className="main-btn"
-              onClick={showAdditionalInfos}
+              onClick={checkEmail}
             >
               continue
             </button>
