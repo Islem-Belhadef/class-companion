@@ -97,8 +97,14 @@ function Signup() {
       .then((res) => {
         console.log(res);
         if (res.data.password === password) {
-          console.log("redirecting......");
-          navigate("/");
+          window.localStorage.setItem("token", res.data.dbresult._id);
+          window.localStorage.setItem("firstName", res.data.dbresult.first_name);
+          window.localStorage.setItem("lastName", res.data.dbresult.last_name);
+          window.localStorage.setItem("loggedIn", true);
+          window.localStorage.setItem("accountType", res.data.account_type);
+          setTimeout(() => {
+            navigate("/home");
+          }, 2500);
         }
       })
       .catch((err) => {

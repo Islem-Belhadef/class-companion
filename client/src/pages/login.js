@@ -39,19 +39,19 @@ function Login() {
       password: password,
     })
       .then((res) => {
-        // console.log('res');
-        console.log(res);
         document.getElementById("login-message").style.display = "block";
         setTimeout(() => {
           document.getElementById("login-message").style.display = "none";
         }, 5000);
 
-        if (res.data.password === password) {
+        if (res.data.dbresult.password === password) {
           setMessage("Login successful ✅");
-          window.localStorage.setItem("token", res.data._id);
-          window.localStorage.setItem("first_name", res.data.first_name);
-          window.localStorage.setItem("last_name", res.data.last_name);
+          console.log(res.data);
+          window.localStorage.setItem("token", res.data.dbresult._id);
+          window.localStorage.setItem("firstName", res.data.dbresult.first_name);
+          window.localStorage.setItem("lastName", res.data.dbresult.last_name);
           window.localStorage.setItem("loggedIn", true);
+          window.localStorage.setItem("accountType", res.data.account_type);
           setTimeout(() => {
             navigate("/home");
           }, 2500);

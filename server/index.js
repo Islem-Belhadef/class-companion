@@ -48,7 +48,7 @@ app.post("/signup", (req, res) => {
       .save()
       .then((result) => {
         console.log(result);
-        res.send(result)
+        res.send({dbresult: result, account_type: "student"});
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +69,7 @@ app.post("/signup", (req, res) => {
         .save()
         .then((result) => {
           console.log(result);
-          res.send(result);
+          res.send({dbresult: result, account_type: "teacher"});
         })
         .catch((err) => {
           console.log(err);
@@ -97,7 +97,8 @@ app.post("/login", (req, res) => {
               res.send({ message: "User not found" });
             } else {
               if (password == adminResult.password) {
-                res.send(adminResult);
+                res.send({dbresult: adminResult, account_type: "admin"});
+                // res.send({account_type: "admin"});
               } else {
                 res.send({ message: "Wrong email/password combination" });
               }
@@ -105,7 +106,8 @@ app.post("/login", (req, res) => {
           });
         } else {
           if (password == teacherResult.password) {
-            res.send(teacherResult);
+            res.send({dbresult: teacherResult, account_type: "teacher"});
+            // res.send({account_type: "teacher"});
           } else {
             res.send({ message: "Wrong email/password combination" });
           }
@@ -113,7 +115,8 @@ app.post("/login", (req, res) => {
       });
     } else {
       if (password == studentResult.password) {
-        res.send(studentResult);
+        res.send({dbresult: studentResult, account_type: "student"});
+        // res.send({account_type: "student"});
       } else {
         res.send({ message: "Wrong email/password combination" });
       }

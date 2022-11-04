@@ -41,8 +41,9 @@ function Profile() {
   const handleLogout = () => {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("loggedIn");
-    window.localStorage.removeItem("first_name");
-    window.localStorage.removeItem("last_name");
+    window.localStorage.removeItem("firstName");
+    window.localStorage.removeItem("lastName");
+    window.localStorage.removeItem("accountType");
     navigate("/login");
   };
 

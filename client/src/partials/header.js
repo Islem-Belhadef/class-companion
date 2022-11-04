@@ -21,8 +21,8 @@ function Header() {
       </Link>
       <div className="user">
         <h3>
-          {window.localStorage.getItem("first_name")}{" "}
-          {window.localStorage.getItem("last_name")}
+          {window.localStorage.getItem("firstName")}{" "}
+          {window.localStorage.getItem("lastName")}
         </h3>
         <img src={avatar} alt="avatar" className="user-img" />
       </div>
