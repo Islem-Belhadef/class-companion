@@ -18,14 +18,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Absences() {
-
   const navigate = useNavigate();
 
-  const loggedIn = window.localStorage.getItem('loggedIn');
-
-  if (!loggedIn) {
-    navigate('/login');
-  }
+  const loggedIn = window.localStorage.getItem("loggedIn");
 
   const [absencesList, setAbsencesList] = useState([]);
   const [studentsList, setStudentsList] = useState([]);
@@ -34,37 +29,41 @@ function Absences() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/students")
-      .then((res) => {
-        console.log(res.data);
-        setStudentsList(res.data);
-      })
-      .catch((err) => {
-        setError(err);
-        console.log(err);
-      });
-
-    Axios.get("http://localhost:3001/teachers")
-      .then((res) => {
-        console.log(res.data);
-        setTeachersList(res.data);
-      })
-      .catch((err) => {
-        setError(err);
-        console.log(err);
-      });
-
-    setTimeout(() => {
-      Axios.get("http://localhost:3001/absences")
+    if (!loggedIn) {
+      navigate("/login");
+    } else {
+      Axios.get("http://localhost:3001/students")
         .then((res) => {
           console.log(res.data);
-          setAbsencesList(res.data);
+          setStudentsList(res.data);
         })
         .catch((err) => {
           setError(err);
           console.log(err);
         });
-    }, 1000);
+
+      Axios.get("http://localhost:3001/teachers")
+        .then((res) => {
+          console.log(res.data);
+          setTeachersList(res.data);
+        })
+        .catch((err) => {
+          setError(err);
+          console.log(err);
+        });
+
+      setTimeout(() => {
+        Axios.get("http://localhost:3001/absences")
+          .then((res) => {
+            console.log(res.data);
+            setAbsencesList(res.data);
+          })
+          .catch((err) => {
+            setError(err);
+            console.log(err);
+          });
+      }, 1000);
+    }
   }, []);
 
   return (

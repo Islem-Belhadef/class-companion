@@ -18,14 +18,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Teachers() {
-
   const navigate = useNavigate();
 
-  const loggedIn = window.localStorage.getItem('loggedIn');
-
-  if (!loggedIn) {
-    navigate('/login');
-  }
+  const loggedIn = window.localStorage.getItem("loggedIn");
 
   const [teachersList, setTeachersList] = useState([]);
 
@@ -33,21 +28,25 @@ function Teachers() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    if (!loggedIn) {
+      navigate("/login");
+    } else {
+      setIsLoading(true);
 
-    setTimeout(() => {
-      Axios.get("http://localhost:3001/teachers")
-        .then((res) => {
-          console.log(res.data);
-          setTeachersList(res.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setError(err);
-          console.log(err);
-          setIsLoading(false);
-        });
-    }, 1000);
+      setTimeout(() => {
+        Axios.get("http://localhost:3001/teachers")
+          .then((res) => {
+            console.log(res.data);
+            setTeachersList(res.data);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            setError(err);
+            console.log(err);
+            setIsLoading(false);
+          });
+      }, 1000);
+    }
   }, []);
 
   return (

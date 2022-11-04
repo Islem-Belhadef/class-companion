@@ -18,14 +18,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Students() {
- 
   const navigate = useNavigate();
 
-  const loggedIn = window.localStorage.getItem('loggedIn');
-
-  if (!loggedIn) {
-    navigate('/login');
-  }
+  const loggedIn = window.localStorage.getItem("loggedIn");
 
   const [studentsList, setStudentsList] = useState([]);
 
@@ -33,21 +28,24 @@ function Students() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      Axios.get("http://localhost:3001/students")
-        .then((res) => {
-          console.log(res.data);
-          setStudentsList(res.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setError(err);
-          setIsLoading(false);
-          console.log(err);
-        });
-    }, 1000);
+    if (!loggedIn) {
+      navigate("/login");
+    } else {
+      setIsLoading(true);
+      setTimeout(() => {
+        Axios.get("http://localhost:3001/students")
+          .then((res) => {
+            console.log(res.data);
+            setStudentsList(res.data);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            setError(err);
+            setIsLoading(false);
+            console.log(err);
+          });
+      }, 1000);
+    }
   }, []);
 
   return (
