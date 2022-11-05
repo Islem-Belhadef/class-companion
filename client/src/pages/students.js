@@ -202,6 +202,7 @@ function Students() {
               alphabeticOrder && (
                 <div className="cards">
                   {studentsList
+                  .slice(0,studentsList.length)
                     .sort((a, b) =>
                       a.last_name < b.last_name
                         ? -1

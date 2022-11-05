@@ -96,7 +96,7 @@ function Signup() {
     })
       .then((res) => {
         console.log(res);
-        if (res.data.password === password) {
+        if (res.data.dbresult.password === password) {
           window.localStorage.setItem("token", res.data.dbresult._id);
           window.localStorage.setItem("firstName", res.data.dbresult.first_name);
           window.localStorage.setItem("lastName", res.data.dbresult.last_name);
@@ -104,7 +104,7 @@ function Signup() {
           window.localStorage.setItem("accountType", res.data.account_type);
           setTimeout(() => {
             navigate("/home");
-          }, 2500);
+          }, 1500);
         }
       })
       .catch((err) => {
@@ -194,7 +194,7 @@ function Signup() {
             />
           </div>
           <label htmlFor="email">
-            Email Address <small id="advice">(university professional email only)</small> 
+            Email Address <small id="advice">(university 2 professional email only)</small> 
           </label>
           <input
             type="email"
@@ -349,9 +349,9 @@ function Signup() {
                 setDepartement(e.target.value);
               }}
             >
-              <option value="TI">MI</option>
-              <option value="GL">IFA</option>
-              <option value="SCI">TLSI</option>
+              <option value="MI">MI</option>
+              <option value="IFA">IFA</option>
+              <option value="TLSI">TLSI</option>
             </select>
             <select
               name="class"
