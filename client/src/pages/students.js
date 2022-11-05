@@ -137,7 +137,6 @@ function Students() {
                 defaultValue=""
                 onChange={(e) => {
                   setGroupFilter(e.target.value);
-                  console.log(groupFilter);
                 }}
               >
                 <option disabled value="">
@@ -154,7 +153,6 @@ function Students() {
                   id="order-alphabetically"
                   onClick={() => {
                     setAlphabeticOrder(!alphabeticOrder);
-                    console.log(alphabeticOrder);
                   }}
                 />
                 <label htmlFor="order-alphabetically">
@@ -236,7 +234,7 @@ function Students() {
                 </div>
               ))}
 
-          {/* group filter */}
+          {/* filter group */}
           {(!isLoading &&
             !error &&
             !specialityFilter &&
@@ -309,7 +307,7 @@ function Students() {
                 </div>
               ))}
 
-          {/* speciality filter */}
+          {/* filter speciality */}
           {(!isLoading &&
             !error &&
             !groupFilter &&
@@ -384,7 +382,7 @@ function Students() {
                 </div>
               ))}
 
-          {/* speciality and group filter */}
+          {/* filter speciality and group */}
           {(!isLoading &&
             !error &&
             groupFilter &&
