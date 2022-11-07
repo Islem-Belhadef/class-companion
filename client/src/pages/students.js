@@ -11,6 +11,7 @@ import absences from "../assets/absences.svg";
 //import partials
 import Header from "../partials/header";
 import Loading from "../partials/loading";
+import SideMenu from "../partials/side-menu";
 
 //import utilities
 import Axios from "axios";
@@ -21,6 +22,7 @@ function Students() {
   const navigate = useNavigate();
 
   const loggedIn = window.localStorage.getItem("loggedIn");
+  const accountType = window.localStorage.getItem("accountType");
 
   const [studentsList, setStudentsList] = useState([]);
 
@@ -56,61 +58,7 @@ function Students() {
     <div className="home-page">
       <Header />
       <div className="home">
-        <div className="side-menu">
-          <div className="section-title">
-            <h3>Dashboard</h3>
-            <div className="line"></div>
-          </div>
-          <Link to="/home">
-            <div className="section" id="profile">
-              <img src={home} alt="Home" height="18px" className="icon" />
-              <p>Home</p>
-            </div>
-          </Link>
-          <Link to="/profile">
-            <div className="section" id="profile">
-              <img src={user} alt="User" height="18px" className="icon" />
-              <p>Profile</p>
-            </div>
-          </Link>
-          <div className="section-title">
-            <h3>Administration</h3>
-            <div className="line"></div>
-          </div>
-          <Link to="/students">
-            <div className="section selected-section" id="students">
-              <img
-                src={students}
-                alt="Students"
-                height="18px"
-                className="icon"
-              />
-              <p>Students</p>
-            </div>
-          </Link>
-          <Link to="/teachers">
-            <div className="section" id="teachers">
-              <img
-                src={teachers}
-                alt="Teachers"
-                height="18px"
-                className="icon"
-              />
-              <p>Teachers</p>
-            </div>
-          </Link>
-          <Link to="/absences">
-            <div className="section" id="absences">
-              <img
-                src={absences}
-                alt="Absences"
-                height="18px"
-                className="icon"
-              />
-              <p>Absences</p>
-            </div>
-          </Link>
-        </div>
+      <SideMenu type={accountType} page='students'/>
         <div className="main-page">
           <div className="settings">
             <h1>Students List</h1>
