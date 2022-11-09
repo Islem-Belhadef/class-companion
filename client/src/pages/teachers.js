@@ -1,13 +1,6 @@
 //import style
 import "../styles/home.css";
 
-//import assets
-import home from "../assets/home.svg";
-import user from "../assets/user.svg";
-import students from "../assets/students.svg";
-import teachers from "../assets/teachers.svg";
-import absences from "../assets/absences.svg";
-
 //import partials
 import Header from "../partials/header";
 import Loading from "../partials/loading";
@@ -16,7 +9,9 @@ import SideMenu from "../partials/side-menu";
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Teachers() {
   const navigate = useNavigate();
@@ -59,7 +54,8 @@ function Teachers() {
     <div className="home-page">
       <Header />
       <div className="home">
-      <SideMenu type={accountType} page='teachers'/>
+        
+        <SideMenu type={accountType} page="teachers" />
         <div className="main-page">
           <div className="settings">
             <h1>Teachers List</h1>
@@ -113,6 +109,15 @@ function Teachers() {
               </div>
             </form>
           </div>
+          <button className="main-btn add-user">
+          <FontAwesomeIcon
+            icon={faUserPlus}
+            style={{
+              marginRight: "1vw",
+            }}
+          />
+          add teacher
+        </button>
           {isLoading && <Loading />}
           {!error && <p>{error}</p>}
 
@@ -152,7 +157,7 @@ function Teachers() {
               alphabeticOrder && (
                 <div className="cards">
                   {teachersList
-                  .slice(0,teachersList.length)
+                    .slice(0, teachersList.length)
                     .sort((a, b) =>
                       a.last_name < b.last_name
                         ? -1

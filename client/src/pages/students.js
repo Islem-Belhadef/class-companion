@@ -1,13 +1,6 @@
 //import style
 import "../styles/home.css";
 
-//import assets
-import home from "../assets/home.svg";
-import user from "../assets/user.svg";
-import students from "../assets/students.svg";
-import teachers from "../assets/teachers.svg";
-import absences from "../assets/absences.svg";
-
 //import partials
 import Header from "../partials/header";
 import Loading from "../partials/loading";
@@ -16,7 +9,9 @@ import SideMenu from "../partials/side-menu";
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Students() {
   const navigate = useNavigate();
@@ -58,7 +53,7 @@ function Students() {
     <div className="home-page">
       <Header />
       <div className="home">
-      <SideMenu type={accountType} page='students'/>
+        <SideMenu type={accountType} page="students" />
         <div className="main-page">
           <div className="settings">
             <h1>Students List</h1>
@@ -109,6 +104,15 @@ function Students() {
               </div>
             </form>
           </div>
+          <button className="main-btn add-user">
+            <FontAwesomeIcon
+              icon={faUserPlus}
+              style={{
+                marginRight: "1vw",
+              }}
+            />
+            add student
+          </button>
           {isLoading && <Loading />}
           {error && <p>{error}</p>}
 
@@ -150,7 +154,7 @@ function Students() {
               alphabeticOrder && (
                 <div className="cards">
                   {studentsList
-                  .slice(0,studentsList.length)
+                    .slice(0, studentsList.length)
                     .sort((a, b) =>
                       a.last_name < b.last_name
                         ? -1
@@ -407,6 +411,49 @@ function Students() {
                     ))}
                 </div>
               ))}
+        </div>
+        <div className="add-student-page">
+          <form>
+            <div className="input-grid">
+              <label htmlFor="first-name">First Name</label>
+              <label htmlFor="last-name">Last Name</label>
+              <input type="text" name="first-name" />
+              <input type="text" name="last-name" />
+            </div>
+            <label htmlFor="email">Email Address</label>
+            <input type="email" name="email" id="email" />
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" id="password" />
+            <label htmlFor="student-card-number">Student Card Number</label>
+            <input
+              type="number"
+              name="student-card-number"
+              id="student-card-number"
+            />
+            <div className="input-grid">
+              <label htmlFor="speciality">Speciality</label>
+              <label htmlFor="group">Group</label>
+              <select name="speciality" id="speciality">
+                <option value="TI">TI</option>
+                <option value="GL">GL</option>
+                <option value="SCI">SCI</option>
+                <option value="SI">SI</option>
+              </select>
+              <select name="group" id="group">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div className="cat-btns">
+              <button type="reset" className="secondary-btn">
+                cancel
+              </button>
+              <button type="button" className="main-btn">
+                add
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

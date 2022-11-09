@@ -16,11 +16,11 @@
     background-color: var(--primary);
 }
 
-.main-page {
+/* .main-page {
     flex: 4;
     background-color: #F0F0F0;
     overflow: auto;
-}
+} */
 
 .section {
     display: flex;
@@ -215,4 +215,25 @@
   }
   #confirm-logout:hover {
     background-color: #d43c2c;
+  }
+
+  .add-user {
+    position: fixed;
+    right: 2vw;
+    bottom: 3vh;
+    padding-left: 1.6vw;
+    padding-right: 1.6vw;
+  }
+
+  .main-page {
+    flex: 4;
+    background-color: #F0F0F0;
+    overflow: auto;
+    display: none;
+}
+
+  .add-student-page {
+    flex: 4;
+    background-color: #F0F0F0;
+    overflow: auto;
   }

@@ -118,7 +118,7 @@
     cursor: pointer;
   } 
   
-  input[type=text], input[type=email], input[type=password] {
+  input[type=text], input[type=email], input[type=password], input[type=number] {
     width: 40vw;
     height: 2.8rem;
     border: 1px solid var(--primary);

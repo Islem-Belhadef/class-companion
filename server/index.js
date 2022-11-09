@@ -31,10 +31,9 @@ mongoose
 
 // post signup
 app.post("/signup", (req, res) => {
-
   const type = req.body.type;
 
-  if (type === 'student') {
+  if (type === "student") {
     const student = new Student({
       first_name: req.body.firstName,
       last_name: req.body.lastName,
@@ -48,15 +47,14 @@ app.post("/signup", (req, res) => {
       .save()
       .then((result) => {
         console.log(result);
-        res.send({dbresult: result, account_type: "student"});
+        res.send({ dbresult: result, account_type: "student" });
       })
       .catch((err) => {
         console.log(err);
-        res.send({message: 'Failed to create student account'});
+        res.send({ message: "Failed to create student account" });
       });
-  }
-  else {
-    if (req.body.teacherCode === '12345679') {
+  } else {
+    if (req.body.teacherCode === "12345679") {
       const teacher = new Teacher({
         first_name: req.body.firstName,
         last_name: req.body.lastName,
@@ -69,18 +67,18 @@ app.post("/signup", (req, res) => {
         .save()
         .then((result) => {
           console.log(result);
-          res.send({dbresult: result, account_type: "teacher"});
+          res.send({ dbresult: result, account_type: "teacher" });
         })
         .catch((err) => {
           console.log(err);
-          res.send({message : "Failed to create teacher's account"});
+          res.send({ message: "Failed to create teacher's account" });
         });
-    }
-    else {
-      res.send({message: "Wrong teacher code, can't create teacher's account"});
+    } else {
+      res.send({
+        message: "Wrong teacher code, can't create teacher's account",
+      });
     }
   }
-
 });
 
 // post login
@@ -97,7 +95,7 @@ app.post("/login", (req, res) => {
               res.send({ message: "User not found" });
             } else {
               if (password == adminResult.password) {
-                res.send({dbresult: adminResult, account_type: "admin"});
+                res.send({ dbresult: adminResult, account_type: "admin" });
                 // res.send({account_type: "admin"});
               } else {
                 res.send({ message: "Wrong email/password combination" });
@@ -106,7 +104,7 @@ app.post("/login", (req, res) => {
           });
         } else {
           if (password == teacherResult.password) {
-            res.send({dbresult: teacherResult, account_type: "teacher"});
+            res.send({ dbresult: teacherResult, account_type: "teacher" });
             // res.send({account_type: "teacher"});
           } else {
             res.send({ message: "Wrong email/password combination" });
@@ -115,7 +113,7 @@ app.post("/login", (req, res) => {
       });
     } else {
       if (password == studentResult.password) {
-        res.send({dbresult: studentResult, account_type: "student"});
+        res.send({ dbresult: studentResult, account_type: "student" });
         // res.send({account_type: "student"});
       } else {
         res.send({ message: "Wrong email/password combination" });
@@ -126,39 +124,61 @@ app.post("/login", (req, res) => {
 
 // get students
 app.get("/students", (req, res) => {
-
-  Student.find({},(err, students) => {
+  Student.find({}, (err, students) => {
     if (err || students === null) {
-      res.send({message: "Error, could not get students"});
-    }
-    else {
+      res.send({ message: "Error, could not get students" });
+    } else {
       res.send(students);
     }
-  })
+  });
 });
 
 // get teachers
 app.get("/teachers", (req, res) => {
-
-  Teacher.find({},(err, teachers) => {
+  Teacher.find({}, (err, teachers) => {
     if (err || teachers === null) {
-      res.send({message: "Error, could not get teachers"});
-    }
-    else {
+      res.send({ message: "Error, could not get teachers" });
+    } else {
       res.send(teachers);
     }
-  })
+  });
 });
 
 // get absences
 app.get("/absences", (req, res) => {
-
-  Absence.find({},(err, absences) => {
+  Absence.find({}, (err, absences) => {
     if (err || absences === null) {
-      res.send({message: "Error, could not get absences"});
-    }
-    else {
+      res.send({ message: "Error, could not get absences" });
+    } else {
       res.send(absences);
     }
-  })
+  });
+});
+
+// post edit student
+app.post("/edit/student", (req, res) => {
+  const speciality = req.body.speciality;
+  const group = req.body.group;
+  const email = req.body.email;
+  const password = req.body.password;
+  const student_id = req.body.studentId;
+
+  Student.findByIdAndUpdate(
+    student_id, 
+    
+    {
+    email: email,
+    password: password,
+    speciality: speciality,
+    group: group,
+    }, 
+  
+    (err, student) => {
+      if (err) {
+        res.send({message: err});
+      }
+      else {
+        res.send(student);
+      }
+    });
 });
