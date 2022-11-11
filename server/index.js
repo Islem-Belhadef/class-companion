@@ -157,11 +157,11 @@ app.get("/absences", (req, res) => {
 
 // post edit student
 app.post("/edit/student", (req, res) => {
-  const speciality = req.body.speciality;
-  const group = req.body.group;
+  const student_id = req.body.studentId;
   const email = req.body.email;
   const password = req.body.password;
-  const student_id = req.body.studentId;
+  const speciality = req.body.speciality;
+  const group = req.body.group;
 
   Student.findByIdAndUpdate(
     student_id, 

@@ -28,6 +28,45 @@ function Teachers() {
   const [classFilter, setClassFilter] = useState("");
   const [alphabeticOrder, setAlphabeticOrder] = useState(false);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [departement, setDepartement] = useState("MI");
+  const [classModule, setClassModule] = useState("DAW2");
+
+  const handleAddUser = () => {
+    document.getElementById("teachers-page").style.display = "none";
+    document.getElementById("add-teacher-page").style.display = "block";
+  };
+
+  const handleCancel = () => {
+    document.getElementById("add-teacher-page").style.display = "none";
+    document.getElementById("teachers-page").style.display = "block";
+  };
+
+  const handleSubmit = () => {
+    Axios.post("http://localhost:3001/signup", {
+      teacherCode: "12345679",
+      type: "teacher",
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      departement: departement,
+      classModule: classModule
+    })
+      .then((res) => {
+        console.log(res);
+        setTimeout(() => {
+          navigate("/teachers");
+        }, 1500);
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+      });
+  };
+
   useEffect(() => {
     if (!loggedIn) {
       navigate("/login");
@@ -54,9 +93,8 @@ function Teachers() {
     <div className="home-page">
       <Header />
       <div className="home">
-        
         <SideMenu type={accountType} page="teachers" />
-        <div className="main-page">
+        <div className="main-page" id="teachers-page">
           <div className="settings">
             <h1>Teachers List</h1>
             <form className="filters">
@@ -109,15 +147,15 @@ function Teachers() {
               </div>
             </form>
           </div>
-          <button className="main-btn add-user">
-          <FontAwesomeIcon
-            icon={faUserPlus}
-            style={{
-              marginRight: "1vw",
-            }}
-          />
-          add teacher
-        </button>
+          <button className="main-btn add-user" onClick={handleAddUser}>
+            <FontAwesomeIcon
+              icon={faUserPlus}
+              style={{
+                marginRight: "1vw",
+              }} 
+            />
+            add teacher
+          </button>
           {isLoading && <Loading />}
           {!error && <p>{error}</p>}
 
@@ -404,6 +442,59 @@ function Teachers() {
                     ))}
                 </div>
               ))}
+        </div>
+        <div className="add-user-page" id="add-teacher-page">
+          <form onSubmit={handleSubmit}>
+            <h2>Add New Teacher</h2>
+            <div className="input-grid">
+              <label htmlFor="first-name">First Name</label>
+              <label htmlFor="last-name">Last Name</label>
+              <input type="text" name="first-name" onChange={(e) => {
+                setFirstName(e.target.value);
+              }}/>
+              <input type="text" name="last-name" onChange={(e) => {
+                setLastName(e.target.value);
+              }}/>
+            </div>
+            <label htmlFor="email">Email Address</label>
+            <input type="email" name="email" id="email" onChange={(e) => {
+                setEmail(e.target.value);
+              }}/>
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" id="password" onChange={(e) => {
+                setPassword(e.target.value);
+              }}/>
+            <div className="input-grid">
+              <label htmlFor="departement">Departement</label>
+              <label htmlFor="class">Class</label>
+              <select name="departement" id="departement" onChange={(e) => {
+                setDepartement(e.target.value);
+              }}>
+                <option value="MI">MI</option>
+                <option value="IFA">IFA</option>
+                <option value="TLSI">TLSI</option>
+              </select>
+              <select name="class" id="class" onChange={(e) => {
+                setClassModule(e.target.value);
+              }}>
+                <option value="DAW2">DAW2</option>
+                <option value="DAM">DAM</option>
+                <option value="BDM">BDM</option>
+                <option value="IASR">IASR</option>
+                <option value="OTAM">OTAM</option>
+                <option value="ACS">ACS</option>
+                <option value="TEC">TEC</option>
+              </select>
+            </div>
+            <div className="cat-btns">
+              <button type="button" className="secondary-btn" onClick={handleCancel}>
+                cancel
+              </button>
+              <button type="submit" className="main-btn">
+                add
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

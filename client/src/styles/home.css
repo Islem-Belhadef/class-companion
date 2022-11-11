@@ -229,11 +229,40 @@
     flex: 4;
     background-color: #F0F0F0;
     overflow: auto;
-    display: none;
+    /* display: none; */
 }
 
-  .add-student-page {
+  .add-user-page {
     flex: 4;
     background-color: #F0F0F0;
     overflow: auto;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .add-user-page form h2 {
+    margin-bottom: 10px;
+  }
+
+  .add-user-page form {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+
+  
+  .input-grid {
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 3vw;
+    }
+
+  .add-user-page form > input {
+    width: 100%;
+  }
+    
+  .input-grid input, .input-grid select {
+    width: 100%;
   }

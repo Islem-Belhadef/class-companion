@@ -28,6 +28,46 @@ function Students() {
   const [groupFilter, setGroupFilter] = useState("");
   const [alphabeticOrder, setAlphabeticOrder] = useState(false);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [studentCardNum, setStudentCardNum] = useState("");
+  const [speciality, setSpeciality] = useState("TI");
+  const [group, setGroup] = useState("1");
+
+  const handleAddUser = () => {
+    document.getElementById("students-page").style.display = "none";
+    document.getElementById("add-student-page").style.display = "block";
+  };
+
+  const handleCancel = () => {
+    document.getElementById("add-student-page").style.display = "none";
+    document.getElementById("students-page").style.display = "block";
+  };
+
+  const handleSubmit = () => {
+    Axios.post("http://localhost:3001/signup", {
+      type: "student",
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      studentCardNum: studentCardNum,
+      speciality: speciality,
+      group: group,
+    })
+      .then((res) => {
+        console.log(res);
+        setTimeout(() => {
+          navigate("/students");
+        }, 1500);
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+      });
+  };
+
   useEffect(() => {
     if (!loggedIn) {
       navigate("/login");
@@ -54,7 +94,7 @@ function Students() {
       <Header />
       <div className="home">
         <SideMenu type={accountType} page="students" />
-        <div className="main-page">
+        <div className="main-page" id="students-page">
           <div className="settings">
             <h1>Students List</h1>
             <form className="filters">
@@ -104,7 +144,11 @@ function Students() {
               </div>
             </form>
           </div>
-          <button className="main-btn add-user">
+          <button
+            className="main-btn add-user"
+            id="add-student"
+            onClick={handleAddUser}
+          >
             <FontAwesomeIcon
               icon={faUserPlus}
               style={{
@@ -412,44 +456,66 @@ function Students() {
                 </div>
               ))}
         </div>
-        <div className="add-student-page">
-          <form>
+        <div className="add-user-page" id="add-student-page">
+          <form onSubmit={handleSubmit}>
+            <h2>Add New Student</h2>
             <div className="input-grid">
               <label htmlFor="first-name">First Name</label>
               <label htmlFor="last-name">Last Name</label>
-              <input type="text" name="first-name" />
-              <input type="text" name="last-name" />
+              <input type="text" name="first-name" required onChange={(e) => {
+                setFirstName(e.target.value);
+              }}/>
+              <input type="text" name="last-name" required onChange={(e) => {
+                setLastName(e.target.value);
+              }}/>
             </div>
             <label htmlFor="email">Email Address</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required onChange={(e) => {
+                setEmail(e.target.value);
+              }}/>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" required onChange={(e) => {
+                setPassword(e.target.value);
+              }}/>
             <label htmlFor="student-card-number">Student Card Number</label>
             <input
               type="number"
               name="student-card-number"
               id="student-card-number"
+
+              required
+onChange={(e) => {
+                setStudentCardNum(e.target.value);
+              }}
             />
             <div className="input-grid">
               <label htmlFor="speciality">Speciality</label>
               <label htmlFor="group">Group</label>
-              <select name="speciality" id="speciality">
+              <select name="speciality" id="speciality" required onChange={(e) => {
+                setSpeciality(e.target.value);
+              }}>
                 <option value="TI">TI</option>
                 <option value="GL">GL</option>
                 <option value="SCI">SCI</option>
                 <option value="SI">SI</option>
               </select>
-              <select name="group" id="group">
+              <select name="group" id="group" required onChange={(e) => {
+                setGroup(e.target.value);
+              }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </div>
             <div className="cat-btns">
-              <button type="reset" className="secondary-btn">
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={handleCancel}
+              >
                 cancel
               </button>
-              <button type="button" className="main-btn">
+              <button type="submit" className="main-btn">
                 add
               </button>
             </div>
