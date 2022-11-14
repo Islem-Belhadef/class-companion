@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import StudentCard from "../partials/student-card";
 
 function Students() {
   const navigate = useNavigate();
@@ -168,26 +169,7 @@ function Students() {
             !alphabeticOrder && (
               <div className="cards">
                 {studentsList.map((student) => (
-                  <div className="card" key={student._id}>
-                    <div className="labels">
-                      <p>Last Name :</p>
-                      <p>First Name :</p>
-                      <p>Speciality :</p>
-                      <p>Group :</p>
-                      <p>Student Num :</p>
-                    </div>
-                    <div className="values">
-                      <p>{student.last_name}</p>
-                      <p>{student.first_name}</p>
-                      <p>{student.speciality}</p>
-                      <p>0{student.group}</p>
-                      <p>{student.student_card_num}</p>
-                    </div>
-                    <div className="ed-btns">
-                      <div id="edit-btn" onClick={() => {}}></div>
-                      <div id="delete-btn" onClick={() => {}}></div>
-                    </div>
-                  </div>
+                  <StudentCard student={student} key={student._id}/>
                 ))}
               </div>
             )) ||
@@ -207,26 +189,7 @@ function Students() {
                         : 0
                     )
                     .map((student) => (
-                      <div className="card" key={student._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Speciality :</p>
-                          <p>Group :</p>
-                          <p>Student Num :</p>
-                        </div>
-                        <div className="values">
-                          <p>{student.last_name}</p>
-                          <p>{student.first_name}</p>
-                          <p>{student.speciality}</p>
-                          <p>0{student.group}</p>
-                          <p>{student.student_card_num}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <StudentCard student={student} key={student._id}/>
                     ))}
                 </div>
               ))}
@@ -241,26 +204,7 @@ function Students() {
                 {studentsList
                   .filter((student) => student.group === groupFilter)
                   .map((student) => (
-                    <div className="card" key={student._id}>
-                      <div className="labels">
-                        <p>Last Name :</p>
-                        <p>First Name :</p>
-                        <p>Speciality :</p>
-                        <p>Group :</p>
-                        <p>Student Num :</p>
-                      </div>
-                      <div className="values">
-                        <p>{student.last_name}</p>
-                        <p>{student.first_name}</p>
-                        <p>{student.speciality}</p>
-                        <p>0{student.group}</p>
-                        <p>{student.student_card_num}</p>
-                      </div>
-                      <div className="ed-btns">
-                        <div id="edit-btn" onClick={() => {}}></div>
-                        <div id="delete-btn" onClick={() => {}}></div>
-                      </div>
-                    </div>
+                    <StudentCard student={student} key={student._id}/>
                   ))}
               </div>
             )) ||
@@ -280,26 +224,7 @@ function Students() {
                         : 0
                     )
                     .map((student) => (
-                      <div className="card" key={student._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Speciality :</p>
-                          <p>Group :</p>
-                          <p>Student Num :</p>
-                        </div>
-                        <div className="values">
-                          <p>{student.last_name}</p>
-                          <p>{student.first_name}</p>
-                          <p>{student.speciality}</p>
-                          <p>0{student.group}</p>
-                          <p>{student.student_card_num}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <StudentCard student={student} key={student._id}/>
                     ))}
                 </div>
               ))}
@@ -314,26 +239,7 @@ function Students() {
                 {studentsList
                   .filter((student) => student.speciality === specialityFilter)
                   .map((student) => (
-                    <div className="card" key={student._id}>
-                      <div className="labels">
-                        <p>Last Name :</p>
-                        <p>First Name :</p>
-                        <p>Speciality :</p>
-                        <p>Group :</p>
-                        <p>Student Num :</p>
-                      </div>
-                      <div className="values">
-                        <p>{student.last_name}</p>
-                        <p>{student.first_name}</p>
-                        <p>{student.speciality}</p>
-                        <p>0{student.group}</p>
-                        <p>{student.student_card_num}</p>
-                      </div>
-                      <div className="ed-btns">
-                        <div id="edit-btn" onClick={() => {}}></div>
-                        <div id="delete-btn" onClick={() => {}}></div>
-                      </div>
-                    </div>
+                    <StudentCard student={student} key={student._id}/>
                   ))}
               </div>
             )) ||
@@ -355,26 +261,7 @@ function Students() {
                         : 0
                     )
                     .map((student) => (
-                      <div className="card" key={student._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Speciality :</p>
-                          <p>Group :</p>
-                          <p>Student Num :</p>
-                        </div>
-                        <div className="values">
-                          <p>{student.last_name}</p>
-                          <p>{student.first_name}</p>
-                          <p>{student.speciality}</p>
-                          <p>0{student.group}</p>
-                          <p>{student.student_card_num}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <StudentCard student={student} key={student._id}/>
                     ))}
                 </div>
               ))}
@@ -390,26 +277,7 @@ function Students() {
                   .filter((student) => student.speciality === specialityFilter)
                   .filter((student) => student.group === groupFilter)
                   .map((student) => (
-                    <div className="card" key={student._id}>
-                      <div className="labels">
-                        <p>Last Name :</p>
-                        <p>First Name :</p>
-                        <p>Speciality :</p>
-                        <p>Group :</p>
-                        <p>Student Num :</p>
-                      </div>
-                      <div className="values">
-                        <p>{student.last_name}</p>
-                        <p>{student.first_name}</p>
-                        <p>{student.speciality}</p>
-                        <p>0{student.group}</p>
-                        <p>{student.student_card_num}</p>
-                      </div>
-                      <div className="ed-btns">
-                        <div id="edit-btn" onClick={() => {}}></div>
-                        <div id="delete-btn" onClick={() => {}}></div>
-                      </div>
-                    </div>
+                    <StudentCard student={student} key={student._id}/>
                   ))}
               </div>
             )) ||
@@ -432,26 +300,7 @@ function Students() {
                         : 0
                     )
                     .map((student) => (
-                      <div className="card" key={student._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Speciality :</p>
-                          <p>Group :</p>
-                          <p>Student Num :</p>
-                        </div>
-                        <div className="values">
-                          <p>{student.last_name}</p>
-                          <p>{student.first_name}</p>
-                          <p>{student.speciality}</p>
-                          <p>0{student.group}</p>
-                          <p>{student.student_card_num}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <StudentCard student={student} key={student._id}/>
                     ))}
                 </div>
               ))}
@@ -462,46 +311,77 @@ function Students() {
             <div className="input-grid">
               <label htmlFor="first-name">First Name</label>
               <label htmlFor="last-name">Last Name</label>
-              <input type="text" name="first-name" required onChange={(e) => {
-                setFirstName(e.target.value);
-              }}/>
-              <input type="text" name="last-name" required onChange={(e) => {
-                setLastName(e.target.value);
-              }}/>
+              <input
+                type="text"
+                name="first-name"
+                required
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+              />
+              <input
+                type="text"
+                name="last-name"
+                required
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
+              />
             </div>
             <label htmlFor="email">Email Address</label>
-            <input type="email" name="email" id="email" required onChange={(e) => {
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              onChange={(e) => {
                 setEmail(e.target.value);
-              }}/>
+              }}
+            />
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" required onChange={(e) => {
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              onChange={(e) => {
                 setPassword(e.target.value);
-              }}/>
+              }}
+            />
             <label htmlFor="student-card-number">Student Card Number</label>
             <input
               type="number"
               name="student-card-number"
               id="student-card-number"
-
               required
-onChange={(e) => {
+              onChange={(e) => {
                 setStudentCardNum(e.target.value);
               }}
             />
             <div className="input-grid">
               <label htmlFor="speciality">Speciality</label>
               <label htmlFor="group">Group</label>
-              <select name="speciality" id="speciality" required onChange={(e) => {
-                setSpeciality(e.target.value);
-              }}>
+              <select
+                name="speciality"
+                id="speciality"
+                required
+                onChange={(e) => {
+                  setSpeciality(e.target.value);
+                }}
+              >
                 <option value="TI">TI</option>
                 <option value="GL">GL</option>
                 <option value="SCI">SCI</option>
                 <option value="SI">SI</option>
               </select>
-              <select name="group" id="group" required onChange={(e) => {
-                setGroup(e.target.value);
-              }}>
+              <select
+                name="group"
+                id="group"
+                required
+                onChange={(e) => {
+                  setGroup(e.target.value);
+                }}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

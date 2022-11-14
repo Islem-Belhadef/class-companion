@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import TeacherCard from "../partials/teacher-card";
 
 function Teachers() {
   const navigate = useNavigate();
@@ -167,24 +168,7 @@ function Teachers() {
             !alphabeticOrder && (
               <div className="cards">
                 {teachersList.map((teacher) => (
-                  <div className="card" key={teacher._id}>
-                    <div className="labels">
-                      <p>Last Name :</p>
-                      <p>First Name :</p>
-                      <p>Departement :</p>
-                      <p>Class :</p>
-                    </div>
-                    <div className="values">
-                      <p>{teacher.last_name}</p>
-                      <p>{teacher.first_name}</p>
-                      <p>{teacher.departement}</p>
-                      <p>{teacher.class_name}</p>
-                    </div>
-                    <div className="ed-btns">
-                      <div id="edit-btn" onClick={() => {}}></div>
-                      <div id="delete-btn" onClick={() => {}}></div>
-                    </div>
-                  </div>
+                  <TeacherCard teacher={teacher} key={teacher._id}/>
                 ))}
               </div>
             )) ||
@@ -204,24 +188,7 @@ function Teachers() {
                         : 0
                     )
                     .map((teacher) => (
-                      <div className="card" key={teacher._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Departement :</p>
-                          <p>Class :</p>
-                        </div>
-                        <div className="values">
-                          <p>{teacher.last_name}</p>
-                          <p>{teacher.first_name}</p>
-                          <p>{teacher.departement}</p>
-                          <p>{teacher.class_name}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <TeacherCard teacher={teacher} key={teacher._id}/>
                     ))}
                 </div>
               ))}
@@ -238,24 +205,7 @@ function Teachers() {
                     (teacher) => teacher.departement === departementFilter
                   )
                   .map((teacher) => (
-                    <div className="card" key={teacher._id}>
-                      <div className="labels">
-                        <p>Last Name :</p>
-                        <p>First Name :</p>
-                        <p>Departement :</p>
-                        <p>Class :</p>
-                      </div>
-                      <div className="values">
-                        <p>{teacher.last_name}</p>
-                        <p>{teacher.first_name}</p>
-                        <p>{teacher.departement}</p>
-                        <p>{teacher.class_name}</p>
-                      </div>
-                      <div className="ed-btns">
-                        <div id="edit-btn" onClick={() => {}}></div>
-                        <div id="delete-btn" onClick={() => {}}></div>
-                      </div>
-                    </div>
+                    <TeacherCard teacher={teacher} key={teacher._id}/>
                   ))}
               </div>
             )) ||
@@ -277,24 +227,7 @@ function Teachers() {
                         : 0
                     )
                     .map((teacher) => (
-                      <div className="card" key={teacher._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Departement :</p>
-                          <p>Class :</p>
-                        </div>
-                        <div className="values">
-                          <p>{teacher.last_name}</p>
-                          <p>{teacher.first_name}</p>
-                          <p>{teacher.departement}</p>
-                          <p>{teacher.class_name}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <TeacherCard teacher={teacher} key={teacher._id}/>
                     ))}
                 </div>
               ))}
@@ -309,24 +242,7 @@ function Teachers() {
                 {teachersList
                   .filter((teacher) => teacher.class_name === classFilter)
                   .map((teacher) => (
-                    <div className="card" key={teacher._id}>
-                      <div className="labels">
-                        <p>Last Name :</p>
-                        <p>First Name :</p>
-                        <p>Departement :</p>
-                        <p>Class :</p>
-                      </div>
-                      <div className="values">
-                        <p>{teacher.last_name}</p>
-                        <p>{teacher.first_name}</p>
-                        <p>{teacher.departement}</p>
-                        <p>{teacher.class_name}</p>
-                      </div>
-                      <div className="ed-btns">
-                        <div id="edit-btn" onClick={() => {}}></div>
-                        <div id="delete-btn" onClick={() => {}}></div>
-                      </div>
-                    </div>
+                    <TeacherCard teacher={teacher} key={teacher._id}/>
                   ))}
               </div>
             )) ||
@@ -346,24 +262,7 @@ function Teachers() {
                         : 0
                     )
                     .map((teacher) => (
-                      <div className="card" key={teacher._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Departement :</p>
-                          <p>Class :</p>
-                        </div>
-                        <div className="values">
-                          <p>{teacher.last_name}</p>
-                          <p>{teacher.first_name}</p>
-                          <p>{teacher.departement}</p>
-                          <p>{teacher.class_name}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <TeacherCard teacher={teacher} key={teacher._id}/>
                     ))}
                 </div>
               ))}
@@ -381,24 +280,7 @@ function Teachers() {
                   )
                   .filter((teacher) => teacher.class_name === classFilter)
                   .map((teacher) => (
-                    <div className="card" key={teacher._id}>
-                      <div className="labels">
-                        <p>Last Name :</p>
-                        <p>First Name :</p>
-                        <p>Departement :</p>
-                        <p>Class :</p>
-                      </div>
-                      <div className="values">
-                        <p>{teacher.last_name}</p>
-                        <p>{teacher.first_name}</p>
-                        <p>{teacher.departement}</p>
-                        <p>{teacher.class_name}</p>
-                      </div>
-                      <div className="ed-btns">
-                        <div id="edit-btn" onClick={() => {}}></div>
-                        <div id="delete-btn" onClick={() => {}}></div>
-                      </div>
-                    </div>
+                    <TeacherCard teacher={teacher} key={teacher._id}/>
                   ))}
               </div>
             )) ||
@@ -421,24 +303,7 @@ function Teachers() {
                         : 0
                     )
                     .map((teacher) => (
-                      <div className="card" key={teacher._id}>
-                        <div className="labels">
-                          <p>Last Name :</p>
-                          <p>First Name :</p>
-                          <p>Departement :</p>
-                          <p>Class :</p>
-                        </div>
-                        <div className="values">
-                          <p>{teacher.last_name}</p>
-                          <p>{teacher.first_name}</p>
-                          <p>{teacher.departement}</p>
-                          <p>{teacher.class_name}</p>
-                        </div>
-                        <div className="ed-btns">
-                          <div id="edit-btn" onClick={() => {}}></div>
-                          <div id="delete-btn" onClick={() => {}}></div>
-                        </div>
-                      </div>
+                      <TeacherCard teacher={teacher} key={teacher._id}/>
                     ))}
                 </div>
               ))}

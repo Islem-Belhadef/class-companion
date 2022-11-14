@@ -34,10 +34,12 @@ function Profile() {
 
   const showLogoutDialog = () => {
     document.getElementById("logout-dialog").style.display = "block";
+    document.getElementById("black").style.display = "block";
   };
 
   const goBack = () => {
     document.getElementById("logout-dialog").style.display = "none";
+    document.getElementById("black").style.display = "none";
   };
 
   const handleLogout = () => {
@@ -65,7 +67,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="black-background" id="black-background"></div>
+      <div className="black-background" id="black"></div>
       <div className="logout-dialog" id="logout-dialog">
         <h3>Are you sure you want to log out?</h3>
         <div className="cat-btns">
