@@ -7,7 +7,7 @@ import absences from "../assets/absences.svg";
 
 //import utilities
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 
 function SideMenu(props) {
   const accountType = props.type;

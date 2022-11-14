@@ -266,3 +266,75 @@
   .input-grid input, .input-grid select {
     width: 100%;
   }
+
+
+  /*Main Page*/
+.main-page {
+  margin-left: 20vw;
+  background-color:whitesmoke;
+  width: 80vw;
+  height: 91vh;
+}
+
+.welcome-belala-nabil{
+  width: 40vw;
+  height: 100%;
+  float: left;    
+  
+}
+
+.profile-div {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color:var(--background);
+  width: 40vw;
+  margin-left: 40vw;
+}
+
+.big-icon {
+  width: 160px;
+  height: 160px;
+}
+
+.welcome{
+  font-size: 40px;
+  font-weight: 600;
+  left:450px;
+  position: absolute;
+  top: 230px;
+  text-align: center;
+}
+
+.start-new-session {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 350px;
+  left: 400px;
+}
+
+.start-new-session button{
+  background-color: var(--primary);
+  display: flex;
+  justify-content: baseline;
+}
+
+.start-new-session p{
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.start-new-session img{
+  margin-right: 10px;
+  
+}
+
+.plus-1-icon {
+  width: 30px;
+  height: 30px;
+
+}
