@@ -27,7 +27,6 @@ mongoose
     console.log(err);
   });
 
-
 // API routes
 
 // post signup
@@ -156,11 +155,47 @@ app.get("/absences", (req, res) => {
   });
 });
 
-// post edit
+// post user
+app.post("/user", (req, res) => {
+  const type = req.body.type;
+  const id = req.body.id;
+
+  if (type === "teacher") {
+    Teacher.findById(id, (err, teacher) => {
+      if (err || teacher === null) {
+        res.send({ message: "Error, could not find teacher" });
+      } else {
+        res.send(teacher);
+      }
+    });
+  } 
+
+  else if (type === "student") {
+    Student.findById(id, (err, student) => {
+      if (err || student === null) {
+        res.send({ message: "Error, could not find student" });
+      } else {
+        res.send(student);
+      }
+    });
+  } 
+  
+  else if (type === "admin") {
+    Admin.findById(id, (err, admin) => {
+      if (err || admin === null) {
+        res.send({ message: "Error, could not find admin" });
+      } else {
+        res.send(admin);
+      }
+    });
+  }
+});
+
+// post edit user
 app.post("/edit", (req, res) => {
   const type = req.body.type;
+  const id = req.body.id;
 
-  const id = req.body.studentId;
   const email = req.body.email;
   const password = req.body.password;
   const speciality = req.body.speciality;
@@ -168,57 +203,86 @@ app.post("/edit", (req, res) => {
   const departement = req.body.departement;
   const classModule = req.body.classModule;
 
-  if (type === 'student') {
+  if (type === "student") {
     Student.findByIdAndUpdate(
-      id, 
-      
+      id,
+
       {
-      email: email,
-      password: password,
-      speciality: speciality,
-      group: group,
-      }, 
-    
+        email: email,
+        password: password,
+        speciality: speciality,
+        group: group,
+      },
+
       (err, student) => {
         if (err) {
-          res.send({message: err});
-        }
-        else {
+          res.send({ message: err });
+        } else {
           res.send(student);
         }
-      });
-  }
-  else if (type === 'teacher') {
+      }
+    );
+  } else if (type === "teacher") {
     Teacher.findByIdAndUpdate(
-      id, 
-      
+      id,
+
       {
-      email: email,
-      password: password,
-      departement: departement,
-      classModule: classModule,
-      }, 
-    
+        email: email,
+        password: password,
+        departement: departement,
+        classModule: classModule,
+      },
+
       (err, teacher) => {
         if (err) {
-          res.send({message: err});
-        }
-        else {
+          res.send({ message: err });
+        } else {
           res.send(teacher);
         }
-      });
-    }
+      }
+    );
+  }
+ else if (type === "admin") {
+    Admin.findByIdAndUpdate(
+      id,
+
+      {
+        email: email,
+        password: password,
+      },
+
+      (err, admin) => {
+        if (err) {
+          res.send({ message: err });
+        } else {
+          res.send(admin);
+        }
+      }
+    );
+  }
 });
 
-// post delete student
-app.post("/delete/student", (req, res) => {
-  const student_id = req.body.student_id;
-  Student.findByIdAndDelete(student_id, (err, student) => {
-    if (err) {
-      res.send({message: err});
-    }
-    else {
-      res.send(student);
-    }
-  }); 
-})
+// post delete user
+app.post("/delete", (req, res) => {
+  const type = req.body.type;
+  const id = req.body.id;
+
+  if (type === "student") {
+    Student.findByIdAndDelete(id, (err, student) => {
+      if (err) {
+        res.send({ message: err });
+      } else {
+        res.send(student);
+      }
+    });
+  }
+  else if (type === "teacher") {
+    Student.findByIdAndDelete(id, (err, teacher) => {
+      if (err) {
+        res.send({ message: err });
+      } else {
+        res.send(teacher);
+      }
+    });
+  }
+});

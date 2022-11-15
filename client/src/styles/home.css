@@ -310,73 +310,174 @@
   width: 100%;
 }
 
-/*Main Page*/
-/* .main-page {
-  margin-left: 20vw;
+/* homepage */
+
+.main-page {
   background-color:whitesmoke;
   width: 80vw;
   height: 91vh;
 }
-
-.welcome-belala-nabil{
-  width: 40vw;
-  height: 100%;
-  float: left;    
-  
-}
-
 .profile-div {
   display:flex;
-  align-items: center;
   justify-content: center;
   height: 100%;
   background-color:var(--background);
   width: 40vw;
   margin-left: 40vw;
 }
-
 .big-icon {
   width: 160px;
   height: 160px;
+  position: absolute;
+  top: 35%;
+}
+.plus1{
+  margin-right: 10px;
+  color: white;
+  width: 31px;
+  height: 31px;
+
 }
 
-.welcome{
-  font-size: 40px;
+/*Admin */
+.welcome-div-admin{
+  width: 40vw;
+  height: 100%;
+  float: left;    
+}
+.welcome-admin{
+  font-size: 35px;
   font-weight: 600;
-  left:450px;
+  left:34%;
   position: absolute;
-  top: 230px;
+  top: 27%;
   text-align: center;
 }
-
-.start-new-session {
+.admin-btns{
+  position: absolute;
+  left:25%;
+  top: 300px;
+  text-align: center;
+}
+.admin-btns .task-btn{
+  margin-bottom: 30px;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+}
+.admin-btns div p{
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+/*Teacher*/
+.welcome-div-teacher{
+  width: 40vw;
+  height: 100%;
+  float: left;    
+}
+.welcome-teacher{
+  font-size: 35px;
+  font-weight: 600;
+  left:34%;
+  position: absolute;
+  top: 35%;
+  text-align: center;
+}
+.task-teacher {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 350px;
-  left: 400px;
+  top: 63%;
+  left: 420px;
 }
 
-.start-new-session button{
+.task-btn{
   background-color: var(--primary);
   display: flex;
   justify-content: baseline;
+  align-items: center;
 }
 
-.start-new-session p{
+.task-teacher p{
   color: white;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
+}
+/*Student */
+.welcome-div-student{
+  width: 40vw;
+  height: 100%;
+  float: left;    
+}
+.welcome-student{
+  font-size: 35px;
+  font-weight: 600;
+  left:34%;
+  position: absolute;
+  top: 40%;
+  text-align: center;
 }
 
-.start-new-session img{
-  margin-right: 10px;
-  
+/* profile */
+
+.profile-page .main-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.plus-1-icon {
-  width: 30px;
-  height: 30px;
+.my-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  padding-top: 0vh;
+}
 
-} */
+.edit-my-profile {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  padding-top: 0vh;
+}
+
+.edit-my-profile form {
+  width: 100%;
+}
+
+.edit-my-profile form .cat-btns{
+  width: 100%;
+}
+
+.profile-info{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+}
+
+.profile-info input, .profile-info select {
+  width: 100%;
+}
+
+.my-profile img, .edit-my-profile img {
+  display: block;
+  width: 7vw;
+  position: relative;
+  top: -6vh;
+  left: -17vw;
+}
+
+.profile-info p {
+  font-size: 1.1rem;
+}
+
+.label {
+  color: #999999;
+  font-weight: 400;
+}

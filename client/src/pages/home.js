@@ -6,8 +6,8 @@ import Header from "../partials/header";
 import SideMenu from "../partials/side-menu";
 
 //import assets
-import plus from '../assets/plus.svg';
 import avatar from '../assets/avatar.svg';
+import {TbCirclePlus} from "react-icons/tb";
 
 //import utilities
 import { useNavigate } from "react-router-dom";
@@ -30,41 +30,42 @@ function Home() {
       <Header />
       <div className="home">
         <SideMenu type={accountType} page="home" />
-        {accountType === "admin" && (
+        {accountType === "admin" && ( 
           <div className="main-page">
-            <div className="welcome-belala-nabil">
-              <div className="welcome">
+            <div className="welcome-div-admin">
+              <div className="welcome-admin">
                 <p>Welcome</p>
                 <p>Belala Nabil</p>
               </div>
-              <div className="start-new-session">
-                <button>
-                  <img src={plus}></img>
+              <div className="admin-btns">
+                <div>
+                <button className="task-btn">
+                <TbCirclePlus className="plus1"/>
                   <p>Create an account for a teacher</p>
                 </button>
               </div>
-              <div className="start-new-session">
-                <button>
-                  <img src={plus}></img>
+              <div>
+                <button className="task-btn">
+                <TbCirclePlus className="plus1"/>
                   <p>Create an account for a student</p>
                 </button>
-              </div>
+              </div></div>
             </div>
             <div className="profile-div">
               <img src={avatar} alt="avatar" className="big-icon " />
             </div>
           </div>
         )}
-        {accountType === "teacher" && (
+        {accountType === "teacher" && (  
           <div className="main-page">
-            <div className="welcome-belala-nabil">
-              <div className="welcome">
+            <div className="welcome-div-teacher">
+              <div className="welcome-teacher">
                 <p>Welcome</p>
                 <p>Belala Nabil</p>
               </div>
-              <div className="start-new-session">
-                <button>
-                  <img src={plus}></img>
+              <div className="task-teacher">
+                <button className="task-btn">
+                  <TbCirclePlus className="plus1"/>
                   <p>Start new session</p>
                 </button>
               </div>
@@ -74,10 +75,10 @@ function Home() {
             </div>
           </div>
         )}
-        {accountType === "student" && (
+        {accountType === "student" && (  
           <div className="main-page">
-            <div className="welcome-belala-nabil">
-              <div className="welcome">
+            <div className="welcome-div-student">
+              <div className="welcome-student">
                 <p>Welcome</p>
                 <p>Belala Nabil</p>
               </div>

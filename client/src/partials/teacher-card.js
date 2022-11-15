@@ -59,7 +59,7 @@ function TeacherCard(props) {
 
   return (
     <div className="card">
-      <div className="black-background" id="blk-bg"></div>
+      <div className="black-background" id="blk-bg" onClick={handleGoBack}></div>
       <div className="labels">
         <p>Last Name :</p>
         <p>First Name :</p>

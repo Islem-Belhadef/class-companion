@@ -28,8 +28,9 @@ function StudentCard(props) {
   };
 
   const handleEdit = () => {
-    Axios.post("http://localhost:3001/edit/student", {
-      student_id: student._id,
+    Axios.post("http://localhost:3001/edit", {
+      type: "student",
+      id: student._id,
       email: newEmail,
       password: newPassword,
       speciality: newSpeciality,
@@ -45,8 +46,9 @@ function StudentCard(props) {
   };
 
   const handleDelete = () => {
-    Axios.post("http://localhost:3001/delete/student", {
-      student_id: student._id,
+    Axios.post("http://localhost:3001/delete", {
+      type: "student",
+      id: student._id,
     })
       .then((res) => {
         console.log(res);
@@ -59,7 +61,7 @@ function StudentCard(props) {
 
   return (
     <div className="card">
-      <div className="black-background" id="black-bg"></div>
+      <div className="black-background" id="black-bg" onClick={handleGoBack}></div>
       <div className="labels">
         <p>Last Name :</p>
         <p>First Name :</p>
@@ -78,7 +80,7 @@ function StudentCard(props) {
         <div id="edit-btn" onClick={handleEditPress}></div>
         <div id="delete-btn" onClick={handleDeletePress}></div>
       </div>
-      <div className="card delete-dialog" id="delete-dialog">
+      <div className="card delete-dialog" id="delete-dialog" key={student._id}>
         <h3>
           Are you sure you want to delete {student.last_name} from the students
           list?
@@ -101,7 +103,7 @@ function StudentCard(props) {
           </button>
         </div>
       </div>
-      <div className="card edit-card" id="edit-card">
+      <div className="card edit-card" id="edit-card" key={student._id}>
         <h2>Edit {student.last_name}'s informations</h2>
         <label htmlFor="email">Email Address</label>
         <input

@@ -1,5 +1,6 @@
 // utilities
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 // pages
 import Login from "./pages/login";

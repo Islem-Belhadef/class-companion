@@ -1,13 +1,5 @@
 //import style
 import "../styles/home.css";
-
-//import assets
-import home from "../assets/home.svg";
-import user from "../assets/user.svg";
-import students from "../assets/students.svg";
-import teachers from "../assets/teachers.svg";
-import absences from "../assets/absences.svg";
-
 //import partials
 import Header from "../partials/header";
 import Loading from "../partials/loading";
@@ -16,7 +8,7 @@ import SideMenu from "../partials/side-menu";
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Absences() {
   const navigate = useNavigate();
@@ -29,6 +21,7 @@ function Absences() {
   const [teachersList, setTeachersList] = useState([]);
 
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState("");
 
   useEffect(() => {
     if (!loggedIn) {
