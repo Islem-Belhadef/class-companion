@@ -12,18 +12,18 @@ function TeacherCard(props) {
   const [newClass, setNewClass] = useState(teacher.class);
 
   const handleEditPress = () => {
-    document.getElementById("edit-card").style.display = "block";
+    document.getElementById("edit-"+teacher._id).style.display = "block";
     document.getElementById("blk-bg").style.display = "block";
   };
 
   const handleDeletePress = () => {
-    document.getElementById("delete-dialog").style.display = "block";
+    document.getElementById("delete-"+teacher._id).style.display = "block";
     document.getElementById("blk-bg").style.display = "block";
   };
 
   const handleGoBack = () => {
-    document.getElementById("edit-card").style.display = "none";
-    document.getElementById("delete-dialog").style.display = "none";
+    document.getElementById("edit-"+teacher._id).style.display = "none";
+    document.getElementById("delete-"+teacher._id).style.display = "none";
     document.getElementById("blk-bg").style.display = "none";
   };
 
@@ -76,7 +76,7 @@ function TeacherCard(props) {
         <div id="edit-btn" onClick={handleEditPress}></div>
         <div id="delete-btn" onClick={handleDeletePress}></div>
       </div>
-      <div className="card delete-dialog" id="delete-dialog">
+      <div className="card delete-dialog" id={"delete-"+teacher._id}>
         <h3>
           Are you sure you want to delete {teacher.last_name} from the teachers
           list?
@@ -99,7 +99,7 @@ function TeacherCard(props) {
           </button>
         </div>
       </div>
-      <div className="card edit-card" id="edit-card">
+      <div className="card edit-card" id={"edit-"+teacher._id}>
         <h2>Edit {teacher.last_name}'s informations</h2>
         <label htmlFor="email">Email Address</label>
         <input

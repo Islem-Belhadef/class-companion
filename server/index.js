@@ -9,6 +9,7 @@ const Absence = require("./models/absence");
 const Justification = require("./models/justification");
 
 const app = express();
+
 app.use(cors());
 
 app.use(express.json());
@@ -168,7 +169,7 @@ app.post("/user", (req, res) => {
         res.send(teacher);
       }
     });
-  } 
+  }
 
   else if (type === "student") {
     Student.findById(id, (err, student) => {
@@ -222,6 +223,7 @@ app.post("/edit", (req, res) => {
         }
       }
     );
+
   } else if (type === "teacher") {
     Teacher.findByIdAndUpdate(
       id,

@@ -12,18 +12,18 @@ function StudentCard(props) {
   const [newGroup, setNewGroup] = useState(student.group);
 
   const handleEditPress = () => {
-    document.getElementById("edit-card").style.display = "block";
+    document.getElementById("edit-" + student._id).style.display = "block";
     document.getElementById("black-bg").style.display = "block";
   };
 
   const handleDeletePress = () => {
-    document.getElementById("delete-dialog").style.display = "block";
+    document.getElementById("delete-" + student._id).style.display = "block";
     document.getElementById("black-bg").style.display = "block";
   };
 
   const handleGoBack = () => {
-    document.getElementById("edit-card").style.display = "none";
-    document.getElementById("delete-dialog").style.display = "none";
+    document.getElementById("edit-" + student._id).style.display = "none";
+    document.getElementById("delete-" + student._id).style.display = "none";
     document.getElementById("black-bg").style.display = "none";
   };
 
@@ -61,7 +61,16 @@ function StudentCard(props) {
 
   return (
     <div className="card">
-      <div className="black-background" id="black-bg" onClick={handleGoBack}></div>
+      <div
+        className="black-background"
+        id="black-bg"
+        onClick={() => {
+          document.getElementById("edit-" + student._id).style.display = "none";
+          document.getElementById("delete-" + student._id).style.display =
+            "none";
+          document.getElementById("black-bg").style.display = "none";
+        }}
+      ></div>
       <div className="labels">
         <p>Last Name :</p>
         <p>First Name :</p>
@@ -80,87 +89,90 @@ function StudentCard(props) {
         <div id="edit-btn" onClick={handleEditPress}></div>
         <div id="delete-btn" onClick={handleDeletePress}></div>
       </div>
-      <div className="card delete-dialog" id="delete-dialog" key={student._id}>
+      <div className="card delete-dialog" id={"delete-" + student._id}>
         <h3>
           Are you sure you want to delete {student.last_name} from the students
           list?
         </h3>
-        <div className="cat-btns">
-          <button
-            type="button"
-            className="secondary-btn"
-            onClick={handleGoBack}
-          >
-            go back
-          </button>
-          <button
-            type="button"
-            className="main-btn"
-            id="confirm-delete"
-            onClick={handleDelete}
-          >
-            delete
-          </button>
-        </div>
+        <form onSubmit={handleDelete}>
+          <div className="cat-btns">
+            <button
+              type="button"
+              className="secondary-btn"
+              onClick={handleGoBack}
+            >
+              go back
+            </button>
+            <button
+              type="submit"
+              className="main-btn"
+              id="confirm-delete"
+            >
+              delete
+            </button>
+          </div>
+        </form>
       </div>
-      <div className="card edit-card" id="edit-card" key={student._id}>
+      <div className="card edit-card" id={"edit-" + student._id}>
         <h2>Edit {student.last_name}'s informations</h2>
-        <label htmlFor="email">Email Address</label>
-        <input
-          type="text"
-          name="email"
-          value={newEmail}
-          onChange={(e) => {
-            setNewEmail(e.target.value);
-          }}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          value={newPassword}
-          onChange={(e) => {
-            setNewPassword(e.target.value);
-          }}
-        />
-        <label htmlFor="speciality">Speciality</label>
-        <select
-          name="speciality"
-          id="speciality"
-          value={newSpeciality}
-          onChange={(e) => {
-            setNewSpeciality(e.target.value);
-          }}
-        >
-          <option value="TI">TI</option>
-          <option value="GL">GL</option>
-          <option value="SCI">SCI</option>
-          <option value="SI">SI</option>
-        </select>
-        <label htmlFor="group">Group</label>
-        <select
-          name="group"
-          id="group"
-          value={newGroup}
-          onChange={(e) => {
-            setNewGroup(e.target.value);
-          }}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-        <div className="cat-btns">
-          <button
-            type="button"
-            className="secondary-btn"
-            onClick={handleGoBack}
+        <form onSubmit={handleEdit}>
+          <label htmlFor="email">Email Address</label>
+          <input
+            type="text"
+            name="email"
+            defaultValue={newEmail}
+            onChange={(e) => {
+              setNewEmail(e.target.value);
+            }}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            defaultValue={newPassword}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+            }}
+          />
+          <label htmlFor="speciality">Speciality</label>
+          <select
+            name="speciality"
+            id="speciality"
+            defaultValue={newSpeciality}
+            onChange={(e) => {
+              setNewSpeciality(e.target.value);
+            }}
           >
-            cancel
-          </button>
-          <button type="button" className="main-btn" onClick={handleEdit}>
-            update
-          </button>
-        </div>
+            <option value="TI">TI</option>
+            <option value="GL">GL</option>
+            <option value="SCI">SCI</option>
+            <option value="SI">SI</option>
+          </select>
+          <label htmlFor="group">Group</label>
+          <select
+            name="group"
+            id="group"
+            defaultValue={newGroup}
+            onChange={(e) => {
+              setNewGroup(e.target.value);
+            }}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <div className="cat-btns">
+            <button
+              type="button"
+              className="secondary-btn"
+              onClick={handleGoBack}
+            >
+              cancel
+            </button>
+            <button type="submit" className="main-btn">
+              update
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
