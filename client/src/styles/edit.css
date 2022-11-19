@@ -1,0 +1,219 @@
+  body{
+    font-family: "Chillax", "Satoshi", sans-serif;
+  }
+  
+  /*----- edit modal----- */
+  
+  
+  .overlay{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.522);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+  }
+  
+  .modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(200px,95%,600px);
+    position: absolute;
+    top: 100px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 8px;
+  }
+  
+  .modal-container .modal-header{
+    width: 100%;
+  }
+  
+  .modal-container .modal-header h2{
+    margin: 0 0 10px 6%;
+  }
+  
+  .modal-container form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 10px;
+  }
+  
+  .modal-container .buttons-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  
+  
+  .modal-container .info-inputs, .modal-container .select-inputs{
+  display: flex;
+  }
+  
+  
+  .modal-container input[type=email],
+  .modal-container input[type=number]{
+    height: 28px;
+    padding: 7px;
+    margin: 6px 8px 18px 8px;
+    border: 1px solid #5ab045;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    box-sizing:initial;
+    width: 100%;
+
+  }
+  
+  .modal-container input::-webkit-inner-spin-button,
+  .modal-container input::-webkit-outer-spin-button{
+    -webkit-appearance : none;
+    margin: 0;
+  }
+  
+  .modal-container select{
+    width: 100%;
+    height: 46px;
+    padding: 7px;
+    margin: 6px 8px 12px 8px;
+    border: 1px solid #5ab045;
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .modal-container input:focus {
+    outline: 1px solid #3d7b30;
+  }
+  
+  .modal-container ::placeholder,.modal-container ::-webkit-input-placeholder,::-moz-placeholder{
+    color: #a9a9a9;
+  }
+  
+  .modal-container .btn{
+    height: 48px;
+    width: 115px;
+    margin: 0 10px;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .modal-container #submit-btn{
+    background-color: #5ab045;
+    color: #ffffff;
+  }
+  
+  .modal-container #submit-btn:hover{
+    background-color: #3d7b30;
+  }
+  
+  .modal-container #cancel-btn{
+    background-color: #ffffff;
+    border: 1px solid #5ab045;
+  }
+  
+  .modal-container #cancel-btn:hover{
+    border: 1px solid #3d7b30;
+  }
+  
+  
+  .modal-container .input-unit{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-container label{
+    margin: 0px 0px 0px 8px;
+  }
+  
+  .modal-container .labels{
+    display: flex;
+  }
+  
+  .modal-container .labels label{
+  
+    width: 50%;
+  
+  }
+  
+  
+  /*----- delete modal----- */
+  
+  
+  .delete-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 114px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 7px;
+  }
+  
+  .delete-container .delete-header h2{
+    margin:0;
+  }
+  
+  .delete-container .delete-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 24px 10px;
+    line-height: initial;
+  }
+  
+  .delete-container .delete-text p{
+    text-align: center;
+    margin: 0 10px;
+  }
+  
+  .delete-container .delete-text :nth-child(2){
+    margin: 5px auto;
+  }
+  
+  .delete-container .delete-btn-cont{
+    display: flex;
+    margin: 10px 0 5px 0;
+  }
+  .delete-container .delete-btn-cont button{
+    height: 40px;
+    width: 115px;
+    margin: 0 10px;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .delete-container .delete-btn-cont #confirm-delete-btn{
+    background-color: #e74c3c;
+    color: #ffffff;
+  }
+  
+  .delete-container .delete-btn-cont #confirm-delete-btn:hover{
+    background-color: #d43c2c;
+  }
+  
+  .delete-container .delete-btn-cont #cancel-delete-btn{
+    background-color: #ffffff;
+  }
+  
+  .delete-container .delete-btn-cont #cancel-delete-btn:hover{
+    background-color:#ededed;
+  }
+  
+  
+  

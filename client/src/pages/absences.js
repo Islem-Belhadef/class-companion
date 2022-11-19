@@ -9,6 +9,7 @@ import SideMenu from "../partials/side-menu";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AbsenceCard from "../partials/absence-card";
 
 function Absences() {
   const navigate = useNavigate();
@@ -21,43 +22,47 @@ function Absences() {
   const [teachersList, setTeachersList] = useState([]);
 
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!loggedIn) {
       navigate("/login");
     } else {
+      setIsLoading(true);
       Axios.get("http://localhost:3001/students")
         .then((res) => {
           console.log(res.data);
           setStudentsList(res.data);
+          Axios.get("http://localhost:3001/teachers")
+            .then((res) => {
+              console.log(res.data);
+              setTeachersList(res.data);
+              setTimeout(() => {
+                Axios.get("http://localhost:3001/absences")
+                  .then((res) => {
+                    console.log(res.data);
+                    setAbsencesList(res.data);
+                    setIsLoading(false);
+                  })
+                  .catch((err) => {
+                    setError(err);
+                    console.log(err);
+                    setIsLoading(false);
+                  });
+              }, 1000);
+            })
+            .catch((err) => {
+              setError(err);
+              console.log(err);
+              setIsLoading(false);
+            });
         })
         .catch((err) => {
           setError(err);
           console.log(err);
+          setIsLoading(false);
         });
 
-      Axios.get("http://localhost:3001/teachers")
-        .then((res) => {
-          console.log(res.data);
-          setTeachersList(res.data);
-        })
-        .catch((err) => {
-          setError(err);
-          console.log(err);
-        });
-
-      setTimeout(() => {
-        Axios.get("http://localhost:3001/absences")
-          .then((res) => {
-            console.log(res.data);
-            setAbsencesList(res.data);
-          })
-          .catch((err) => {
-            setError(err);
-            console.log(err);
-          });
-      }, 1000);
     }
   }, []);
 
@@ -109,91 +114,17 @@ function Absences() {
               </div>
             </form>
           </div>
-          {(studentsList.length === 0 ||
-            teachersList.length === 0 ||
-            absencesList.length === 0) && <Loading />}
-          {studentsList.length > 0 &&
-            teachersList.length > 0 &&
-            absencesList.length > 0 && (
+          {error && <h1>{error}</h1>}
+          {isLoading && <Loading />}
+          {!isLoading && !error && (
               <div className="cards">
                 {absencesList.map((absence) => (
-                  <div className="card" key={absence._id}>
-                    <div className="labels">
-                      <p>Last Name :</p>
-                      <p>First Name :</p>
-                      <p>Speciality :</p>
-                      <p>Group :</p>
-                      <p>Class :</p>
-                      <p>Teacher :</p>
-                      <p>Date :</p>
-                      <p>Nature :</p>
-                    </div>
-                    <div className="values">
-                      <p>
-                        {
-                          studentsList.find(
-                            (student) => student._id === absence.student_id
-                          ).last_name
-                        }
-                      </p>
-                      <p>
-                        {
-                          studentsList.find(
-                            (student) => student._id === absence.student_id
-                          ).first_name
-                        }
-                      </p>
-                      <p>
-                        {
-                          studentsList.find(
-                            (student) => student._id === absence.student_id
-                          ).speciality
-                        }
-                      </p>
-                      <p>
-                        0
-                        {
-                          studentsList.find(
-                            (student) => student._id === absence.student_id
-                          ).group
-                        }
-                      </p>
-                      <p>
-                        {
-                          teachersList.find(
-                            (teacher) => teacher._id === absence.teacher_id
-                          ).class_name
-                        }{" "}
-                        - {absence.class_type}
-                      </p>
-                      <p>
-                        {
-                          teachersList.find(
-                            (teacher) => teacher._id === absence.teacher_id
-                          ).last_name
-                        }{" "}
-                        {
-                          teachersList.find(
-                            (teacher) => teacher._id === absence.teacher_id
-                          ).first_name
-                        }
-                      </p>
-                      <p>
-                        {new Date(absence.date).getDate()}/
-                        {new Date(absence.date).getMonth()}/
-                        {new Date(absence.date).getFullYear()} -{" "}
-                        {new Date(absence.date).getHours()}:
-                        {new Date(absence.date).getMinutes()}
-                      </p>
-                      <p id="nature">
-                        {absence.justified ? "Justified" : "Unjustified"}
-                      </p>
-                    </div>
-                    <div className="ed-btns">
-                      <div id="edit-btn" onClick={() => {}}></div>
-                      <div id="delete-btn" onClick={() => {}}></div>
-                    </div>
-                  </div>
+                  <AbsenceCard
+                    key={absence._id}
+                    absence={absence}
+                    studentsList={studentsList}
+                    teachersList={teachersList}
+                  />
                 ))}
               </div>
             )}

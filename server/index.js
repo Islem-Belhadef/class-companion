@@ -169,9 +169,7 @@ app.post("/user", (req, res) => {
         res.send(teacher);
       }
     });
-  }
-
-  else if (type === "student") {
+  } else if (type === "student") {
     Student.findById(id, (err, student) => {
       if (err || student === null) {
         res.send({ message: "Error, could not find student" });
@@ -179,9 +177,7 @@ app.post("/user", (req, res) => {
         res.send(student);
       }
     });
-  } 
-  
-  else if (type === "admin") {
+  } else if (type === "admin") {
     Admin.findById(id, (err, admin) => {
       if (err || admin === null) {
         res.send({ message: "Error, could not find admin" });
@@ -193,13 +189,86 @@ app.post("/user", (req, res) => {
 });
 
 // post edit user
+// app.post("/edit", (req, res) => {
+//   const type = req.body.type;
+//   const id = req.body.id;
+
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   const speciality = req.body.speciality;
+//   const group = req.body.group;
+//   const departement = req.body.departement;
+//   const classModule = req.body.classModule;
+
+//   if (type === "student") {
+//     Student.findByIdAndUpdate(
+//       id,
+
+//       {
+//         email: email,
+//         password: password,
+//         speciality: speciality,
+//         group: group,
+//       },
+
+//       (err, student) => {
+//         if (err) {
+//           res.send({ message: err });
+//         } else {
+//           res.send(student);
+//         }
+//       }
+//     );
+
+//   } else if (type === "teacher") {
+//     Teacher.findByIdAndUpdate(
+//       id,
+
+//       {
+//         email: email,
+//         password: password,
+//         departement: departement,
+//         classModule: classModule,
+//       },
+
+//       (err, teacher) => {
+//         if (err) {
+//           res.send({ message: err });
+//         } else {
+//           res.send(teacher);
+//         }
+//       }
+//     );
+//   }
+//  else if (type === "admin") {
+//     Admin.findByIdAndUpdate(
+//       id,
+
+//       {
+//         email: email,
+//         password: password,
+//       },
+
+//       (err, admin) => {
+//         if (err) {
+//           res.send({ message: err });
+//         } else {
+//           res.send(admin);
+//         }
+//       }
+//     );
+//   }
+// });
+
+// post edit user
 app.post("/edit", (req, res) => {
   const type = req.body.type;
   const id = req.body.id;
 
   const email = req.body.email;
-  const password = req.body.password;
+  const student_card_num = req.body.student_card_num;
   const speciality = req.body.speciality;
+  const password = req.body.password;
   const group = req.body.group;
   const departement = req.body.departement;
   const classModule = req.body.classModule;
@@ -210,7 +279,7 @@ app.post("/edit", (req, res) => {
 
       {
         email: email,
-        password: password,
+        student_card_num: student_card_num,
         speciality: speciality,
         group: group,
       },
@@ -223,16 +292,14 @@ app.post("/edit", (req, res) => {
         }
       }
     );
-
   } else if (type === "teacher") {
     Teacher.findByIdAndUpdate(
       id,
 
       {
         email: email,
-        password: password,
         departement: departement,
-        classModule: classModule,
+        class_name: classModule,
       },
 
       (err, teacher) => {
@@ -243,8 +310,7 @@ app.post("/edit", (req, res) => {
         }
       }
     );
-  }
- else if (type === "admin") {
+  } else if (type === "admin") {
     Admin.findByIdAndUpdate(
       id,
 
@@ -275,15 +341,16 @@ app.post("/delete", (req, res) => {
         res.send({ message: err });
       } else {
         res.send(student);
+        Absence.deleteMany({ student_id: id });
       }
     });
-  }
-  else if (type === "teacher") {
+  } else if (type === "teacher") {
     Student.findByIdAndDelete(id, (err, teacher) => {
       if (err) {
         res.send({ message: err });
       } else {
         res.send(teacher);
+        Absence.deleteMany({ teacher_id: id });
       }
     });
   }
