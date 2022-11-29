@@ -1,22 +1,19 @@
-//import assets
-import home from "../assets/home.svg";
-import user from "../assets/user.svg";
-import students from "../assets/students.svg";
-import teachers from "../assets/teachers.svg";
-import absences from "../assets/absences.svg";
-import sesions from "../assets/sesions.svg";
-
 //import utilities
 import { Link } from "react-router-dom";
-// import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faUser,
+  faUserSlash,
+  faUsers,
+  faChalkboardUser,
+  faPersonChalkboard
+} from "@fortawesome/free-solid-svg-icons";
 
 function SideMenu(props) {
+  
   const accountType = props.type;
   const page = props.page;
-
-  // const isAdmin = props.admin;
-  // const isTeacher = props.teacher;
-  // const isStudent = props.student;
 
   return (
     <div className="side-menu">
@@ -27,14 +24,28 @@ function SideMenu(props) {
       {(page === "home" && (
         <Link to="/home">
           <div className="section selected-section" id="profile">
-            <img src={home} alt="Home" height="18px" className="icon" />
+            <FontAwesomeIcon
+              icon={faHouse}
+              style={{
+                marginRight: "1vw",
+                color: "white",
+                height: "18px",
+              }}
+            />
             <p>Home</p>
           </div>
         </Link>
       )) || (
         <Link to="/home">
           <div className="section" id="profile">
-            <img src={home} alt="Home" height="18px" className="icon" />
+            <FontAwesomeIcon
+              icon={faHouse}
+              style={{
+                marginRight: "1vw",
+                color: "white",
+                height: "18px",
+              }}
+            />
             <p>Home</p>
           </div>
         </Link>
@@ -42,14 +53,28 @@ function SideMenu(props) {
       {(page === "profile" && (
         <Link to="/profile">
           <div className="section selected-section" id="profile">
-            <img src={user} alt="User" height="18px" className="icon" />
+            <FontAwesomeIcon
+              icon={faUser}
+              style={{
+                marginRight: "1vw",
+                color: "white",
+                height: "18px",
+              }}
+            />
             <p>Profile</p>
           </div>
         </Link>
       )) || (
         <Link to="/profile">
           <div className="section" id="profile">
-            <img src={user} alt="User" height="18px" className="icon" />
+            <FontAwesomeIcon
+              icon={faUser}
+              style={{
+                marginRight: "1vw",
+                color: "white",
+                height: "18px",
+              }}
+            />
             <p>Profile</p>
           </div>
         </Link>
@@ -62,24 +87,28 @@ function SideMenu(props) {
         ((page === "students" && (
           <Link to="/students">
             <div className="section selected-section" id="students">
-              <img
-                src={students}
-                alt="Students"
-                height="18px"
-                className="icon"
-              />
+              <FontAwesomeIcon
+              icon={faUsers}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
               <p>Students</p>
             </div>
           </Link>
         )) || (
           <Link to="/students">
             <div className="section" id="students">
-              <img
-                src={students}
-                alt="Students"
-                height="18px"
-                className="icon"
-              />
+              <FontAwesomeIcon
+              icon={faUsers}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
               <p>Students</p>
             </div>
           </Link>
@@ -88,54 +117,92 @@ function SideMenu(props) {
         ((page === "teachers" && (
           <Link to="/teachers">
             <div className="section selected-section" id="teachers">
-              <img
-                src={teachers}
-                alt="Teachers"
-                height="18px"
-                className="icon"
-              />
+              <FontAwesomeIcon
+              icon={faChalkboardUser}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
               <p>Teachers</p>
             </div>
           </Link>
         )) || (
           <Link to="/teachers">
             <div className="section" id="teachers">
-              <img
-                src={teachers}
-                alt="Teachers"
-                height="18px"
-                className="icon"
-              />
+              <FontAwesomeIcon
+              icon={faChalkboardUser}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
               <p>Teachers</p>
             </div>
           </Link>
         ))}
-      {(accountType === "teacher" || accountType === "admin" ) && (
-        (page==='absences')&&(<Link to="/absences">
-          <div className="section selected-section" id="absences">
-            <img src={absences} alt="Absences" height="18px" className="icon" />
-            <p>Absences</p>
-          </div>
-        </Link>) || (<Link to="/absences">
-          <div className="section" id="absences">
-            <img src={absences} alt="Absences" height="18px" className="icon" />
-            <p>Absences</p>
-          </div>
-        </Link>)
-      )}
-      {(accountType === "teacher" || accountType === "admin" ) && (
-        (page==='sesions')&&(<Link to="/sesions">
-          <div className="section selected-section" id="sesions">
-            <img src={sesions} alt="sesions" height="18px" className="icon" />
-            <p>sesions</p>
-          </div>
-        </Link>) || (<Link to="/sesions">
-          <div className="section" id="sesions">
-            <img src={sesions} alt="sesions" height="18px" className="icon" />
-            <p>sesions</p>
-          </div>
-        </Link>)
-      )}
+      {(accountType === "teacher" || accountType === "admin") &&
+        ((page === "absences" && (
+          <Link to="/absences">
+            <div className="section selected-section" id="absences">
+              <FontAwesomeIcon
+              icon={faUserSlash}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
+              <p>Absences</p>
+            </div>
+          </Link>
+        )) || (
+          <Link to="/absences">
+            <div className="section" id="absences">
+              <FontAwesomeIcon
+              icon={faUserSlash}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
+              <p>Absences</p>
+            </div>
+          </Link>
+        ))}
+      {(accountType === "teacher" || accountType === "admin") &&
+        ((page === "sesions" && (
+          <Link to="/sesions">
+            <div className="section selected-section" id="sesions">
+              <FontAwesomeIcon
+              icon={faPersonChalkboard}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
+              <p>sesions</p>
+            </div>
+          </Link>
+        )) || (
+          <Link to="/sesions">
+            <div className="section" id="sesions">
+              <FontAwesomeIcon
+              icon={faPersonChalkboard}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
+              <p>sesions</p>
+            </div>
+          </Link>
+        ))}
     </div>
   );
 }

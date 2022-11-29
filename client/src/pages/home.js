@@ -39,13 +39,13 @@ function Home() {
               </div>
               <div className="admin-btns">
                 <div>
-                <button className="task-btn">
+                <button className="task-btn" onClick={()=>{navigate("/teachers")}}>
                 <TbCirclePlus className="plus1"/>
                   <p>Create an account for a teacher</p>
                 </button>
               </div>
               <div>
-                <button className="task-btn">
+                <button className="task-btn" onClick={()=>{navigate("/students")}}>
                 <TbCirclePlus className="plus1"/>
                   <p>Create an account for a student</p>
                 </button>
@@ -64,7 +64,7 @@ function Home() {
                 <p>{window.localStorage.getItem('firstName')} {window.localStorage.getItem('lastName')}</p>
               </div>
               <div className="task-teacher">
-                <button className="task-btn">
+                <button className="task-btn" onClick={()=>{navigate("/sesions")}}>
                   <TbCirclePlus className="plus1"/>
                   <p>Start new session</p>
                 </button>

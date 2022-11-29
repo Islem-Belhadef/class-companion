@@ -6,14 +6,14 @@ import Header from "../partials/header";
 import Loading from "../partials/loading";
 import SideMenu from "../partials/side-menu";
 import NewSesion from "../partials/newsesion";
+import StudentCard from "../partials/student-card";
 
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import StudentCard from "../partials/student-card";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Sesions() {
   const navigate = useNavigate();
@@ -152,7 +152,7 @@ function Sesions() {
             onClick={()=>{setShowAddSesion(true)}}
           >
             <FontAwesomeIcon
-              icon={faUserPlus}
+              icon={faPlus}
               style={{
                 marginRight: "1vw",
               }}
@@ -305,102 +305,6 @@ function Sesions() {
                     ))}
                 </div>
               ))}
-        </div>
-        <div className="add-user-page" id="add-student-page">
-          <form onSubmit={handleSubmit}>
-            <h2>Add New Student</h2>
-            <div className="input-grid">
-              <label htmlFor="first-name">First Name</label>
-              <label htmlFor="last-name">Last Name</label>
-              <input
-                type="text"
-                name="first-name"
-                required
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                }}
-              />
-              <input
-                type="text"
-                name="last-name"
-                required
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-              />
-            </div>
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-            <label htmlFor="student-card-number">Student Card Number</label>
-            <input
-              type="number"
-              name="student-card-number"
-              id="student-card-number"
-              required
-              onChange={(e) => {
-                setStudentCardNum(e.target.value);
-              }}
-            />
-            <div className="input-grid">
-              <label htmlFor="speciality">Speciality</label>
-              <label htmlFor="group">Group</label>
-              <select
-                name="speciality"
-                id="speciality"
-                required
-                onChange={(e) => {
-                  setSpeciality(e.target.value);
-                }}
-              >
-                <option value="TI">TI</option>
-                <option value="GL">GL</option>
-                <option value="SCI">SCI</option>
-                <option value="SI">SI</option>
-              </select>
-              <select
-                name="group"
-                id="group"
-                required
-                onChange={(e) => {
-                  setGroup(e.target.value);
-                }}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div className="cat-btns">
-              <button
-                type="button"
-                className="secondary-btn"
-                onClick={handleCancel}
-              >
-                cancel
-              </button>
-              <button type="submit" className="main-btn">
-              add
-              </button>
-            </div>
-          </form>
         </div>
       </div>
       {

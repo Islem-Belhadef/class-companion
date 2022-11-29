@@ -284,15 +284,19 @@ app.post("/delete", (req, res) => {
     });
   }
 });
+
+// post add session
+
 let sesionGroup;
 
-
 app.post("/addsesion",(req,res)=>{
+  
  sesionGroup =req.body.group;
  sesionDate=Date(req.body.sesiondate);
  sesionTime=req.body.sesiontime;
  classType=req.body.class_type ;
  sesionModule=req.body.module;
+
   const sesion = new Sesion({
   teacher_id : req.body.teacher_id,
   sesiondate :Date(req.body.sesiondate) ,
@@ -322,26 +326,28 @@ if(!sesionGroup){
     });
   });
 }
+
+// post add absence
 app.post("/addabsences",(req,res)=>{
   var absentStudentsList=req.body.absentStudents;
   var absence;
-  const dat=req.body.date;
-  const tim=req.body.time;
-  const type=req.body.class_type;
-  const idt=req.body.teacher_id;
-  if(absentStudentsList.length===0){
+  const dat = req.body.date;
+  const tim = req.body.time;
+  const type = req.body.class_type;
+  const idt = req.body.teacher_id;
+  if(absentStudentsList.length === 0){
     console.log("no new absences");
     return ;
   }
-  for(var i=0;i<absentStudentsList.length;i++){
+  for(var i=0 ; i<absentStudentsList.length ; i++){
   
     absence = new   Absence({
-      date :dat,
-      time :tim ,
-      student_id:absentStudentsList[i],
+      date : dat,
+      time : tim ,
+      student_id : absentStudentsList[i],
       teacher_id : idt,
-      class_type :type,
-      justified :false,
+      class_type : type,
+      justified : false,
     })
     absence.save()
    .catch((err) => {
@@ -350,8 +356,6 @@ app.post("/addabsences",(req,res)=>{
    });
  
   }
-  
- 
 }
 );
 

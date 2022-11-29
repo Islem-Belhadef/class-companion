@@ -106,6 +106,27 @@ function Profile() {
         <div className="main-page">
           {isLoading && <Loading />}
           {error && <p>{error}</p>}
+          {!isLoading && (<div className="card my-profile" id="my-profile">
+            <img src={avatar} alt="Avatar" />
+            <div className="profile-info" id="profile-info">
+              <p className="label">Last Name :</p>
+              <p className="value">{user.last_name}</p>
+              <p className="label">First Name :</p>
+              <p className="value">{user.first_name}</p>
+              <p className="label">Email Address :</p>
+              <p className="value">{user.email}</p>
+              <p className="label">Password :</p>
+              <p className="value">{"**********"}</p>
+            </div>
+            <div className="profile-btns" id="profile-cat-btns">
+              <button id="edit" onClick={handleEditPress}>
+                edit
+              </button>
+              <button id="logout" onClick={showLogoutDialog}>
+                logout
+              </button>
+            </div>
+          </div>)}
           <div className="card edit-my-profile" id="edit-my-profile">
             <img src={avatar} alt="Avatar" />
             <form onSubmit={handleEdit}>
@@ -201,27 +222,7 @@ function Profile() {
               </div>
             </form>
           </div>
-          <div className="card my-profile" id="my-profile">
-            <img src={avatar} alt="Avatar" />
-            <div className="profile-info" id="profile-info">
-              <p className="label">Last Name :</p>
-              <p className="value">{user.last_name}</p>
-              <p className="label">First Name :</p>
-              <p className="value">{user.first_name}</p>
-              <p className="label">Email Address :</p>
-              <p className="value">{user.email}</p>
-              <p className="label">Password :</p>
-              <p className="value">{"**********"}</p>
-            </div>
-            <div className="profile-btns" id="profile-cat-btns">
-              <button id="edit" onClick={handleEditPress}>
-                edit
-              </button>
-              <button id="logout" onClick={showLogoutDialog}>
-                logout
-              </button>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div className="black-background" id="black" onClick={handleGoBack}></div>

@@ -1,14 +1,17 @@
+// import style
 import "../styles/signup.css";
 
+// import utilities
 import { useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
+// import assets
 import logo from "../assets/logo.png";
-import signupImg from "../assets/signup.svg";
 import arrow from "../assets/arrow.svg";
+import signupImg from "../assets/signup.svg";
 
 function Signup() {
   const navigate = useNavigate();

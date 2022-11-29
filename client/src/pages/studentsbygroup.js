@@ -11,7 +11,8 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Table from "../partials/table";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
 function Studentsbygroup() {
   const accountType = window.localStorage.getItem("accountType");
   const [dataTable, setDataTable] = useState([]);
@@ -20,15 +21,20 @@ function Studentsbygroup() {
   const [isLoading, setIsLoading] = useState(false);
   const loggedIn = window.localStorage.getItem("loggedIn");
   const location = useLocation();
-   const sesiondata=[
-    {sesiondate:location.state.sesiondate,sesiontime:location.state.sesiontime ,class_type:location.state.class_type,teacher_id:location.state.teacher_id}
-  ]
+  const sesiondata = [
+    {
+      sesiondate: location.state.sesiondate,
+      sesiontime: location.state.sesiontime,
+      class_type: location.state.class_type,
+      teacher_id: location.state.teacher_id,
+    },
+  ];
   const column = [
-    { heading: 'id', value: '_id' },
-    { heading: 'first_name', value: 'first_name' },
-    { heading: 'last_name', value: 'last_name' },
-    { heading: 'presence',value:'' },
-  ]
+    { heading: "id", value: "_id" },
+    { heading: "first_name", value: "first_name" },
+    { heading: "last_name", value: "last_name" },
+    { heading: "presence", value: "" },
+  ];
 
   useEffect(() => {
     if (!loggedIn) {
@@ -39,7 +45,7 @@ function Studentsbygroup() {
         Axios.get("http://localhost:3001/studentsbyGroup")
           .then((res) => {
             console.log(res.data);
-            setDataTable(res.data)
+            setDataTable(res.data);
             setIsLoading(false);
           })
           .catch((err) => {
@@ -53,14 +59,14 @@ function Studentsbygroup() {
 
   return (
     <div className="home-page">
-    <Header />
-    <div className="home">
-      <SideMenu type={accountType} page="sesions" />
-      <div className="main-page" id="students-page">
-      <h1>Students List</h1>
-      <Table data={dataTable} column={column} sesiondata={sesiondata} />
-    </div>
-    </div>
+      <Header />
+      <div className="home">
+        <SideMenu type={accountType} page="sesions" />
+        <div className="main-page" id="students-page">
+          <h1>Students List</h1>
+          <Table data={dataTable} column={column} sesiondata={sesiondata} />
+        </div>
+      </div>
     </div>
   );
 }
