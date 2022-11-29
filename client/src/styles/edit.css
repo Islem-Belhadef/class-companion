@@ -71,12 +71,6 @@
 
   }
   
-  .modal-container input::-webkit-inner-spin-button,
-  .modal-container input::-webkit-outer-spin-button{
-    -webkit-appearance : none;
-    margin: 0;
-  }
-  
   .modal-container select{
     width: 100%;
     height: 46px;
