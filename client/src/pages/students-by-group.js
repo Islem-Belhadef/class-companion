@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Table from "../partials/table";
 import { useLocation } from "react-router-dom";
 
-function Studentsbygroup() {
+function StudentsByGroup() {
   const accountType = window.localStorage.getItem("accountType");
   const [dataTable, setDataTable] = useState([]);
   const navigate = useNavigate();
@@ -71,4 +71,4 @@ function Studentsbygroup() {
   );
 }
 
-export default Studentsbygroup;
+export default StudentsByGroup;

@@ -12,7 +12,7 @@ import Error from "./pages/404";
 import Students from "./pages/students";
 import Teachers from "./pages/teachers";
 import Sesions from "./pages/sesions";
-import StudentsbyGroup from "./pages/studentsbygroup";
+import StudentsByGroup from "./pages/students-by-group";
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
             <Route path="/teachers" element={<Teachers />} />
             <Route path="/absences" element={<Absences />} />
             <Route path="/sesions" element={< Sesions/>} />
-            <Route path="/studentsbygroup" element={< StudentsbyGroup/>} />
+            <Route path="/studentsbygroup" element={< StudentsByGroup/>} />
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>

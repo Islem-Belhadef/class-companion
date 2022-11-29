@@ -5,7 +5,7 @@ import "../styles/home.css";
 import Header from "../partials/header";
 import Loading from "../partials/loading";
 import SideMenu from "../partials/side-menu";
-import NewSesion from "../partials/newsesion";
+import NewSesion from "../partials/new-sesion";
 import StudentCard from "../partials/student-card";
 
 //import utilities
