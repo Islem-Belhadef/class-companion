@@ -11,6 +11,9 @@ import Absences from "./pages/absences";
 import Error from "./pages/404";
 import Students from "./pages/students";
 import Teachers from "./pages/teachers";
+import Sesions from "./pages/sesions";
+import StudentsbyGroup from "./pages/studentsbygroup";
+
 
 function App() {
 
@@ -29,6 +32,8 @@ function App() {
             <Route path="/students" element={<Students />} />
             <Route path="/teachers" element={<Teachers />} />
             <Route path="/absences" element={<Absences />} />
+            <Route path="/sesions" element={< Sesions/>} />
+            <Route path="/studentsbygroup" element={< StudentsbyGroup/>} />
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>

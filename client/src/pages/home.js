@@ -34,8 +34,8 @@ function Home() {
           <div className="main-page">
             <div className="welcome-div-admin">
               <div className="welcome-admin">
-                <p>Welcome</p>
-                <p>Belala Nabil</p>
+                <p>Welcome </p>
+                <p>{window.localStorage.getItem('firstName')} {window.localStorage.getItem('lastName')}</p>
               </div>
               <div className="admin-btns">
                 <div>
@@ -61,7 +61,7 @@ function Home() {
             <div className="welcome-div-teacher">
               <div className="welcome-teacher">
                 <p>Welcome</p>
-                <p>Belala Nabil</p>
+                <p>{window.localStorage.getItem('firstName')} {window.localStorage.getItem('lastName')}</p>
               </div>
               <div className="task-teacher">
                 <button className="task-btn">
@@ -80,7 +80,7 @@ function Home() {
             <div className="welcome-div-student">
               <div className="welcome-student">
                 <p>Welcome</p>
-                <p>Belala Nabil</p>
+                <p>{window.localStorage.getItem('firstName')} {window.localStorage.getItem('lastName')}</p>
               </div>
             </div>
             <div className="profile-div">

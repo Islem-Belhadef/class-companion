@@ -61,8 +61,7 @@ const AbsenceCard = (props) => {
         <p>
           {new Date(absence.date).getDate()}/{new Date(absence.date).getMonth()}
           /{new Date(absence.date).getFullYear()} -{" "}
-          {new Date(absence.date).getHours()}:
-          {new Date(absence.date).getMinutes()}
+          {absence.time}
         </p>
         <p id="nature">{absence.justified ? "Justified" : "Unjustified"}</p>
       </div>

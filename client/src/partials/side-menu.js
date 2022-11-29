@@ -4,6 +4,7 @@ import user from "../assets/user.svg";
 import students from "../assets/students.svg";
 import teachers from "../assets/teachers.svg";
 import absences from "../assets/absences.svg";
+import sesions from "../assets/sesions.svg";
 
 //import utilities
 import { Link } from "react-router-dom";
@@ -119,6 +120,19 @@ function SideMenu(props) {
           <div className="section" id="absences">
             <img src={absences} alt="Absences" height="18px" className="icon" />
             <p>Absences</p>
+          </div>
+        </Link>)
+      )}
+      {(accountType === "teacher" || accountType === "admin" ) && (
+        (page==='sesions')&&(<Link to="/sesions">
+          <div className="section selected-section" id="sesions">
+            <img src={sesions} alt="sesions" height="18px" className="icon" />
+            <p>sesions</p>
+          </div>
+        </Link>) || (<Link to="/sesions">
+          <div className="section" id="sesions">
+            <img src={sesions} alt="sesions" height="18px" className="icon" />
+            <p>sesions</p>
           </div>
         </Link>)
       )}

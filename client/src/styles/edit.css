@@ -57,7 +57,9 @@
   
   
   .modal-container input[type=email],
-  .modal-container input[type=number]{
+  .modal-container input[type=number],
+  .modal-container input[type=date],
+  .modal-container input[type=time]{
     height: 28px;
     padding: 7px;
     margin: 6px 8px 18px 8px;
