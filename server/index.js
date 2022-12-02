@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const TeacherModules=require("./models/teacherModules")
+const TeacherModules = require("./models/teacherModules");
 const Student = require("./models/student");
 const Teacher = require("./models/teacher");
 const Admin = require("./models/admin");
 const Absence = require("./models/absence");
-const Sesion =require("./models/sesion");
+const Sesion = require("./models/sesion");
 const Justification = require("./models/justification");
 
 const app = express();
@@ -124,7 +124,6 @@ app.post("/login", (req, res) => {
   });
 });
 
-
 // get students
 app.get("/students", (req, res) => {
   Student.find({}, (err, students) => {
@@ -169,17 +168,14 @@ app.get("/sesions", (req, res) => {
 
 // post user absences
 app.post("/absences", (req, res) => {
-  
   id = req.body.id;
 
-  Absence.find({student_id: id}, (err, absences) => {
+  Absence.find({ student_id: id }, (err, absences) => {
     if (err) {
       res.send({ message: "Error, could not get absences" });
-    } 
-    else if (absences === null) {
+    } else if (absences === null) {
       res.send({ message: "You have no absences absences" });
-    }
-    else {
+    } else {
       res.send(absences);
     }
   });
@@ -384,81 +380,82 @@ app.post("/delete", (req, res) => {
     });
   }
 });
+
 let sesionGroup;
 let speciality;
 
-app.post("/addsesion",(req,res)=>{
- sesionGroup =req.body.group;
- sesionDate=Date(req.body.sesiondate);
- sesionTime=req.body.sesiontime;
- classType=req.body.class_type ;
- sesionModule=req.body.module.split(" ")[0];
- speciality=req.body.module.split(" ")[1];
+app.post("/addsesion", (req, res) => {
+  sesionGroup = req.body.group;
+  sesionDate = Date(req.body.sesiondate);
+  sesionTime = req.body.sesiontime;
+  classType = req.body.class_type;
+  sesionModule = req.body.module.split(" ")[0];
+  speciality = req.body.module.split(" ")[1];
   const sesion = new Sesion({
-  teacher_id : req.body.teacher_id,
-  sesiondate :Date(req.body.sesiondate) ,
-  sesiontime : req.body.sesiontime,
-  class_type :req.body.class_type ,
-  module : req.body.module,
-  group:req.body.group
- })
- sesion.save()
- .then((result) => {
-  console.log(result);
-  res.send({ dbresult: result });
-})
-.catch((err) => {
-  console.log(err);
-  res.send({ message: "Failed to create new sesion" });
-});
-})
-if(!sesionGroup &&!speciality){
-  app.get("/studentsbyGroup", (req,res) => {
-    Student.find({group:sesionGroup,speciality:speciality}, (err, students) => {
-      if (err || students === null) {
-        res.send({ message: "Error, could not get students" });
-      } else {
-        res.send(students);
-      }
+    teacher_id: req.body.teacher_id,
+    sesiondate: Date(req.body.sesiondate),
+    sesiontime: req.body.sesiontime,
+    class_type: req.body.class_type,
+    module: req.body.module,
+    group: req.body.group,
+  });
+  sesion
+    .save()
+    .then((result) => {
+      console.log(result);
+      res.send({ dbresult: result });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send({ message: "Failed to create new sesion" });
     });
+});
+if (!sesionGroup && !speciality) {
+  app.get("/studentsbyGroup", (req, res) => {
+    Student.find(
+      { group: sesionGroup, speciality: speciality },
+      (err, students) => {
+        if (err || students === null) {
+          res.send({ message: "Error, could not get students" });
+        } else {
+          res.send(students);
+        }
+      }
+    );
   });
 }
-app.post("/addabsences",(req,res)=>{
-  var absentStudentsList=req.body.absentStudents;
+app.post("/addabsences", (req, res) => {
+  var absentStudentsList = req.body.absentStudents;
   var absence;
-  const dat=req.body.date;
-  const tim=req.body.time;
-  const type=req.body.class_type;
-  const idt=req.body.teacher_id;
-  const  Classname=req.body.class_name;
-  if(absentStudentsList.length===0){
+  const dat = req.body.date;
+  const tim = req.body.time;
+  const type = req.body.class_type;
+  const idt = req.body.teacher_id;
+  const Classname = req.body.class_name;
+  if (absentStudentsList.length === 0) {
     console.log("no new absences");
-    return ;
+    return;
   }
-  for(var i=0;i<absentStudentsList.length;i++){
-  
-    absence = new   Absence({
-      date :dat,
-      time :tim ,
-      student_id:absentStudentsList[i],
-      teacher_id : idt,
-      class_name :Classname,
-      class_type :type,
-      justified :false,
-    })
-    absence.save()
-   .catch((err) => {
-     console.log(err);
-     res.send({ message: "Failed to create new absence" });
-   });
- 
+  for (var i = 0; i < absentStudentsList.length; i++) {
+    absence = new Absence({
+      date: dat,
+      time: tim,
+      student_id: absentStudentsList[i],
+      teacher_id: idt,
+      class_name: Classname,
+      class_type: type,
+      justified: false,
+      justification_sent: false,
+    });
+    absence.save().catch((err) => {
+      console.log(err);
+      res.send({ message: "Failed to create new absence" });
+    });
   }
-  
- 
-}
-);
+});
+
 app.post("/modules", (req, res) => {
-  TeacherModules.find({teacherId:req.body.id}, (err, TeacherModuless) => {
+  TeacherModules.find({ teacherId: req.body.id }, (err, TeacherModuless) => {
     if (err || TeacherModuless === null) {
       res.send({ message: "Error, could not get TeacherModuless" });
     } else {
@@ -467,8 +464,39 @@ app.post("/modules", (req, res) => {
   });
 });
 
+// post justification
 
+app.post("/justification", (req, res) => {
+
+  const date = new Date();
+  const link = req.body.link;
+  const absence_id = req.body.absence_id;
+
+  const justification = new Justification({
+    date: date,
+    link: link,
+    absence_id: absence_id,
+  });
   
-  
-  
-  
+  justification.save()
+  .then((justification)=> {
+    console.log(justification);
+    res.send(justification);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.send({ message: "Failed to create new Justification" });
+  });
+
+  Absence.findByIdAndUpdate(
+    absence_id, 
+    {
+    justification_sent: true,
+    },
+    (err, result) => {
+      if (err) {
+        res.send({ message: "Failed to update Justification"});
+      }
+    }
+    );
+});

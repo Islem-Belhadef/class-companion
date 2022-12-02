@@ -1,5 +1,5 @@
 import '../styles/edit.css';
-import axios from 'axios';
+import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,7 +8,7 @@ const DeleteModal = ({setShowDeleteModal ,type, userId , userName}) => {
     let navigate = useNavigate()
     
         const handleDelete = () => {
-            axios.post("http://localhost:3001/delete", {
+            Axios.post("http://localhost:3001/delete", {
               type: type,
               id: userId,
             })

@@ -1,8 +1,15 @@
 import { FaPlusCircle } from "react-icons/fa";
 import "../styles/home.css";
+import JustifyModal from "./justify-modal";
+import { useState } from "react";
+
 const MyAbsenceCard = (props) => {
   const absence = props.absence;
   const teachersList = props.teachersList;
+
+  console.log(absence.justification_sent);
+
+  const [showJustifyModal, setShowJustifyModal] = useState(false);
 
   const absDate = new Date(absence.date);
   const curDate = new Date();
@@ -17,15 +24,11 @@ const MyAbsenceCard = (props) => {
 
   const justifiable =
     (daysInterval1.indexOf(dayDiff) >= 0 &&
-    monthsInterval1.indexOf(monthDiff) >= 0) ||
+      monthsInterval1.indexOf(monthDiff) >= 0) ||
     (daysInterval2.indexOf(dayDiff) >= 0 &&
-    monthsInterval2.indexOf(monthDiff) >= 0)
+      monthsInterval2.indexOf(monthDiff) >= 0)
       ? true
       : false;
-
-  // console.log("days: " + dayDiff);
-  // console.log("months: " + monthDiff);
-  // console.log(justifiable);
 
   return (
     <div className="card my-card">
@@ -65,10 +68,13 @@ const MyAbsenceCard = (props) => {
         </div>
       </div>
 
-      {(justifiable && !absence.justified && (
-        <button className="upload-justification-btn">
+      {(justifiable && !absence.justification_sent && (
+        <button
+          className="upload-justification-btn"
+          onClick={() => setShowJustifyModal(true)}
+        >
           <FaPlusCircle size={18} className="fa-plus-btn" />
-          Upload Justification{" "}
+          Upload Justification
         </button>
       )) || (
         <button
@@ -77,8 +83,14 @@ const MyAbsenceCard = (props) => {
           style={{ cursor: "auto", backgroundColor: "#fac3c8" }}
         >
           <FaPlusCircle size={18} className="fa-plus-btn" />
-          Upload Justification{" "}
+          Upload Justification
         </button>
+      )}
+      {showJustifyModal && (
+        <JustifyModal
+          absence={absence}
+          setShowJustifyModal={setShowJustifyModal}
+        />
       )}
     </div>
   );

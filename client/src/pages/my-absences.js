@@ -15,10 +15,11 @@ import Axios from "axios";
 function MyAbsences() {
   const navigate = useNavigate();
 
-  const [myabsencesList, setMyAbsencesList] = useState([]);
+  const [myAbsencesList, setMyAbsencesList] = useState([]);
   const [teachersList, setTeachersList] = useState([]);
-  const accountType = window.localStorage.getItem("accountType");
   const [classFilter, setClassFilter] = useState("");
+
+  const accountType = window.localStorage.getItem("accountType");
   const userId = window.localStorage.getItem("token");
 
   const loggedIn = window.localStorage.getItem("loggedIn");
@@ -68,7 +69,7 @@ function MyAbsences() {
         {isLoading && <Loading />}
         {error && <p>{error}</p>}
         {!isLoading && !error && (
-          <div className="main-page" id="students-page">
+          <div className="main-page" id="my-absences-page">
             <div className="myAbsences-setting">
               <h1>My Absences</h1>
               <form className="filters">
@@ -91,7 +92,7 @@ function MyAbsences() {
               </form>
             </div>
             <div className="cards">
-              {myabsencesList.map((absence) => (
+              {myAbsencesList.map((absence) => (
                 <MyAbsenceCard
                   key={absence._id}
                   absence={absence}

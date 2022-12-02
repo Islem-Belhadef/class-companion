@@ -29,7 +29,11 @@ const absenceSchema = new Schema({
     justified : {
         type: Boolean,
         required: true,
-    }
+    },
+    justification_sent : {
+        type: Boolean,
+        required: true,
+    },
 
 }, { timestamps: true });
 
