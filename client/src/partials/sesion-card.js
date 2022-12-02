@@ -1,11 +1,5 @@
-
-
-
-
-function SesionrCard(props) {
+function SesionCard(props) {
   const sesion = props.sesion;
-
-
 
   return (
     <div className="card">
@@ -22,13 +16,9 @@ function SesionrCard(props) {
         <p>{sesion.date}</p>
         <p>{sesion.time}</p>
         <p>{sesion.group}</p>
-      </div>
-     
-      
-      
-     
+      </div> 
     </div>
   );
 }
 
-export default SesionrCard;
+export default SesionCard;

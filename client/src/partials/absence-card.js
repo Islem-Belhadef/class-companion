@@ -1,5 +1,6 @@
 const AbsenceCard = (props) => {
   const absence = props.absence;
+
   const studentsList = props.studentsList;
   const teachersList = props.teachersList;
 
@@ -42,11 +43,7 @@ const AbsenceCard = (props) => {
           }
         </p>
         <p>
-          {
-            teachersList.find((teacher) => teacher._id === absence.teacher_id)
-              .class_name
-          }{" "}
-          - {absence.class_type}
+          {absence.class_name} - {absence.class_type}
         </p>
         <p>
           {
@@ -59,9 +56,9 @@ const AbsenceCard = (props) => {
           }
         </p>
         <p>
-          {new Date(absence.date).getDate()}/{new Date(absence.date).getMonth()}
-          /{new Date(absence.date).getFullYear()} -{" "}
-          {absence.time}
+          {new Date(absence.date).getDate()}/
+          {new Date(absence.date).getMonth() + 1}/
+          {new Date(absence.date).getFullYear()} - {absence.time}
         </p>
         <p id="nature">{absence.justified ? "Justified" : "Unjustified"}</p>
       </div>

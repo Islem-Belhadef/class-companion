@@ -1,10 +1,67 @@
 table {
-    border-collapse: collapse;
-    max-width: 900px;
-    width: 100%;
-    margin: 2rem auto;
-  }
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 600px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+  background-color: #3d7b30;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+  font-weight: bold;
+  color: #5ab045;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #3d7b30;
+}
+
+
+#submit-btn{
+  background-color: #5ab045;
+  color: #ffffff;
+ position: relative;
+  margin-left :80% ;
+  margin-right: 1vw;
+}
+input:checked  {
+  background-color: #3d7b30;
+}
+
+table {
+  
+ margin-left: 20%;
+}
+h1 {
+margin-top: 2vw;
+  margin-left: 5vw;
+}
+input[type=checkbox] {
+  accent-color: #3d7b30;
+  outline: none;
+	content: none;	
+  width: 20px;
+  height: 20px;
+ 
+}
+		
+		
+				

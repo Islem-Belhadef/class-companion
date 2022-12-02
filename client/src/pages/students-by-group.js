@@ -27,13 +27,14 @@ function StudentsByGroup() {
       sesiontime: location.state.sesiontime,
       class_type: location.state.class_type,
       teacher_id: location.state.teacher_id,
+      class_name: location.state.class_name,
     },
   ];
   const column = [
     { heading: "id", value: "_id" },
-    { heading: "first_name", value: "first_name" },
-    { heading: "last_name", value: "last_name" },
-    { heading: "presence", value: "" },
+    { heading: "first name", value: "first_name" },
+    { heading: "last name", value: "last_name" },
+    { heading: "absent", value: "" },
   ];
 
   useEffect(() => {
@@ -62,10 +63,12 @@ function StudentsByGroup() {
       <Header />
       <div className="home">
         <SideMenu type={accountType} page="sesions" />
-        <div className="main-page" id="students-page">
+        {isLoading && <Loading />}
+        {error && (<p>{error}</p>)}
+        {!isLoading && !error && (<div className="main-page" id="students-page">
           <h1>Students List</h1>
           <Table data={dataTable} column={column} sesiondata={sesiondata} />
-        </div>
+        </div>)}
       </div>
     </div>
   );

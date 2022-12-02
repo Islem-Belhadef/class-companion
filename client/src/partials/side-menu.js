@@ -203,6 +203,36 @@ function SideMenu(props) {
             </div>
           </Link>
         ))}
+        {(accountType === "student") &&
+        ((page === "MyAbsences" && (
+          <Link to="/my-absences">
+            <div className="section selected-section" id="sesions">
+              <FontAwesomeIcon
+              icon={faUserSlash}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
+              <p>My Absences</p>
+            </div>
+          </Link>
+        )) || (
+          <Link to="/my-absences">
+            <div className="section" id="sesions">
+              <FontAwesomeIcon
+              icon={faUserSlash}
+              style={{
+                marginRight: "1vw",
+                color: 'white',
+                height: '18px'
+              }}
+            />
+              <p>My Absences</p>
+            </div>
+          </Link>
+        ))}
     </div>
   );
 }

@@ -20,6 +20,7 @@ function Absences() {
   const [absencesList, setAbsencesList] = useState([]);
   const [studentsList, setStudentsList] = useState([]);
   const [teachersList, setTeachersList] = useState([]);
+  const [sesions, setSesions] = useState([]);
 
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +34,7 @@ function Absences() {
         .then((res) => {
           console.log(res.data);
           setStudentsList(res.data);
+       
           Axios.get("http://localhost:3001/teachers")
             .then((res) => {
               console.log(res.data);
@@ -43,6 +45,7 @@ function Absences() {
                     console.log(res.data);
                     setAbsencesList(res.data);
                     setIsLoading(false);
+                    
                   })
                   .catch((err) => {
                     setError(err);
@@ -62,6 +65,7 @@ function Absences() {
           console.log(err);
           setIsLoading(false);
         });
+        
 
     }
   }, []);
@@ -121,6 +125,7 @@ function Absences() {
                 {absencesList.map((absence) => (
                   <AbsenceCard
                     key={absence._id}
+                    
                     absence={absence}
                     studentsList={studentsList}
                     teachersList={teachersList}

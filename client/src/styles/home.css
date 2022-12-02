@@ -481,3 +481,52 @@
   color: #999999;
   font-weight: 400;
 }
+
+/* ---------- my absences ---------------- */
+.upload-justification-btn{
+  background-color:  #BEFFB1;
+  height: 60px;
+  width: 246px;
+  font-size: 15px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.fa-plus-btn{
+  margin-right: 5px;
+}
+
+.myAbsences-setting{
+  margin-left: 250px;
+  display: flex;
+  padding: 2vw;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.btn{
+  border: none;
+  padding-top: 20px;
+}
+
+.my-card {
+  display: block;
+}
+
+.my-card .data {
+  display: flex;
+  gap: 3rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.my-card .data .labels {
+  line-height: 2.6rem;
+}
+
+.my-card .data .values {
+  line-height: 2.6rem;
+}

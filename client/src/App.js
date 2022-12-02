@@ -1,6 +1,5 @@
 // utilities
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
 
 // pages
 import Login from "./pages/login";
@@ -13,6 +12,7 @@ import Students from "./pages/students";
 import Teachers from "./pages/teachers";
 import Sesions from "./pages/sesions";
 import StudentsByGroup from "./pages/students-by-group";
+import MyAbsences from "./pages/my-absences";
 
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
             <Route path="/absences" element={<Absences />} />
             <Route path="/sesions" element={< Sesions/>} />
             <Route path="/studentsbygroup" element={< StudentsByGroup/>} />
+            <Route path="/my-absences" element={< MyAbsences/>} />
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>
