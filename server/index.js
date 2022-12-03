@@ -412,7 +412,8 @@ app.post("/addsesion",(req,res)=>{
   res.send({ message: "Failed to create new sesion" });
 });
 })
-if(!sesionGroup &&!speciality){
+
+if(!sesionGroup && !speciality){
   app.get("/studentsbyGroup", (req,res) => {
     Student.find({group:sesionGroup,speciality:speciality}, (err, students) => {
       if (err || students === null) {
@@ -431,7 +432,7 @@ app.post("/addabsences",(req,res)=>{
   const type=req.body.class_type;
   const idt=req.body.teacher_id;
   const  Classname=req.body.class_name;
-  if(absentStudentsList.length===0){
+  if( absentStudentsList.length === 0 ){
     console.log("no new absences");
     return ;
   }
@@ -445,6 +446,7 @@ app.post("/addabsences",(req,res)=>{
       class_name :Classname,
       class_type :type,
       justified :false,
+      justification_sent: false
     })
     absence.save()
    .catch((err) => {
@@ -473,7 +475,6 @@ app.post("/justification", (req, res) => {
   const date = new Date();
   const link = req.body.link;
   const absence_id = req.body.absence_id;
-
   const justification = new Justification({
     date: date,
     link: link,

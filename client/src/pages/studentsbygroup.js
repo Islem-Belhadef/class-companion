@@ -54,11 +54,13 @@ function Studentsbygroup() {
   return (
     <div className="home-page">
     <Header />
-    <div className="home">
+    
+    <div className="home">     
       <SideMenu type={accountType} page="sesions" />
       <div className="main-page" id="students-page">
       <h1>Students List</h1>
-      <Table data={dataTable} column={column} sesiondata={sesiondata} />
+      {isLoading && <Loading />}
+      {!isLoading && (<Table data={dataTable} column={column} sesiondata={sesiondata} />)}
     </div>
     </div>
     </div>
