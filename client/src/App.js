@@ -11,7 +11,7 @@ import Error from "./pages/404";
 import Students from "./pages/students";
 import Teachers from "./pages/teachers";
 import Sesions from "./pages/sesions";
-import StudentsByGroup from "./pages/students-by-group";
+import StudentsByGroup from "./pages/studentsbygroup";
 import MyAbsences from "./pages/my-absences";
 
 
