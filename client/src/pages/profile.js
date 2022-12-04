@@ -37,8 +37,8 @@ function Profile() {
         id: window.localStorage.getItem("token"),
       })
         .then((res) => {
-          // console.log(res.data);
           setUser(res.data);
+          console.log(res.data);
           setIsLoading(false);
           setNewEmail(res.data.email);
           setNewPassword(res.data.password);
@@ -46,7 +46,7 @@ function Profile() {
         .catch((err) => {
           setError(err);
           setIsLoading(false);
-          // console.log(err);
+          console.log(err);
         });
     }
   }, []);

@@ -90,7 +90,7 @@ function Login() {
         </div>
       </div>
       <div className="login-form">
-        <div className="welcome">
+        <div className="welcome-login">
           <h1>Welcome back</h1>
           <h2>To Class Companion of University of Constantine 2</h2>
         </div>

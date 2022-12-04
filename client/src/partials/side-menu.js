@@ -173,7 +173,7 @@ function SideMenu(props) {
             </div>
           </Link>
         ))}
-      {(accountType === "teacher" || accountType === "admin") &&
+      {(accountType === "teacher") &&
         ((page === "sesions" && (
           <Link to="/sesions">
             <div className="section selected-section" id="sesions">

@@ -68,12 +68,10 @@ function Signup() {
     if(email.endsWith(check)){
       mail.style.borderColor="var(--primary)"
         showAdditionalInfos();
-        console.log("valid");  
     }
     else{ e.preventDefault();
         mail.style.borderColor = "#E74C3C";
         advice.style.color = "#E74C3C";
-        console.log("not valid");
     }
 }
 
@@ -98,7 +96,7 @@ function Signup() {
       classModule: classModule,
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         if (res.data.dbresult.password === password) {
           window.localStorage.setItem("token", res.data.dbresult._id);
           window.localStorage.setItem("firstName", res.data.dbresult.first_name);
@@ -137,7 +135,7 @@ function Signup() {
         </div>
       </div>
       <div className="signup-form">
-        <div className="welcome">
+        <div className="welcome-login">
           <h1>Welcome</h1>
           <h2>To Class Companion of University of Constantine 2</h2>
         </div>

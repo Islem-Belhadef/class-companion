@@ -21,22 +21,8 @@ function Sesions() {
   const loggedIn = window.localStorage.getItem("loggedIn");
   const accountType = window.localStorage.getItem("accountType");
 
-  const [studentsList, setStudentsList] = useState([]);
-
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const [specialityFilter, setSpecialityFilter] = useState("");
-  const [groupFilter, setGroupFilter] = useState("");
-  const [alphabeticOrder, setAlphabeticOrder] = useState(false);
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [studentCardNum, setStudentCardNum] = useState("");
-  const [speciality, setSpeciality] = useState("TI");
-  const [group, setGroup] = useState("1");
 
   const handleAddUser = () => {
     document.getElementById("students-page").style.display = "none";
@@ -47,7 +33,6 @@ function Sesions() {
     document.getElementById("add-student-page").style.display = "none";
     document.getElementById("students-page").style.display = "block";
   };
-
 
   useEffect(() => {
     if (!loggedIn) {
@@ -64,7 +49,9 @@ function Sesions() {
           <button
             className="main-btn add-user"
             id="add-student"
-            onClick={()=>{setShowAddSesion(true)}}
+            onClick={() => {
+              setShowAddSesion(true);
+            }}
           >
             <FontAwesomeIcon
               icon={faUserPlus}
@@ -78,14 +65,7 @@ function Sesions() {
           {error && <p>{error}</p>}
         </div>
       </div>
-      {
-        showAddSesion && (
-          <NewSesion
-          setShowAddSesion={setShowAddSesion}
-          
-          />
-        )
-      }
+      {showAddSesion && <NewSesion setShowAddSesion={setShowAddSesion} />}
     </div>
   );
 }

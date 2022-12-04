@@ -17,8 +17,6 @@ const JustifyModal = (props) => {
       absence_id: absence._id,
     })
       .then((res) => {
-        console.log(res);
-        console.log("justification sent");
         setTimeout(() => navigate(0), 300);
       })
       .catch((err) => {

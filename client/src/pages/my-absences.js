@@ -35,15 +35,14 @@ function MyAbsences() {
 
       Axios.get("http://localhost:3001/teachers")
         .then((res) => {
-          console.log(res.data);
           setTeachersList(res.data);
           setTimeout(() => {
             Axios.post("http://localhost:3001/absences", {
               id: userId,
             })
               .then((res) => {
-                console.log(res.data);
                 setMyAbsencesList(res.data);
+                console.log(res.data);
                 setIsLoading(false);
               })
               .catch((err) => {
@@ -91,7 +90,10 @@ function MyAbsences() {
                 </select>
               </form>
             </div>
-            <div className="cards">
+            {(myAbsencesList.length === 0) && (
+              <div className="no-abs">You have no absences 👍 keep it that way</div>
+            )}
+            {(myAbsencesList.length > 0) && (<div className="cards">
               {myAbsencesList.map((absence) => (
                 <MyAbsenceCard
                   key={absence._id}
@@ -99,7 +101,7 @@ function MyAbsences() {
                   teachersList={teachersList}
                 />
               ))}
-            </div>
+            </div>)}
           </div>
         )}
       </div>

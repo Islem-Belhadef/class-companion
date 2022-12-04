@@ -7,8 +7,6 @@ const MyAbsenceCard = (props) => {
   const absence = props.absence;
   const teachersList = props.teachersList;
 
-  console.log(absence.justification_sent);
-
   const [showJustifyModal, setShowJustifyModal] = useState(false);
 
   const absDate = new Date(absence.date);

@@ -16,11 +16,18 @@
   background-color: var(--primary);
 }
 
-/* .main-page {
+.main-page {
     flex: 4;
     background-color: #F0F0F0;
     overflow: auto;
-} */
+}
+
+.main-home {
+  flex: 4;
+  background-color: #F0F0F0;
+  overflow: auto;
+  display: flex;
+}
 
 .section {
   display: flex;
@@ -227,13 +234,6 @@
   padding-right: 1.6vw;
 }
 
-.main-page {
-  flex: 4;
-  background-color: #f0f0f0;
-  overflow: auto;
-  /* display: none; */
-}
-
 .add-user-page {
   flex: 4;
   background-color: #f0f0f0;
@@ -312,18 +312,18 @@
 
 /* homepage */
 
-.main-page {
-  background-color:whitesmoke;
-  width: 80vw;
-  height: 91vh;
-}
+/* .main-page {
+  background-color:#FAFAFA;
+  display: flex;
+} */
+
+
 .profile-div {
+  flex: 1;
   display:flex;
   justify-content: center;
-  height: 100%;
+  align-items: center;
   background-color:var(--background);
-  width: 40vw;
-  margin-left: 40vw;
 }
 .big-icon {
   width: 160px;
@@ -339,86 +339,35 @@
 
 }
 
-/*Admin */
-.welcome-div-admin{
-  width: 40vw;
-  height: 100%;
-  float: left;    
-}
-.welcome-admin{
-  font-size: 35px;
-  font-weight: 600;
-  left:34%;
-  position: absolute;
-  top: 27%;
-  text-align: center;
-}
-.admin-btns{
-  position: absolute;
-  left:25%;
-  top: 300px;
-  text-align: center;
-}
-.admin-btns .task-btn{
-  margin-bottom: 30px;
-  background-color: var(--primary);
+.welcome {
   display: flex;
-  justify-content: baseline;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-}
-.admin-btns div p{
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-}
-/*Teacher*/
-.welcome-div-teacher{
-  width: 40vw;
-  height: 100%;
-  float: left;    
-}
-.welcome-teacher{
-  font-size: 35px;
-  font-weight: 600;
-  left:34%;
-  position: absolute;
-  top: 35%;
-  text-align: center;
-}
-.task-teacher {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 63%;
-  left: 420px;
 }
 
-.task-btn{
+.welcome-text {
+  text-align: center;
+}
+
+.welcome h1 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.tasks button {
+  color: #FFFFFF;
+  margin: 1rem 0;
   background-color: var(--primary);
   display: flex;
   justify-content: baseline;
   align-items: center;
 }
 
-.task-teacher p{
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-}
-/*Student */
-.welcome-div-student{
-  width: 40vw;
-  height: 100%;
-  float: left;    
-}
-.welcome-student{
-  font-size: 35px;
-  font-weight: 600;
-  left:34%;
-  position: absolute;
-  top: 40%;
-  text-align: center;
+.tasks button:hover {
+  background-color: var(--dark);
 }
 
 /* profile */
@@ -529,4 +478,42 @@
 
 .my-card .data .values {
   line-height: 2.6rem;
+}
+
+.no-abs {
+  font-size: 2rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 25vh;
+}
+
+.warning {
+  background-color: #ffcccc;
+  color: #222222;
+  font-size: large;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.warning-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.justify-btn {
+  margin-top: 1rem;
+  background-color: #ffefef;
+  outline: 1px solid #fc4a4a;
+}
+
+.justify-btn:hover {
+  /* background-color: #ffffff; */
+  outline: 3px solid #fc4a4a;
 }
