@@ -7,11 +7,11 @@ import {
   faUserSlash,
   faUsers,
   faChalkboardUser,
-  faPersonChalkboard
+  faPersonChalkboard,
+  faEnvelopeOpen
 } from "@fortawesome/free-solid-svg-icons";
 
 function SideMenu(props) {
-  
   const accountType = props.type;
   const page = props.page;
 
@@ -88,13 +88,13 @@ function SideMenu(props) {
           <Link to="/students">
             <div className="section selected-section" id="students">
               <FontAwesomeIcon
-              icon={faUsers}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faUsers}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>Students</p>
             </div>
           </Link>
@@ -102,13 +102,13 @@ function SideMenu(props) {
           <Link to="/students">
             <div className="section" id="students">
               <FontAwesomeIcon
-              icon={faUsers}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faUsers}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>Students</p>
             </div>
           </Link>
@@ -118,13 +118,13 @@ function SideMenu(props) {
           <Link to="/teachers">
             <div className="section selected-section" id="teachers">
               <FontAwesomeIcon
-              icon={faChalkboardUser}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faChalkboardUser}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>Teachers</p>
             </div>
           </Link>
@@ -132,13 +132,13 @@ function SideMenu(props) {
           <Link to="/teachers">
             <div className="section" id="teachers">
               <FontAwesomeIcon
-              icon={faChalkboardUser}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faChalkboardUser}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>Teachers</p>
             </div>
           </Link>
@@ -148,13 +148,13 @@ function SideMenu(props) {
           <Link to="/absences">
             <div className="section selected-section" id="absences">
               <FontAwesomeIcon
-              icon={faUserSlash}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faUserSlash}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>Absences</p>
             </div>
           </Link>
@@ -162,29 +162,61 @@ function SideMenu(props) {
           <Link to="/absences">
             <div className="section" id="absences">
               <FontAwesomeIcon
-              icon={faUserSlash}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faUserSlash}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>Absences</p>
             </div>
           </Link>
         ))}
-      {(accountType === "teacher") &&
+      {/* for justifications */}
+
+      {accountType === "admin" &&
+        ((page === "justifications" && (
+          <Link to="/justifications">
+            <div className="section selected-section" id="justifications">
+              <FontAwesomeIcon
+                icon={faEnvelopeOpen}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
+              <p>justifications</p>
+            </div>
+          </Link>
+        )) || (
+          <Link to="/justifications">
+            <div className="section" id="justifications">
+              <FontAwesomeIcon
+                icon={faEnvelopeOpen}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
+              <p>justifications</p>
+            </div>
+          </Link>
+        ))}
+      {accountType === "teacher" &&
         ((page === "sesions" && (
           <Link to="/sesions">
             <div className="section selected-section" id="sesions">
               <FontAwesomeIcon
-              icon={faPersonChalkboard}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faPersonChalkboard}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>sesions</p>
             </div>
           </Link>
@@ -192,29 +224,29 @@ function SideMenu(props) {
           <Link to="/sesions">
             <div className="section" id="sesions">
               <FontAwesomeIcon
-              icon={faPersonChalkboard}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faPersonChalkboard}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>sesions</p>
             </div>
           </Link>
         ))}
-        {(accountType === "student") &&
+      {accountType === "student" &&
         ((page === "MyAbsences" && (
           <Link to="/my-absences">
             <div className="section selected-section" id="sesions">
               <FontAwesomeIcon
-              icon={faUserSlash}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faUserSlash}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>My Absences</p>
             </div>
           </Link>
@@ -222,13 +254,13 @@ function SideMenu(props) {
           <Link to="/my-absences">
             <div className="section" id="sesions">
               <FontAwesomeIcon
-              icon={faUserSlash}
-              style={{
-                marginRight: "1vw",
-                color: 'white',
-                height: '18px'
-              }}
-            />
+                icon={faUserSlash}
+                style={{
+                  marginRight: "1vw",
+                  color: "white",
+                  height: "18px",
+                }}
+              />
               <p>My Absences</p>
             </div>
           </Link>

@@ -13,18 +13,13 @@ const NewSesion = ({ setShowAddSesion }) => {
     });
   }, []);
 
-  let sesdate;
-  let sestime;
-  let sesmodule;
-  let sestype;
-  let sesgroup;
   const [ModulesList, setModulesList] = useState([]);
-  const [newDate, setNewDate] = useState(sesdate);
-  const [Time, setTime] = useState(sestime);
+  const [newDate, setNewDate] = useState();
+  const [Time, setTime] = useState();
   const [Newmodule, setNewmodule] = useState();
 
-  const [Newtype, setNewtype] = useState(sestype);
-  const [newGroup, setNewGroup] = useState(sesgroup);
+  const [Newtype, setNewtype] = useState();
+  const [newGroup, setNewGroup] = useState();
 
   let navigate = useNavigate();
 
@@ -72,6 +67,7 @@ const NewSesion = ({ setShowAddSesion }) => {
               id="date"
               type="date"
               name="date"
+              value={newDate}
               onChange={(e) => setNewDate(e.target.value)}
             />
           </div>

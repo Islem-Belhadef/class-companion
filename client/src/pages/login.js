@@ -60,7 +60,7 @@ function Login() {
         }
       })
       .catch((err) => {
-        setMessage(err + " ❌");
+        setMessage("Login failed: wrong credentials ❌");
         console.log(err);
       });
   };

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import EditStudent from "./edit-student";
-import DeleteModal from "./delete-modal";
+import EditStudent from "../partials/edit-student";
+import Deletemodal from "../partials/delete-modal";
 
 function StudentCard(props) {
   const student = props.student;
@@ -52,7 +52,7 @@ function StudentCard(props) {
       )}
 
       {showDeletemodal && (
-        <DeleteModal
+        <Deletemodal
           setShowDeleteModal={setShowDeleteModal}
           type="student"
           userId={student._id}

@@ -69,27 +69,6 @@ function MyAbsences() {
         {error && <p>{error}</p>}
         {!isLoading && !error && (
           <div className="main-page" id="my-absences-page">
-            <div className="myAbsences-setting">
-              <h1>My Absences</h1>
-              <form className="filters">
-                <select
-                  name="filter-by-class"
-                  id="filter-by-class"
-                  defaultValue=""
-                  onChange={(e) => {
-                    setClassFilter(e.target.value);
-                  }}
-                >
-                  <option disabled value="">
-                    Filter by class
-                  </option>
-                  <option value="DAW2">DAW</option>
-                  <option value="DAM">IPO</option>
-                  <option value="POO">POO</option>
-                  <option value="BDM">BDM</option>
-                </select>
-              </form>
-            </div>
             {(myAbsencesList.length === 0) && (
               <div className="no-abs">You have no absences 👍 keep it that way</div>
             )}

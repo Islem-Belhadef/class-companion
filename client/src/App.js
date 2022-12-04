@@ -13,6 +13,7 @@ import Teachers from "./pages/teachers";
 import Sesions from "./pages/sesions";
 import StudentsByGroup from "./pages/studentsbygroup";
 import MyAbsences from "./pages/my-absences";
+import Justifications from "./pages/justifications";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/teachers" element={<Teachers />} />
             <Route path="/absences" element={<Absences />} />
             <Route path="/sesions" element={< Sesions/>} />
+            <Route path="/justifications" element={< Justifications/>} />
             <Route path="/studentsbygroup" element={< StudentsByGroup/>} />
             <Route path="/my-absences" element={< MyAbsences/>} />
             <Route path="/*" element={<Error />} />

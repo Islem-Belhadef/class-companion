@@ -1,7 +1,7 @@
 import "../styles/edit.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 
 const EditStudent = ({
   setShowEditStudent,
@@ -21,14 +21,15 @@ const EditStudent = ({
 
   const handleEdit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3001/edit", {
-      type: "student",
-      id: userId,
-      email: newEmail,
-      student_card_num: newCardNumber,
-      speciality: newSpeciality,
-      group: newGroup,
-    })
+    axios
+      .post("http://localhost:3001/edit", {
+        type: "student",
+        id: userId,
+        email: newEmail,
+        student_card_num: newCardNumber,
+        speciality: newSpeciality,
+        group: newGroup,
+      })
       .then((res) => {
         console.log(res);
         console.log("updated");

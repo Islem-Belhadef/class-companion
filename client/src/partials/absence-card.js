@@ -60,15 +60,11 @@ const AbsenceCard = (props) => {
           }
         </p>
         <p>
-          {new Date(absence.date).getDate()}/{new Date(absence.date).getMonth()}
+          {new Date(absence.date).getDate()}/{new Date(absence.date).getMonth()+1}
           /{new Date(absence.date).getFullYear()} -{" "}
         {absence.time}
         </p>
         <p id="nature">{absence.justified ? "Justified" : "Unjustified"}</p>
-      </div>
-      <div className="ed-btns">
-        <div id="edit-btn" onClick={() => {}}></div>
-        <div id="delete-btn" onClick={() => {}}></div>
       </div>
     </div>
   );

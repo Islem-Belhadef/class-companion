@@ -74,7 +74,7 @@ const MyAbsenceCard = (props) => {
           <FaPlusCircle size={18} className="fa-plus-btn" />
           Upload Justification
         </button>
-      )) || (
+      )) || (!justifiable && !absence.justified && (
         <button
           className="upload-justification-btn"
           disabled
@@ -83,7 +83,31 @@ const MyAbsenceCard = (props) => {
           <FaPlusCircle size={18} className="fa-plus-btn" />
           Upload Justification
         </button>
-      )}
+      )) || ((absence.justified) && (
+        <button
+          className="upload-justification-btn"
+          disabled
+          style={{ cursor: "auto", backgroundColor: "#BEFFB1" }}
+        >
+          Absence justified
+        </button>
+      )) || (absence.justification_sent && !absence.justified && (
+        <button
+          className="upload-justification-btn"
+          disabled
+          style={{ cursor: "auto", backgroundColor: "#BEFFB1" }}
+        >
+          Waiting for Approval
+        </button>
+      )) || ((absence.justified) && (
+        <button
+          className="upload-justification-btn"
+          disabled
+          style={{ cursor: "auto", backgroundColor: "#BEFFB1" }}
+        >
+          Absence justified
+        </button>
+      ))}
       {showJustifyModal && (
         <JustifyModal
           absence={absence}

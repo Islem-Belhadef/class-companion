@@ -4,26 +4,28 @@ import "../styles/home.css";
 import Header from "../partials/header";
 import Loading from "../partials/loading";
 import SideMenu from "../partials/side-menu";
+import JustificationCard from "../partials/justification-card";
 
 //import utilities
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AbsenceCard from "../partials/absence-card";
 
-function Absences() {
+
+const Justifications = () =>{
+
   const navigate = useNavigate();
 
   const loggedIn = window.localStorage.getItem("loggedIn");
   const accountType = window.localStorage.getItem("accountType");
 
-  const [absencesList, setAbsencesList] = useState([]);
+  const [justificationList, setJustificationList] = useState([]);
   const [studentsList, setStudentsList] = useState([]);
   const [teachersList, setTeachersList] = useState([]);
-  const [sesions, setSesions] = useState([]);
 
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     if (!loggedIn) {
@@ -40,10 +42,10 @@ function Absences() {
               console.log(res.data);
               setTeachersList(res.data);
               setTimeout(() => {
-                Axios.get("http://localhost:3001/absences")
+                Axios.get("http://localhost:3001/justifications")
                   .then((res) => {
                     console.log(res.data);
-                    setAbsencesList(res.data);
+                    setJustificationList(res.data);
                     setIsLoading(false);
                     
                   })
@@ -70,36 +72,35 @@ function Absences() {
     }
   }, []);
 
-  return (
+  return(
     <div className="home-page">
       <Header />
 
       <div className="home">
-        <SideMenu type={accountType} page="absences" />
+        <SideMenu type={accountType} page="justifications" />
 
         <div className="main-page">
-          <div className="settings">
-            <h1>Absences List</h1>
-          </div>
           {error && <h1>{error}</h1>}
           {isLoading && <Loading />}
           {!isLoading && !error && (
               <div className="cards">
-                {absencesList.map((absence) => (
-                  <AbsenceCard
-                    key={absence._id}
+                {justificationList.map((justification) => (
+                  <JustificationCard
+                    key={justification._id}
                     
-                    absence={absence}
+                    justification={justification}
                     studentsList={studentsList}
                     teachersList={teachersList}
                   />
+                 
                 ))}
               </div>
             )}
         </div>
       </div>
     </div>
-  );
+  )
+
 }
 
-export default Absences;
+export default Justifications

@@ -34,9 +34,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [message, setMessage] = useState("");
-
-  const occurences = [];
-  const count = {};
+  const [message2, setMessage2] = useState("");
 
   useEffect(() => {
     if (!loggedIn) {
@@ -59,25 +57,92 @@ function Home() {
     }
   }, []);
 
+  const unjust = [];
+  const just = [];
+  const countUnjust = {};
+  const countJust = {};
+
   useEffect(() => {
     myAbsencesList.forEach((abs) => {
-      if (abs.justified === false) {
-        occurences.push(abs.class_name + " - " + abs.class_type);
+      if (!abs.justified) {
+        unjust.push(abs.class_name + " - " + abs.class_type);
+      } else if (abs.justified) {
+        just.push(abs.class_name + " - " + abs.class_type);
       }
     });
+
+    console.log("justified : " + just);
+    console.log("unjustified : " + unjust);
+
     for (const absence of myAbsencesList) {
-      if (count[absence.class_name + " - " + absence.class_type]) {
-        count[absence.class_name + " - " + absence.class_type] += 1;
-      } else {
-        count[absence.class_name + " - " + absence.class_type] = 1;
+      if (!absence.justified) {
+        if (
+          countUnjust[
+            absence.class_name +
+              " - " +
+              absence.class_type
+          ]
+        ) {
+          countUnjust[
+            absence.class_name +
+              " - " +
+              absence.class_type
+          ] += 1;
+        } else {
+          countUnjust[
+            absence.class_name +
+              " - " +
+              absence.class_type
+          ] = 1;
+        }
       }
     }
-    console.log(occurences);
-    console.log(count);
 
-    occurences.forEach((zeba) => {
-      if (count[zeba] >= 3) {
-        setMessage("You have " + count[zeba] + " absences in " + zeba);
+    for (const absence of myAbsencesList) {
+      if (absence.justified) {
+        if (
+          countJust[
+            absence.class_name +
+              " - " +
+              absence.class_type
+          ]
+        ) {
+          countJust[
+            absence.class_name +
+              " - " +
+              absence.class_type
+          ] += 1;
+        } else {
+          countJust[
+            absence.class_name +
+              " - " +
+              absence.class_type
+          ] = 1;
+        }
+      }
+    }
+
+    console.log('count just');
+    console.log(countJust);
+    console.log('count unjust');
+    console.log(countUnjust);
+
+    unjust.forEach((occurence) => {
+      if (countUnjust[occurence] >= 2) {
+        setMessage(
+          "You have " +
+            countUnjust[occurence] +
+            " unjustified absences in " +
+            occurence
+        );
+      }
+      if (countJust[occurence] >= 4) {
+        setMessage2(
+          "You have " +
+            countJust[occurence] +
+            " justified absences in " +
+            occurence
+        );
       }
     });
   }, [myAbsencesList]);
@@ -98,24 +163,24 @@ function Home() {
                 </h2>
               </div>
               <div className="tasks">
-                  <button
-                    className="task-btn"
-                    onClick={() => {
-                      navigate("/teachers");
-                    }}
-                  >
-                    <TbCirclePlus className="plus1" />
-                    Create an account for a teacher
-                  </button>
-                  <button
-                    className="task-btn"
-                    onClick={() => {
-                      navigate("/students");
-                    }}
-                  >
-                    <TbCirclePlus className="plus1" />
-                    Create an account for a student
-                  </button>
+                <button
+                  className="task-btn"
+                  onClick={() => {
+                    navigate("/teachers");
+                  }}
+                >
+                  <TbCirclePlus className="plus1" />
+                  Create an account for a teacher
+                </button>
+                <button
+                  className="task-btn"
+                  onClick={() => {
+                    navigate("/students");
+                  }}
+                >
+                  <TbCirclePlus className="plus1" />
+                  Create an account for a student
+                </button>
               </div>
             </div>
             <div className="profile-div">
@@ -160,6 +225,8 @@ function Home() {
                   {window.localStorage.getItem("lastName")}
                 </h2>
               </div>
+              <div className="warnings">
+
               {message && (
                 <div className="warning">
                   <FontAwesomeIcon
@@ -183,7 +250,32 @@ function Home() {
                   </div>
                 </div>
               )}
-              {!message && (
+
+              {message2 && (
+                <div className="warning">
+                  <FontAwesomeIcon
+                    icon={faTriangleExclamation}
+                    style={{
+                      marginRight: "2rem",
+                      color: "rgb(250, 56, 56)",
+                      height: "24px",
+                    }}
+                  />
+                  <div className="warning-info">
+                    {message2}
+                    <button
+                      className="justify-btn"
+                      onClick={() => {
+                        navigate("/my-absences");
+                      }}
+                    >
+                      Check absences
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {!message && !message2 && (
                 <div className="warning" style={{ backgroundColor: "#d8ffcc" }}>
                   <FontAwesomeIcon
                     icon={faThumbsUp}
@@ -193,9 +285,10 @@ function Home() {
                       height: "24px",
                     }}
                   />
-                  You don't exclusing absences
+                  You don't have any excluding absences
                 </div>
               )}
+              </div>
             </div>
             <div className="profile-div">
               <img src={avatar} alt="avatar" className="big-icon " />
